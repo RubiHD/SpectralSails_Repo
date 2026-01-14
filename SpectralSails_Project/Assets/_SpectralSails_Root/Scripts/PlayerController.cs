@@ -14,8 +14,9 @@ public class PlayerController : MonoBehaviour
     {
         float speedX = Input.GetAxis("Horizontal")*Time.deltaTime*speed;
 
-        Vector3 position = transform.position;
+        Vector2 position = transform.position;
 
-        transform.position = new Vector3(speedX + position.x, position.y, position.z);
+
+        transform.position = new Vector2(speedX + position.x, position.y);
     }
 }
