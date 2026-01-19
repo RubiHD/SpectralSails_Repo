@@ -14,11 +14,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask groundLayer;
     [SerializeField] Transform groundCheck;
 
+    [Header("Dash Settings")]
+    [SerializeField] float dashForce = 12f;
+    [SerializeField] float dashDuration = 0.15f;
+    [SerializeField] float dashCooldown = 0.5f;
+
     private float horizontal;
     private bool jumpPressed;
 
+    private bool isDashing = false;
+    private bool canDash = true;
+
     private void Update()
     {
+        if (isDashing)
+            return;
+
         if (jumpPressed && IsGrounded())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
@@ -27,6 +38,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDashing)
+            return;
+
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
     }
 
@@ -41,7 +55,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        // La acci�n debe ser de tipo Vector2
         Vector2 input = context.ReadValue<Vector2>();
         horizontal = input.x;
     }
@@ -54,5 +67,39 @@ public class PlayerController : MonoBehaviour
         if (context.canceled)
             jumpPressed = false;
     }
-}
 
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started && canDash)
+        {
+            StartDash();
+        }
+    }
+
+    // -------------------------
+    // DASH LOGIC
+    // -------------------------
+
+    private void StartDash()
+    {
+        isDashing = true;
+        canDash = false;
+
+        float direction = horizontal != 0 ? Mathf.Sign(horizontal) : transform.localScale.x;
+
+        rb.linearVelocity = new Vector2(direction * dashForce, 0f);
+
+        Invoke(nameof(EndDash), dashDuration);
+        Invoke(nameof(ResetDash), dashCooldown);
+    }
+
+    private void EndDash()
+    {
+        isDashing = false;
+    }
+
+    private void ResetDash()
+    {
+        canDash = true;
+    }
+}
