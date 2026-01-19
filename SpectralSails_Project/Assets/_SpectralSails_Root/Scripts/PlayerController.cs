@@ -42,6 +42,12 @@ public class PlayerController : MonoBehaviour
             return;
 
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
+        if (horizontal > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+
+        if (horizontal < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+
     }
 
     private bool IsGrounded()

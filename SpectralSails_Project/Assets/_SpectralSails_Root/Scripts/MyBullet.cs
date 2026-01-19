@@ -25,18 +25,18 @@ public class MyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Si el enemigo tiene vida, aquí puedes añadir daño
-        var enemy = collision.GetComponent<FloatingEnemy>();
+        EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+
         if (enemy != null)
         {
-            // enemy.TakeDamage(damage);  <-- si luego quieres añadir vida al enemigo
+            enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
 
-        // Si choca con el suelo u otro obstáculo
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);
         }
     }
+
 }

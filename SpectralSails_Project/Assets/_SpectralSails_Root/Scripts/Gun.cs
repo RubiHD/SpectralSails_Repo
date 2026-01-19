@@ -40,11 +40,14 @@ public class PlayerGun : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
+        // Dirección según hacia dónde mira el jugador
         float dir = Mathf.Sign(transform.localScale.x);
+
         bullet.GetComponent<MyBullet>().SetDirection(new Vector2(dir, 0));
 
         Invoke(nameof(ResetShoot), fireCooldown);
     }
+
 
 
     private void ResetShoot()
