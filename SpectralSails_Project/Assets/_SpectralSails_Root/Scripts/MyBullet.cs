@@ -25,18 +25,31 @@ public class MyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
+        // Damage boss
+        BossPirate boss = collision.GetComponent<BossPirate>();
+        if (boss != null)
+        {
+            boss.TakeDamage(damage);
+            Destroy(gameObject);
+            return;
+        }
 
+        // Damage normal enemies
+        EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
             Destroy(gameObject);
+            return;
         }
 
+        // Destroy on ground
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);
         }
+
     }
+
 
 }
