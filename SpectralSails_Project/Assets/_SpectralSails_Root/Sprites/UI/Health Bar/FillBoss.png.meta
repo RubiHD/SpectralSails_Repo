@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 46fe37147e80d8a4a8d84408af57e5f8
+guid: b27634659573cae469991cbce02339cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7115282456876654693
-    second: MunicionPickUp_0
+      213: 2649194686835978251
+    second: FillBoss_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,10 +48,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MunicionPickUp_0
+      name: FillBoss_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1
-        width: 32
-        height: 30
+        x: 26
+        y: 28
+        width: 76
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 560a3b632bf8eb260800000000000000
-      internalID: 7115282456876654693
+      spriteID: b00f5b91884d3c420800000000000000
+      internalID: 2649194686835978251
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MunicionPickUp_0: 7115282456876654693
+      FillBoss_0: 2649194686835978251
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

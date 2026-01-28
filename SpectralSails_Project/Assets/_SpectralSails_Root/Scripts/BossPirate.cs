@@ -36,11 +36,19 @@ public class BossPirate : MonoBehaviour
 
     private Vector2 moveDirection = Vector2.zero;
 
+    [Header("Health Bar")]
+    public BossHealthUI bossHealthUI;
+
+
     private void Start()
     {
         currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+
+        bossHealthUI.Show();
+        bossHealthUI.SetHealth(1f); // vida completa
+
     }
 
     private void Update()
@@ -132,6 +140,10 @@ public class BossPirate : MonoBehaviour
         {
             Die();
         }
+
+        float normalized = (float)currentHealth / maxHealth;
+        bossHealthUI.SetHealth(normalized);
+
     }
 
     private void BarrelAttack()
@@ -169,6 +181,9 @@ public class BossPirate : MonoBehaviour
     {
         Debug.Log("Boss defeated");
         Destroy(gameObject);
+
+        bossHealthUI.Hide();
+
     }
 
 
