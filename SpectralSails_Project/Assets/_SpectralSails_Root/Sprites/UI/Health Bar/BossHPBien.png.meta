@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7b2314a99d00e31429c793ce22f7a9bf
+guid: ecb0ee2fd06027046a21f3547ea2f0f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6819543526817196358
-    second: Daga_0
+      213: 8150898195489254250
+    second: BossHPBien_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Daga_0
+      name: BossHPBien_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
+        x: 4
+        y: 4
+        width: 104
+        height: 56
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 649e046c4b2e3ae50800000000000000
-      internalID: 6819543526817196358
+      spriteID: a6b628639becd1170800000000000000
+      internalID: 8150898195489254250
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Daga_0: 6819543526817196358
+      BossHPBien_0: 8150898195489254250
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
