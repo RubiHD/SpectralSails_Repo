@@ -25,17 +25,6 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    [Header("Wall Jump Settings")]
-    [SerializeField] LayerMask wallLayer;
-    [SerializeField] Transform wallCheck;
-    [SerializeField] float wallSlideSpeed = 1f;
-    [SerializeField] Vector2 wallJumpForce = new Vector2(8f, 12f);
-
-    private bool isTouchingWall;
-    private bool isWallSliding;
-    private bool isWallJumping;
-
-
     private void Update()
     {
         if (isDashing)
@@ -58,23 +47,6 @@ public class PlayerController : MonoBehaviour
 
         if (horizontal < 0)
             transform.localScale = new Vector3(-1, 1, 1);
-
-
-        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-
-        if (!IsGrounded() && isTouchingWall && horizontal != 0)
-        {
-            isWallSliding = true;
-        }
-        else
-        {
-            isWallSliding = false;
-        }
-
-        if (isWallSliding)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSlideSpeed, float.MaxValue));
-        }
 
     }
 
