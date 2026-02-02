@@ -1,53 +1,73 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Player Component References")]
-    [SerializeField] Rigidbody2D rb;
+    [Header("Componentes")]
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private GameObject interactPromptUI;
 
-    [Header("Player Settings")]
-    [SerializeField] float speed = 5f;
-    [SerializeField] float jumpingPower = 10f;
+    [Header("Movimiento")]
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpingPower = 10f;
 
-    [Header("Grounding")]
-    [SerializeField] LayerMask groundLayer;
-    [SerializeField] Transform groundCheck;
+    [Header("Wall Jump")]
+    [SerializeField] private Vector2 wallJumpForce = new Vector2(12f, 12f);
 
-    [Header("Dash Settings")]
-    [SerializeField] float dashForce = 12f;
-    [SerializeField] float dashDuration = 0.15f;
-    [SerializeField] float dashCooldown = 0.5f;
+    [Header("Coyote Time")]
+    [SerializeField] private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
 
-    private float horizontal;
-    private bool jumpPressed;
-
+    [Header("Dash")]
+    [SerializeField] private float dashForce = 12f;
+    [SerializeField] private float dashDuration = 0.15f;
+    [SerializeField] private float dashCooldown = 0.5f;
     private bool isDashing = false;
     private bool canDash = true;
 
+    [Header("Detección")]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
+
+    private float horizontal;
+    private bool isTouchingWall;
+    private bool isStickingToWall = false;
+    private bool wallJumping = false;
+    private bool canStickToWall = true;
+    private bool isClimbingLadder = false;
+
+    private IInteractable currentInteractable;
+
     private void Update()
     {
-        if (isDashing)
+        if (isDashing || wallJumping || isClimbingLadder)
             return;
 
-        if (jumpPressed && IsGrounded())
+        bool grounded = IsGrounded();
+        isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+
+        if (!grounded && isTouchingWall && !wallJumping && canStickToWall)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            StickToWall();
         }
+        else if ((grounded || !isTouchingWall) && isStickingToWall)
+        {
+            UnstickFromWall();
+        }
+
+        coyoteTimeCounter = IsGrounded() ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
+
     }
 
     private void FixedUpdate()
     {
-        if (isDashing)
+        if (isDashing || wallJumping || isClimbingLadder)
             return;
 
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
-        if (horizontal > 0)
-            transform.localScale = new Vector3(1, 1, 1);
-
-        if (horizontal < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
-
     }
 
     private bool IsGrounded()
@@ -55,57 +75,138 @@ public class PlayerController : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    // -------------------------
-    // INPUT ACTIONS (Unity Events)
-    // -------------------------
+    private void StickToWall()
+    {
+        isStickingToWall = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
+    }
+
+    private void UnstickFromWall()
+    {
+        isStickingToWall = false;
+        rb.gravityScale = 1f;
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
         horizontal = input.x;
+
+        if (isClimbingLadder && input != Vector2.zero)
+        {
+            isClimbingLadder = false;
+            rb.gravityScale = 1f;
+        }
+
+        if (isStickingToWall && Mathf.Sign(horizontal) != Mathf.Sign(transform.localScale.x) && horizontal != 0)
+        {
+            UnstickFromWall();
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.started)
-            jumpPressed = true;
+        {
+            if (coyoteTimeCounter > 0f)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+                coyoteTimeCounter = 0f;
+            }
+            else if (isStickingToWall)
+            {
+                float wallDir = Mathf.Sign(transform.localScale.x);
+                rb.gravityScale = 1f;
+                rb.linearVelocity = new Vector2(-wallDir * wallJumpForce.x, wallJumpForce.y);
+                transform.localScale = new Vector3(-wallDir, 1, 1);
+                isStickingToWall = false;
+                wallJumping = true;
+                canStickToWall = false;
+                StartCoroutine(ResetWallJumpState(0.2f));
+            }
+        }
+    }
 
-        if (context.canceled)
-            jumpPressed = false;
+    private IEnumerator ResetWallJumpState(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        wallJumping = false;
+        canStickToWall = true;
     }
 
     public void OnDash(InputAction.CallbackContext context)
     {
         if (context.started && canDash)
         {
-            StartDash();
+            StartCoroutine(PerformDash());
         }
     }
 
-    // -------------------------
-    // DASH LOGIC
-    // -------------------------
-
-    private void StartDash()
+    private IEnumerator PerformDash()
     {
         isDashing = true;
         canDash = false;
 
         float direction = horizontal != 0 ? Mathf.Sign(horizontal) : transform.localScale.x;
-
         rb.linearVelocity = new Vector2(direction * dashForce, 0f);
 
-        Invoke(nameof(EndDash), dashDuration);
-        Invoke(nameof(ResetDash), dashCooldown);
-    }
-
-    private void EndDash()
-    {
+        yield return new WaitForSeconds(dashDuration);
         isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 
-    private void ResetDash()
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        canDash = true;
+        if (context.started && currentInteractable != null)
+        {
+            currentInteractable.Interact(this);
+            if (interactPromptUI != null)
+                interactPromptUI.SetActive(false);
+        }
+    }
+
+    public void StartClimbingLadder(Ladder ladder)
+    {
+        isClimbingLadder = true;
+        rb.gravityScale = 0f;
+        rb.linearVelocity = new Vector2(0f, 2.5f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent<IInteractable>(out var interactable))
+        {
+            currentInteractable = interactable;
+            if (interactPromptUI != null)
+                interactPromptUI.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.TryGetComponent<IInteractable>(out var interactable) && interactable == currentInteractable)
+        {
+            currentInteractable = null;
+            if (interactPromptUI != null)
+                interactPromptUI.SetActive(false);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, 0.2f);
+        }
+
+        if (wallCheck != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(wallCheck.position, 0.2f);
+        }
     }
 }

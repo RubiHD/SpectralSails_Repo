@@ -29,6 +29,16 @@ public class BossPirate : MonoBehaviour
 
     private float swordTimer = 0f;
 
+    [Header("Ghost Orb Attack")]
+    public GameObject ghostOrbPrefab;
+    public Transform leftHandSpawn;
+    public Transform rightHandSpawn;
+    public float ghostOrbCooldown = 6f;
+
+    private float ghostOrbTimer = 0f;
+    public float ghostOrbRange = 8f;
+
+
 
 
     private Transform player;
@@ -53,14 +63,20 @@ public class BossPirate : MonoBehaviour
 
     private void Update()
     {
-        HandleMovementLogic();   // ← ESTO FALTABA
+        HandleMovementLogic();
 
         swordTimer -= Time.deltaTime;
         barrelTimer -= Time.deltaTime;
 
         float distanceX = Mathf.Abs(transform.position.x - player.position.x);
 
-        // If player is close → ONLY sword attack
+        if (isEnraged)
+        {
+            HandleEnragedAttacks(distanceX);
+            return;
+        }
+
+        // Modo normal
         if (distanceX <= stopDistance)
         {
             barrelTimer = Mathf.Max(barrelTimer, 1f);
@@ -74,13 +90,16 @@ public class BossPirate : MonoBehaviour
             return;
         }
 
-        // If player is far → ONLY barrel attack
         if (barrelTimer <= 0f)
         {
             BarrelAttack();
             barrelTimer = barrelCooldown;
         }
+
+        ghostOrbTimer -= Time.deltaTime;
+
     }
+
 
 
     private void FixedUpdate()
@@ -157,14 +176,16 @@ public class BossPirate : MonoBehaviour
 
     private void SwordAttack()
     {
-        // Animation later
-        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, attackRange, LayerMask.GetMask("Player"));
+        float range = isEnraged ? attackRange + 0.5f : attackRange;
+        int damage = isEnraged ? swordDamage + 1 : swordDamage;
+
+        Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, range, LayerMask.GetMask("Player"));
 
         if (hit != null)
         {
             PlayerHealth player = hit.GetComponent<PlayerHealth>();
             if (player != null)
-                player.TakeDamage(swordDamage);
+                player.TakeDamage(damage);
         }
     }
 
@@ -176,6 +197,44 @@ public class BossPirate : MonoBehaviour
         isEnraged = true;
         Debug.Log("Boss is now ENRAGED!");
     }
+
+    private void HandleEnragedAttacks(float distanceX)
+    {
+        if (distanceX <= stopDistance)
+        {
+            if (swordTimer <= 0f)
+            {
+                SwordAttack();
+                swordTimer = swordCooldown * 0.7f;
+            }
+        }
+        else if (distanceX >= ghostOrbRange)
+        {
+            if (ghostOrbTimer <= 0f)
+            {
+                GhostOrbAttack();
+                ghostOrbTimer = ghostOrbCooldown;
+            }
+        }
+
+        // Aquí luego puedes añadir un tercer ataque para el rango intermedio
+    }
+
+    private void GhostOrbAttack()
+    {
+        Vector3 targetPos = player.position;
+
+        // Lanza desde la mano izquierda
+        GameObject orbLeft = Instantiate(ghostOrbPrefab, leftHandSpawn.position, Quaternion.identity);
+        orbLeft.GetComponent<GhostOrb>().Initialize(targetPos);
+
+        // Lanza desde la mano derecha
+        GameObject orbRight = Instantiate(ghostOrbPrefab, rightHandSpawn.position, Quaternion.identity);
+        orbRight.GetComponent<GhostOrb>().Initialize(targetPos);
+    }
+
+
+
 
     private void Die()
     {

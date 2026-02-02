@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "43baf623-fd87-4bfe-8293-9ad5fd2b3350",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -141,7 +150,7 @@
                 {
                     "name": "",
                     "id": "248ac894-b013-446e-b3e9-cc293b27ca2f",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -179,6 +188,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchSword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "101b9085-616a-40f0-ace9-e3907cb02d2e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
