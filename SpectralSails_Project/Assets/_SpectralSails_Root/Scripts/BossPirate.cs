@@ -33,11 +33,20 @@ public class BossPirate : MonoBehaviour
     public GameObject ghostOrbPrefab;
     public Transform leftHandSpawn;
     public Transform rightHandSpawn;
-    public float ghostOrbCooldown = 6f;
+    public float ghostOrbCooldown = 2f;
 
     private float ghostOrbTimer = 0f;
     public float ghostOrbRange = 8f;
 
+
+    [Header("Ghost Mouth Attack")]
+    public GameObject ghostMouthPrefab;
+    public Transform mouthSpawnPoint;
+    public float ghostMouthCooldown = 3f;
+    public float ghostMouthMinRange = 3f;
+    public float ghostMouthMaxRange = 6f;
+
+    private float ghostMouthTimer = 0f;
 
 
 
@@ -67,6 +76,8 @@ public class BossPirate : MonoBehaviour
 
         swordTimer -= Time.deltaTime;
         barrelTimer -= Time.deltaTime;
+        ghostOrbTimer -= Time.deltaTime;
+        ghostMouthTimer -= Time.deltaTime;
 
         float distanceX = Mathf.Abs(transform.position.x - player.position.x);
 
@@ -96,9 +107,7 @@ public class BossPirate : MonoBehaviour
             barrelTimer = barrelCooldown;
         }
 
-        ghostOrbTimer -= Time.deltaTime;
-
-    }
+     }
 
 
 
@@ -217,6 +226,15 @@ public class BossPirate : MonoBehaviour
             }
         }
 
+        else if (distanceX > stopDistance && distanceX < ghostOrbRange)
+        {
+            if (ghostMouthTimer <= 0f)
+            {
+                GhostMouthAttack();
+                ghostMouthTimer = ghostMouthCooldown;
+            }
+        }
+
         // Aquí luego puedes añadir un tercer ataque para el rango intermedio
     }
 
@@ -233,6 +251,13 @@ public class BossPirate : MonoBehaviour
         orbRight.GetComponent<GhostOrb>().Initialize(targetPos);
     }
 
+    private void GhostMouthAttack()
+    {
+        Vector3 targetPos = player.position;
+
+        GameObject mouth = Instantiate(ghostMouthPrefab, mouthSpawnPoint.position, Quaternion.identity);
+        mouth.GetComponent<GhostMouth>().Initialize(targetPos);
+    }
 
 
 
