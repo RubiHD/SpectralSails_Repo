@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
-    [Header("Detecci�n")]
+    [Header("Detección")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform wallCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -41,8 +41,17 @@ public class PlayerController : MonoBehaviour
 
     private IInteractable currentInteractable;
 
+
+    public DialogueUI dialogueUI;
+
+    public bool canMove = true;
+
+
     private void Update()
     {
+
+        if (!canMove) return;
+
         if (isDashing || wallJumping || isClimbingLadder)
             return;
 
@@ -59,6 +68,7 @@ public class PlayerController : MonoBehaviour
         }
 
         coyoteTimeCounter = IsGrounded() ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
+
 
     }
 
@@ -209,4 +219,20 @@ public class PlayerController : MonoBehaviour
             Gizmos.DrawWireSphere(wallCheck.position, 0.2f);
         }
     }
+
+    public void StartDialogue(DialogueDataSO dialogue)
+    {
+        Debug.Log("StartDialogue llamado con: " + dialogue.name);
+
+        if (dialogueUI != null)
+        {
+            dialogueUI.ShowDialogue(dialogue); // ✅ Pasa el ScriptableObject entero
+        }
+        else
+        {
+            Debug.LogWarning("DialogueUI no está asignado.");
+        }
+    }
+
+
 }
