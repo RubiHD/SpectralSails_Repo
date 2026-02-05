@@ -9,32 +9,33 @@ public class GhostMouth : MonoBehaviour
     private Vector3 targetPosition;
     private bool hasAttacked = false;
 
+    [SerializeField] private Animator mouthAnimator;
+
+
     public void Initialize(Vector3 target)
     {
-        targetPosition = target;
         Vector3 direction = (target - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 180f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        // Desplazar un poco hacia adelante
+        float offsetDistance = 0.5f;
+        transform.position += direction * offsetDistance;
+
+        if (mouthAnimator != null)
+            mouthAnimator.SetTrigger("Close");
     }
 
-    private void Update()
-    {
-        if (!hasAttacked)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, extendSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
-            {
-                hasAttacked = true;
-                GetComponent<Animator>().SetTrigger("Close"); // lanza animación de cierre
-            }
-        }
-    }
+
+
+
+
 
     // Llamado desde un Animation Event en el frame de cierre
     public void DealDamage()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, 1.5f, LayerMask.GetMask("Player"));
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, 1.0f, LayerMask.GetMask("Player"));
         if (hit != null)
         {
             PlayerHealth player = hit.GetComponent<PlayerHealth>();

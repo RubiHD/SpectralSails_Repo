@@ -14,7 +14,7 @@ public class BossPirate : MonoBehaviour
     public float chaseRange = 6f;
     public float stopDistance = 2f;
 
-    [Header("Barrel Attack")]
+    [Header("Barrel Attack")] 
     public GameObject barrelPrefab;
     public Transform barrelSpawnPoint;
     public float barrelCooldown = 4f;
@@ -258,6 +258,7 @@ public class BossPirate : MonoBehaviour
         GameObject mouth = Instantiate(ghostMouthPrefab, mouthSpawnPoint.position, Quaternion.identity);
         mouth.GetComponent<GhostMouth>().Initialize(targetPos);
     }
+
 
 
 
