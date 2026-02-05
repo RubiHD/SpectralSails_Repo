@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
     [Header("Componentes")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject interactPromptUI;
+    private Animator animator;
 
     [Header("Movimiento")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpingPower = 10f;
+    private float horizontal;
 
     [Header("Wall Jump")]
     [SerializeField] private Vector2 wallJumpForce = new Vector2(12f, 12f);
@@ -32,25 +34,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
 
-    private float horizontal;
+    [Header("Interacción")]
+    public DialogueUI dialogueUI;
+    private IInteractable currentInteractable;
+    public bool canMove = true;
+
+    // Estados
     private bool isTouchingWall;
     private bool isStickingToWall = false;
     private bool wallJumping = false;
     private bool canStickToWall = true;
     private bool isClimbingLadder = false;
 
-    private IInteractable currentInteractable;
-
-
-    public DialogueUI dialogueUI;
-
-    public bool canMove = true;
-
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
-
         if (!canMove) return;
+
+        // Movimiento horizontal
+        if (horizontal > 0.01f)
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        else if (horizontal < -0.01f)
+            transform.localScale = new Vector3(-1f, 1f, 1f);
 
         if (isDashing || wallJumping || isClimbingLadder)
             return;
@@ -59,15 +68,25 @@ public class PlayerController : MonoBehaviour
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
 
         if (!grounded && isTouchingWall && !wallJumping && canStickToWall)
-        {
             StickToWall();
-        }
         else if ((grounded || !isTouchingWall) && isStickingToWall)
-        {
             UnstickFromWall();
+
+        coyoteTimeCounter = grounded ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
+
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(horizontal));
+
+            float verticalVelocity = rb.linearVelocity.y;
+
+            animator.SetBool("isFalling", !grounded && verticalVelocity < -0.1f);
+
+            if (grounded)
+                animator.SetBool("isJumping", false);
         }
 
-        coyoteTimeCounter = IsGrounded() ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
+
 
 
     }
@@ -117,26 +136,38 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (!context.started) return;
+
+        // Salto normal desde el suelo (con coyote time)
+        if (coyoteTimeCounter > 0f)
         {
-            if (coyoteTimeCounter > 0f)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
-                coyoteTimeCounter = 0f;
-            }
-            else if (isStickingToWall)
-            {
-                float wallDir = Mathf.Sign(transform.localScale.x);
-                rb.gravityScale = 1f;
-                rb.linearVelocity = new Vector2(-wallDir * wallJumpForce.x, wallJumpForce.y);
-                transform.localScale = new Vector3(-wallDir, 1, 1);
-                isStickingToWall = false;
-                wallJumping = true;
-                canStickToWall = false;
-                StartCoroutine(ResetWallJumpState(0.2f));
-            }
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
+            coyoteTimeCounter = 0f;
+
+            if (animator != null)
+                animator.SetBool("isJumping", true);
+        }
+        // Salto desde la pared
+        else if (isStickingToWall)
+        {
+            float wallDir = Mathf.Sign(transform.localScale.x);
+            rb.gravityScale = 1f;
+            rb.linearVelocity = new Vector2(-wallDir * wallJumpForce.x, wallJumpForce.y);
+            transform.localScale = new Vector3(-wallDir, 1, 1);
+            isStickingToWall = false;
+            wallJumping = true;
+            canStickToWall = false;
+
+            if (animator != null)
+                animator.SetBool("isJumping", true);
+
+            StartCoroutine(ResetWallJumpState(0.2f));
         }
     }
+
+
+
+
 
     private IEnumerator ResetWallJumpState(float delay)
     {
@@ -226,13 +257,11 @@ public class PlayerController : MonoBehaviour
 
         if (dialogueUI != null)
         {
-            dialogueUI.ShowDialogue(dialogue); // ✅ Pasa el ScriptableObject entero
+            dialogueUI.ShowDialogue(dialogue);
         }
         else
         {
             Debug.LogWarning("DialogueUI no está asignado.");
         }
     }
-
-
 }
