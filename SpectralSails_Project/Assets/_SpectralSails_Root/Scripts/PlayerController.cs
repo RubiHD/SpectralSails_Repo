@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] private float dashForce = 12f;
-    [SerializeField] private float dashDuration = 0.15f;
+    [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private float dashCooldown = 0.5f;
     private bool isDashing = false;
     private bool canDash = true;
@@ -55,40 +55,39 @@ public class PlayerController : MonoBehaviour
     {
         if (!canMove) return;
 
-        // Movimiento horizontal
-        if (horizontal > 0.01f)
+        // Movimiento horizontal y orientación
+        if (horizontal > 0.01f && !isStickingToWall)
             transform.localScale = new Vector3(1f, 1f, 1f);
-        else if (horizontal < -0.01f)
+        else if (horizontal < -0.01f && !isStickingToWall)
             transform.localScale = new Vector3(-1f, 1f, 1f);
+
 
         if (isDashing || wallJumping || isClimbingLadder)
             return;
 
         bool grounded = IsGrounded();
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
+        bool isInAir = !grounded && Mathf.Abs(rb.linearVelocity.y) > 0.1f;
 
         if (!grounded && isTouchingWall && !wallJumping && canStickToWall)
             StickToWall();
         else if ((grounded || !isTouchingWall) && isStickingToWall)
             UnstickFromWall();
 
+        animator.SetBool("isTouchingWall", isStickingToWall && !grounded);
+
         coyoteTimeCounter = grounded ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
 
         if (animator != null)
         {
             animator.SetFloat("Speed", Mathf.Abs(horizontal));
-
             float verticalVelocity = rb.linearVelocity.y;
 
             animator.SetBool("isFalling", !grounded && verticalVelocity < -0.1f);
 
-            if (grounded)
+            if (grounded || rb.linearVelocity.y <= 0f)
                 animator.SetBool("isJumping", false);
         }
-
-
-
-
     }
 
     private void FixedUpdate()
@@ -107,9 +106,11 @@ public class PlayerController : MonoBehaviour
     private void StickToWall()
     {
         isStickingToWall = true;
-        rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
+        rb.linearVelocity = new Vector2(0f, 0f); // Detiene solo el movimiento vertical
     }
+
+
 
     private void UnstickFromWall()
     {
@@ -131,23 +132,21 @@ public class PlayerController : MonoBehaviour
         if (isStickingToWall && Mathf.Sign(horizontal) != Mathf.Sign(transform.localScale.x) && horizontal != 0)
         {
             UnstickFromWall();
+            rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y); // impulso al soltar
         }
+
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.started) return;
 
-        // Salto normal desde el suelo (con coyote time)
         if (coyoteTimeCounter > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
             coyoteTimeCounter = 0f;
-
-            if (animator != null)
-                animator.SetBool("isJumping", true);
+            animator.SetBool("isJumping", true);
         }
-        // Salto desde la pared
         else if (isStickingToWall)
         {
             float wallDir = Mathf.Sign(transform.localScale.x);
@@ -158,16 +157,14 @@ public class PlayerController : MonoBehaviour
             wallJumping = true;
             canStickToWall = false;
 
-            if (animator != null)
-                animator.SetBool("isJumping", true);
+            animator.SetBool("isTouchingWall", false);
+            animator.SetBool("isJumping", true);
 
             StartCoroutine(ResetWallJumpState(0.2f));
         }
+
+        animator.SetBool("isJumping", true);
     }
-
-
-
-
 
     private IEnumerator ResetWallJumpState(float delay)
     {
@@ -189,11 +186,15 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         canDash = false;
 
+        animator.SetBool("isDashing", true);
+
         float direction = horizontal != 0 ? Mathf.Sign(horizontal) : transform.localScale.x;
         rb.linearVelocity = new Vector2(direction * dashForce, 0f);
 
         yield return new WaitForSeconds(dashDuration);
+
         isDashing = false;
+        animator.SetBool("isDashing", false);
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;

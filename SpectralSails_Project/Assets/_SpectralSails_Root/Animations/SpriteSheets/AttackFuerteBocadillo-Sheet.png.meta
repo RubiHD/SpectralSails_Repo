@@ -1,34 +1,31 @@
 fileFormatVersion: 2
-guid: 546545d63012cb241865363d5678dabe
+guid: 0e8a7063c0321f74ba161458f4558d6e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3427141586310805026
-    second: JumpBocadillo-Sheet_0
+      213: -272082335138747366
+    second: AttackFuerteBocadillo-Sheet_0
   - first:
-      213: -4743669849377118238
-    second: JumpBocadillo-Sheet_1
+      213: -4934906865364767999
+    second: AttackFuerteBocadillo-Sheet_1
   - first:
-      213: -5495743319461255071
-    second: JumpBocadillo-Sheet_2
+      213: -1552809315530613706
+    second: AttackFuerteBocadillo-Sheet_2
   - first:
-      213: 9079590615863741500
-    second: JumpBocadillo-Sheet_3
+      213: -4585460747160047522
+    second: AttackFuerteBocadillo-Sheet_3
   - first:
-      213: 6564370990942115171
-    second: JumpBocadillo-Sheet_4
+      213: -8383187440586366436
+    second: AttackFuerteBocadillo-Sheet_4
   - first:
-      213: 8511864073525644007
-    second: JumpBocadillo-Sheet_5
+      213: -6099839119048160027
+    second: AttackFuerteBocadillo-Sheet_5
   - first:
-      213: 2008505070205891623
-    second: JumpBocadillo-Sheet_6
+      213: 5052458093365573171
+    second: AttackFuerteBocadillo-Sheet_6
   - first:
-      213: 6273113484607702811
-    second: JumpBocadillo-Sheet_7
-  - first:
-      213: 170632555573996880
-    second: JumpBocadillo-Sheet_8
+      213: -3810628064117184522
+    second: AttackFuerteBocadillo-Sheet_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -137,13 +134,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_0
+      name: AttackFuerteBocadillo-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 39
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,140 +149,162 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 226360f6d17af8f20800000000000000
-      internalID: 3427141586310805026
+      spriteID: a1c6568ce8e593cf0800000000000000
+      internalID: -272082335138747366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_1
+      name: AttackFuerteBocadillo-Sheet_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 63
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e76520b7691b2eb0800000000000000
-      internalID: -4743669849377118238
+      spriteID: 10beb4a2a50b38bb0800000000000000
+      internalID: -4934906865364767999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_2
+      name: AttackFuerteBocadillo-Sheet_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 127
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16829c291923bb3b0800000000000000
-      internalID: -5495743319461255071
+      spriteID: 63c51e79720537ae0800000000000000
+      internalID: -1552809315530613706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_3
+      name: AttackFuerteBocadillo-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
-        y: 0
+        y: 1
         width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3c47843f8f210e70800000000000000
-      internalID: 9079590615863741500
+      spriteID: e50370acebb2d50c0800000000000000
+      internalID: -4585460747160047522
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_4
+      name: AttackFuerteBocadillo-Sheet_4
       rect:
         serializedVersion: 2
-        x: 256
+        x: 261
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 365dbf003a4591b50800000000000000
-      internalID: 6564370990942115171
+      spriteID: c126556507fe8ab80800000000000000
+      internalID: -8383187440586366436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_5
+      name: AttackFuerteBocadillo-Sheet_5
       rect:
         serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 302
+        y: 30
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7eac7eee647302670800000000000000
-      internalID: 8511864073525644007
+      spriteID: 5ec4a1ab3a4095ba0800000000000000
+      internalID: -6099839119048160027
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_6
+      name: AttackFuerteBocadillo-Sheet_6
       rect:
         serializedVersion: 2
-        x: 384
+        x: 323
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 61
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 724713748b4afdb10800000000000000
-      internalID: 2008505070205891623
+      spriteID: 3363a99eddfed1640800000000000000
+      internalID: 5052458093365573171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackFuerteBocadillo-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 0
+        width: 63
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f7292b17fded1bc0800000000000000
+      internalID: -3810628064117184522
       vertices: []
       indices: 
       edges: []
@@ -294,7 +313,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dd5ac23c88bcc8d4fad6b6542d3b941d
+    spriteID: 4ef1e4106c1aa0a4c9bcb1e9c9a574bd
     internalID: 0
     vertices: []
     indices: 
@@ -302,17 +321,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      JumpBocadillo-Sheet_0: 3427141586310805026
-      JumpBocadillo-Sheet_1: -4743669849377118238
-      JumpBocadillo-Sheet_2: -5495743319461255071
-      JumpBocadillo-Sheet_3: 9079590615863741500
-      JumpBocadillo-Sheet_4: 6564370990942115171
-      JumpBocadillo-Sheet_5: 8511864073525644007
-      JumpBocadillo-Sheet_6: 2008505070205891623
+      AttackFuerteBocadillo-Sheet_0: -272082335138747366
+      AttackFuerteBocadillo-Sheet_1: -4934906865364767999
+      AttackFuerteBocadillo-Sheet_2: -1552809315530613706
+      AttackFuerteBocadillo-Sheet_3: -4585460747160047522
+      AttackFuerteBocadillo-Sheet_4: -8383187440586366436
+      AttackFuerteBocadillo-Sheet_5: -6099839119048160027
+      AttackFuerteBocadillo-Sheet_6: 5052458093365573171
+      AttackFuerteBocadillo-Sheet_7: -3810628064117184522
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

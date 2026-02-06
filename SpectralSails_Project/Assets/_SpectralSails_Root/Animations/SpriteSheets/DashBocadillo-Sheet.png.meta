@@ -1,34 +1,25 @@
 fileFormatVersion: 2
-guid: 546545d63012cb241865363d5678dabe
+guid: 50e96a57994291c4c8a318f7d7653345
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3427141586310805026
-    second: JumpBocadillo-Sheet_0
+      213: -1761329480050803984
+    second: DashBocadillo-Sheet_0
   - first:
-      213: -4743669849377118238
-    second: JumpBocadillo-Sheet_1
+      213: -5429708752010908011
+    second: DashBocadillo-Sheet_1
   - first:
-      213: -5495743319461255071
-    second: JumpBocadillo-Sheet_2
+      213: 8021090907644317482
+    second: DashBocadillo-Sheet_2
   - first:
-      213: 9079590615863741500
-    second: JumpBocadillo-Sheet_3
+      213: 3909140463530595493
+    second: DashBocadillo-Sheet_3
   - first:
-      213: 6564370990942115171
-    second: JumpBocadillo-Sheet_4
+      213: -3406717676093777602
+    second: DashBocadillo-Sheet_4
   - first:
-      213: 8511864073525644007
-    second: JumpBocadillo-Sheet_5
-  - first:
-      213: 2008505070205891623
-    second: JumpBocadillo-Sheet_6
-  - first:
-      213: 6273113484607702811
-    second: JumpBocadillo-Sheet_7
-  - first:
-      213: 170632555573996880
-    second: JumpBocadillo-Sheet_8
+      213: -5349121786331288559
+    second: DashBocadillo-Sheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -137,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_0
+      name: DashBocadillo-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 39
+        height: 48
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,140 +143,118 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 226360f6d17af8f20800000000000000
-      internalID: 3427141586310805026
+      spriteID: 0faf5297b208e87e0800000000000000
+      internalID: -1761329480050803984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_1
+      name: DashBocadillo-Sheet_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 63
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 35
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e76520b7691b2eb0800000000000000
-      internalID: -4743669849377118238
+      spriteID: 59e6f8a68acc5a4b0800000000000000
+      internalID: -5429708752010908011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_2
+      name: DashBocadillo-Sheet_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 127
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 35
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16829c291923bb3b0800000000000000
-      internalID: -5495743319461255071
+      spriteID: a2f4145dea3a05f60800000000000000
+      internalID: 8021090907644317482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_3
+      name: DashBocadillo-Sheet_3
       rect:
         serializedVersion: 2
-        x: 192
+        x: 191
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 37
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c3c47843f8f210e70800000000000000
-      internalID: 9079590615863741500
+      spriteID: 5a4d8d14a8e004630800000000000000
+      internalID: 3909140463530595493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_4
+      name: DashBocadillo-Sheet_4
       rect:
         serializedVersion: 2
-        x: 256
+        x: 255
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 37
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 365dbf003a4591b50800000000000000
-      internalID: 6564370990942115171
+      spriteID: e39d26ab258e8b0d0800000000000000
+      internalID: -3406717676093777602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JumpBocadillo-Sheet_5
+      name: DashBocadillo-Sheet_5
       rect:
         serializedVersion: 2
-        x: 320
+        x: 319
         y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7eac7eee647302670800000000000000
-      internalID: 8511864073525644007
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JumpBocadillo-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 724713748b4afdb10800000000000000
-      internalID: 2008505070205891623
+      spriteID: 11cab61831a14c5b0800000000000000
+      internalID: -5349121786331288559
       vertices: []
       indices: 
       edges: []
@@ -294,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dd5ac23c88bcc8d4fad6b6542d3b941d
+    spriteID: 4a2c6360d47d0a94eb8050a888b91352
     internalID: 0
     vertices: []
     indices: 
@@ -302,17 +271,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      JumpBocadillo-Sheet_0: 3427141586310805026
-      JumpBocadillo-Sheet_1: -4743669849377118238
-      JumpBocadillo-Sheet_2: -5495743319461255071
-      JumpBocadillo-Sheet_3: 9079590615863741500
-      JumpBocadillo-Sheet_4: 6564370990942115171
-      JumpBocadillo-Sheet_5: 8511864073525644007
-      JumpBocadillo-Sheet_6: 2008505070205891623
+      DashBocadillo-Sheet_0: -1761329480050803984
+      DashBocadillo-Sheet_1: -5429708752010908011
+      DashBocadillo-Sheet_2: 8021090907644317482
+      DashBocadillo-Sheet_3: 3909140463530595493
+      DashBocadillo-Sheet_4: -3406717676093777602
+      DashBocadillo-Sheet_5: -5349121786331288559
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

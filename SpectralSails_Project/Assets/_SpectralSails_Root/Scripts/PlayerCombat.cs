@@ -11,6 +11,7 @@ public class PlayerCombat : MonoBehaviour
     [Header("Animator del jugador")]
     public Animator animator;
 
+
     [Header("Input Actions")]
     public InputAction attackAction;
     public InputAction switchSwordAction;
@@ -32,8 +33,27 @@ public class PlayerCombat : MonoBehaviour
         if (context.performed && swords.Count > 0)
         {
             swords[currentSwordIndex].Attack(this);
+
+            if (animator != null)
+            {
+                if (swords[currentSwordIndex] is AdvancedSword)
+                {
+                    animator.SetTrigger("attackAdvanced");
+                }
+                else
+                {
+                    animator.SetTrigger("attackBasic");
+                }
+
+            }
         }
     }
+
+    public void ApplyAttackDamage()
+    {
+        swords[currentSwordIndex].Attack(this);
+    }
+
 
     public void OnSwitchSword(InputAction.CallbackContext context)
     {
