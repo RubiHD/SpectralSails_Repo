@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,8 +32,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed && swords.Count > 0)
         {
-            swords[currentSwordIndex].Attack(this);
-
+            // ⚠️ Ya no llamamos a Attack aquí
             if (animator != null)
             {
                 if (swords[currentSwordIndex] is AdvancedSword)
@@ -44,10 +43,10 @@ public class PlayerCombat : MonoBehaviour
                 {
                     animator.SetTrigger("attackBasic");
                 }
-
             }
         }
     }
+
 
     public void ApplyAttackDamage()
     {
@@ -91,7 +90,10 @@ public class PlayerCombat : MonoBehaviour
 
     public void DealDamage(int amount)
     {
-        Vector2 attackPosition = (Vector2)transform.position + (Vector2)transform.right * 1f;
+        Vector2 direction = new Vector2(Mathf.Sign(transform.localScale.x), 0);
+        Vector2 attackPosition = (Vector2)transform.position + direction * 1f;
+
+   
         float radius = 1f;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPosition, radius);
@@ -117,8 +119,10 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Vector2 attackPosition = (Vector2)transform.position + (Vector2)transform.right * 1f;
+        Vector2 direction = new Vector2(Mathf.Sign(transform.localScale.x), 0);
+        Vector2 attackPosition = (Vector2)transform.position + direction * 1f;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition, 1f);
     }
+
 }

@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: 0332ba079664a1a42ba5004e3b4e2e93
+guid: fc05c30ed344b774493d1bb114a96241
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5180564946905419014
-    second: AttackBocadillo-Sheet_0
+      213: 8294575675143512177
+    second: WalkAnimation1-Sheet_0
   - first:
-      213: 1423985697635075864
-    second: AttackBocadillo-Sheet_1
+      213: -1661612861651868342
+    second: WalkAnimation1-Sheet_1
   - first:
-      213: 6019174592483176890
-    second: AttackBocadillo-Sheet_2
+      213: -834283419557456625
+    second: WalkAnimation1-Sheet_2
   - first:
-      213: 2663881875023219183
-    second: AttackBocadillo-Sheet_3
+      213: 8578752965990654088
+    second: WalkAnimation1-Sheet_3
   - first:
-      213: 5851456053063618447
-    second: AttackBocadillo-Sheet_4
+      213: -8074073104780857943
+    second: WalkAnimation1-Sheet_4
   - first:
-      213: 5893885226672560894
-    second: AttackBocadillo-Sheet_5
-  - first:
-      213: -3954902495606059553
-    second: AttackBocadillo-Sheet_6
+      213: -8226971808685951273
+    second: WalkAnimation1-Sheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -69,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -131,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AttackBocadillo-Sheet_0
+      name: WalkAnimation1-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -146,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 60d43241f5015e740800000000000000
-      internalID: 5180564946905419014
+      spriteID: 170668741a04c1370800000000000000
+      internalID: 8294575675143512177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackBocadillo-Sheet_1
+      name: WalkAnimation1-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -168,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81786c8827303c310800000000000000
-      internalID: 1423985697635075864
+      spriteID: a45250be7e3c0f8e0800000000000000
+      internalID: -1661612861651868342
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackBocadillo-Sheet_2
+      name: WalkAnimation1-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -190,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ab13402a667688350800000000000000
-      internalID: 6019174592483176890
+      spriteID: f05974f66a70c64f0800000000000000
+      internalID: -834283419557456625
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackBocadillo-Sheet_3
+      name: WalkAnimation1-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -212,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fe94c54937208f420800000000000000
-      internalID: 2663881875023219183
+      spriteID: 880a3b1de5add0770800000000000000
+      internalID: 8578752965990654088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackBocadillo-Sheet_4
+      name: WalkAnimation1-Sheet_4
       rect:
         serializedVersion: 2
         x: 256
@@ -234,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f8f8aa5274c843150800000000000000
-      internalID: 5851456053063618447
+      spriteID: 9ad600b1a4123ff80800000000000000
+      internalID: -8074073104780857943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackBocadillo-Sheet_5
+      name: WalkAnimation1-Sheet_5
       rect:
         serializedVersion: 2
         x: 320
@@ -256,30 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: efa9db2f2694bc150800000000000000
-      internalID: 5893885226672560894
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AttackBocadillo-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fdd481c522d5d19c0800000000000000
-      internalID: -3954902495606059553
+      spriteID: 7d6fe167abce3dd80800000000000000
+      internalID: -8226971808685951273
       vertices: []
       indices: 
       edges: []
@@ -288,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 26818c9de9b754a47812037b67344ad9
+    spriteID: 3c81899af5c248c4e92434b0ce3f9431
     internalID: 0
     vertices: []
     indices: 
@@ -300,13 +275,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      AttackBocadillo-Sheet_0: 5180564946905419014
-      AttackBocadillo-Sheet_1: 1423985697635075864
-      AttackBocadillo-Sheet_2: 6019174592483176890
-      AttackBocadillo-Sheet_3: 2663881875023219183
-      AttackBocadillo-Sheet_4: 5851456053063618447
-      AttackBocadillo-Sheet_5: 5893885226672560894
-      AttackBocadillo-Sheet_6: -3954902495606059553
+      WalkAnimation1-Sheet_0: 8294575675143512177
+      WalkAnimation1-Sheet_1: -1661612861651868342
+      WalkAnimation1-Sheet_2: -834283419557456625
+      WalkAnimation1-Sheet_3: 8578752965990654088
+      WalkAnimation1-Sheet_4: -8074073104780857943
+      WalkAnimation1-Sheet_5: -8226971808685951273
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

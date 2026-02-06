@@ -21,7 +21,7 @@ public class GhostOrb : MonoBehaviour
         {
             PlayerHealth player = other.GetComponent<PlayerHealth>();
             if (player != null)
-                player.TakeDamage(1); // o el daño que quieras
+                player.TakeDamage(1, transform.position);
 
             Destroy(gameObject);
         }

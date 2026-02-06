@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FloatingEnemy : MonoBehaviour
 {
@@ -9,15 +10,13 @@ public class FloatingEnemy : MonoBehaviour
     [Header("Damage Settings")]
     public int damageAmount = 1;
 
-    [Header("Knockback Settings")]
-    public float knockbackForce = 8f;
-    public float knockbackUpwardForce = 2f;
-
     private Vector3 startPos;
+    private Animator animator;
 
     private void Start()
     {
         startPos = transform.position;
+        animator = GetComponent<Animator>(); // Asegúrate de que el Animator está en este objeto o usa GetComponentInChildren<Animator>()
     }
 
     private void Update()
@@ -29,25 +28,24 @@ public class FloatingEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerHealth player = collision.GetComponent<PlayerHealth>();
-        Rigidbody2D playerRb = collision.GetComponent<Rigidbody2D>();
+        PlayerController controller = collision.GetComponent<PlayerController>();
 
-        if (player != null)
+        if (player != null && (controller == null || !controller.isDead))
         {
-            // Aplicar daño
-            player.TakeDamage(damageAmount);
+            player.TakeDamage(damageAmount, transform.position);
 
-            // Aplicar empujón si el jugador tiene Rigidbody2D
-            if (playerRb != null)
+
+            if (animator != null)
             {
-                Vector2 direction = (playerRb.transform.position - transform.position).normalized;
-
-                Vector2 knockback = new Vector2(
-                    direction.x * knockbackForce,
-                    knockbackUpwardForce
-                );
-
-                playerRb.linearVelocity = knockback;
+                StartCoroutine(PlayAttackAnimation());
             }
         }
+    }
+
+    private IEnumerator PlayAttackAnimation()
+    {
+        animator.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(0.5f); // Ajusta al tiempo real del clip GhostAttack
+        animator.SetBool("isAttacking", false);
     }
 }
