@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
         Health = maxHealth;
     }
 
+    // Método principal con knockback
     public void TakeDamage(int damage, Vector2 attackerPosition)
     {
         Health -= damage;
@@ -17,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerController controller = GetComponent<PlayerController>();
         if (controller != null && !controller.isDead)
         {
-            controller.ApplyKnockback(attackerPosition, 8f); // Ajusta la fuerza a tu gusto
+            controller.ApplyKnockback(attackerPosition, 3f); // Puedes ajustar la fuerza del empujón
 
             if (Health <= 0)
             {
@@ -26,8 +27,11 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-
-
+    // Sobrecarga opcional para compatibilidad con llamadas antiguas
+    public void TakeDamage(int damage)
+    {
+        TakeDamage(damage, transform.position); // Usa la posición del jugador como fallback
+    }
 
     public void Heal(int amount)
     {
@@ -39,4 +43,3 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 }
-

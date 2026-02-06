@@ -50,6 +50,15 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        EnemyDeathHandler deathHandler = GetComponent<EnemyDeathHandler>();
+        if (deathHandler != null)
+        {
+            deathHandler.Die();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
+
 }

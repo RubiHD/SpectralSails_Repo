@@ -39,6 +39,14 @@ public class MyBullet : MonoBehaviour
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
+
+            // Reproducir animación de impacto si el enemigo tiene el componente
+            EnemyAnimationHandler animHandler = collision.GetComponent<EnemyAnimationHandler>();
+            if (animHandler != null)
+            {
+                animHandler.PlayHit();
+            }
+
             Destroy(gameObject);
             return;
         }
@@ -48,8 +56,5 @@ public class MyBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
-
-
 }

@@ -297,15 +297,29 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
 
         Vector2 direction = ((Vector2)transform.position - sourcePosition).normalized;
-        rb.linearVelocity = Vector2.zero; // Reinicia velocidad actual
-        rb.AddForce(direction * force, ForceMode2D.Impulse);
 
-        // Opcional: reproducir animación de impacto
+        // Aplica un impulso corto y fuerte
+        StartCoroutine(KnockbackCoroutine(direction * force));
+
         if (animator != null)
         {
-            animator.SetTrigger("Hit"); // Asegúrate de tener un trigger "Hit" en el Animator
+            animator.SetTrigger("Hit");
         }
     }
+
+    private IEnumerator KnockbackCoroutine(Vector2 knockbackVelocity)
+    {
+        canMove = false; // Desactiva el movimiento del jugador durante el knockback
+        rb.linearVelocity = knockbackVelocity;
+
+        yield return new WaitForSeconds(0.15f); // Duración del empujón
+
+        rb.linearVelocity = Vector2.zero;
+        canMove = true;
+    }
+
+
+
 
 
 

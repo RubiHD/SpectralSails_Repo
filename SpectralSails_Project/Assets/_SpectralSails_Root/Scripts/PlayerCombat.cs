@@ -93,7 +93,6 @@ public class PlayerCombat : MonoBehaviour
         Vector2 direction = new Vector2(Mathf.Sign(transform.localScale.x), 0);
         Vector2 attackPosition = (Vector2)transform.position + direction * 1f;
 
-   
         float radius = 1f;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPosition, radius);
@@ -104,6 +103,13 @@ public class PlayerCombat : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(amount);
+
+                // Reproducir animación de impacto si tiene el componente
+                if (hit.TryGetComponent(out EnemyAnimationHandler animHandler))
+                {
+                    animHandler.PlayHit();
+                }
+
                 continue;
             }
 
@@ -115,6 +121,7 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+
 
 
     private void OnDrawGizmosSelected()

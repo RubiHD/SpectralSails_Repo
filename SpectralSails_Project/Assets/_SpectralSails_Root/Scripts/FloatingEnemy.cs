@@ -12,28 +12,32 @@ public class FloatingEnemy : MonoBehaviour
 
     private Vector3 startPos;
     private Animator animator;
+    private bool isDead = false;
 
     private void Start()
     {
         startPos = transform.position;
-        animator = GetComponent<Animator>(); // Asegúrate de que el Animator está en este objeto o usa GetComponentInChildren<Animator>()
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        if (isDead) return; // Detiene el movimiento si está muerto
+
         float newY = startPos.y + Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isDead) return;
+
         PlayerHealth player = collision.GetComponent<PlayerHealth>();
         PlayerController controller = collision.GetComponent<PlayerController>();
 
         if (player != null && (controller == null || !controller.isDead))
         {
             player.TakeDamage(damageAmount, transform.position);
-
 
             if (animator != null)
             {
@@ -47,5 +51,11 @@ public class FloatingEnemy : MonoBehaviour
         animator.SetBool("isAttacking", true);
         yield return new WaitForSeconds(0.5f); // Ajusta al tiempo real del clip GhostAttack
         animator.SetBool("isAttacking", false);
+    }
+
+    // Este método lo llama EnemyDeathHandler para detener el movimiento
+    public void DisableBehavior()
+    {
+        isDead = true;
     }
 }
