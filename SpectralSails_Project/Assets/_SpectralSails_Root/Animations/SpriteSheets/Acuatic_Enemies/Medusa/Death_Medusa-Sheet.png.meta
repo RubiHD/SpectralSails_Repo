@@ -1,52 +1,64 @@
 fileFormatVersion: 2
-guid: 7cf291cbbd3e4ca4b8fc371c1277ef11
+guid: 5cfc31158dc94824b92fd5e6c10f16bd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8192327527931970262
-    second: Banner_0
+      213: 5892603523515973618
+    second: Death_Medusa-Sheet_0
   - first:
-      213: 1408691873058338687
-    second: Banner_1
+      213: -4349482260661677126
+    second: Death_Medusa-Sheet_1
   - first:
-      213: 2409106846504386428
-    second: Banner_2
+      213: 4924534623376919100
+    second: Death_Medusa-Sheet_2
   - first:
-      213: 6188438469492479892
-    second: Banner_3
+      213: -812428619259191722
+    second: Death_Medusa-Sheet_3
   - first:
-      213: 2525401120965742560
-    second: Banner_4
+      213: -8475089894709298805
+    second: Death_Medusa-Sheet_4
   - first:
-      213: 1683330927682603841
-    second: Banner_5
+      213: -6664910469517329209
+    second: Death_Medusa-Sheet_5
   - first:
-      213: -2067004832238755576
-    second: Banner_6
+      213: 2769335941338867972
+    second: Death_Medusa-Sheet_6
   - first:
-      213: 1879558879774001010
-    second: Banner_7
+      213: 4361167213382292770
+    second: Death_Medusa-Sheet_7
   - first:
-      213: -6711403501535271232
-    second: Banner_8
+      213: -6830538333393473836
+    second: Death_Medusa-Sheet_8
   - first:
-      213: 4246031690989849748
-    second: Banner_9
+      213: -4036219628671108375
+    second: Death_Medusa-Sheet_9
   - first:
-      213: -2423058054283665666
-    second: Banner_10
+      213: 8765298296086506532
+    second: Death_Medusa-Sheet_10
   - first:
-      213: -6708568753369150307
-    second: Banner_11
+      213: 164516205801786595
+    second: Death_Medusa-Sheet_11
   - first:
-      213: 5711470510866781441
-    second: Banner_12
+      213: -6753747920449625303
+    second: Death_Medusa-Sheet_12
   - first:
-      213: 9152180176938747654
-    second: Banner_13
+      213: 3242161258561558300
+    second: Death_Medusa-Sheet_13
   - first:
-      213: -269114643267552776
-    second: Banner_14
+      213: -3781781193446390435
+    second: Death_Medusa-Sheet_14
+  - first:
+      213: -6905173297053118781
+    second: Death_Medusa-Sheet_15
+  - first:
+      213: -2157267054865489838
+    second: Death_Medusa-Sheet_16
+  - first:
+      213: 2903385464213955118
+    second: Death_Medusa-Sheet_17
+  - first:
+      213: 27040650008360444
+    second: Death_Medusa-Sheet_18
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,7 +105,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -168,331 +180,353 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Banner_0
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 447
-        width: 62
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6d20a0a5b7ef0b170800000000000000
-      internalID: 8192327527931970262
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_1
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 447
-        width: 66
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f773f938bcdac8310800000000000000
-      internalID: 1408691873058338687
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_2
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 447
-        width: 66
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c7ffad3b9edde6120800000000000000
-      internalID: 2409106846504386428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_3
-      rect:
-        serializedVersion: 2
-        x: 639
-        y: 447
-        width: 46
-        height: 65
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 49716701000c1e550800000000000000
-      internalID: 6188438469492479892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_4
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 319
-        width: 62
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ef498a70f60c0320800000000000000
-      internalID: 2525401120965742560
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_5
-      rect:
-        serializedVersion: 2
-        x: 319
-        y: 319
-        width: 66
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 14b43ff5f846c5710800000000000000
-      internalID: 1683330927682603841
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_6
-      rect:
-        serializedVersion: 2
-        x: 639
-        y: 319
-        width: 46
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 801a4697e068053e0800000000000000
-      internalID: -2067004832238755576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_7
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 163
-        width: 190
-        height: 94
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2774c53c7d8851a10800000000000000
-      internalID: 1879558879774001010
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_8
-      rect:
-        serializedVersion: 2
-        x: 255
-        y: 191
-        width: 66
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0c66daae21e4cd2a0800000000000000
-      internalID: -6711403501535271232
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_9
-      rect:
-        serializedVersion: 2
-        x: 383
-        y: 191
-        width: 66
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 49c4086935fecea30800000000000000
-      internalID: 4246031690989849748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_10
-      rect:
-        serializedVersion: 2
-        x: 511
-        y: 157
-        width: 174
-        height: 100
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: efed54c99819f5ed0800000000000000
-      internalID: -2423058054283665666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Banner_11
+      name: Death_Medusa-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 65
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d9c8528234066e2a0800000000000000
-      internalID: -6708568753369150307
+      spriteID: 2ff726d2fabb6c150800000000000000
+      internalID: 5892603523515973618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Banner_12
+      name: Death_Medusa-Sheet_1
       rect:
         serializedVersion: 2
-        x: 127
+        x: 64
         y: 0
-        width: 66
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10555514b28334f40800000000000000
-      internalID: 5711470510866781441
+      spriteID: ab3d560bde883a3c0800000000000000
+      internalID: -4349482260661677126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Banner_13
+      name: Death_Medusa-Sheet_2
       rect:
         serializedVersion: 2
-        x: 255
+        x: 128
         y: 0
-        width: 66
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6074ece6163130f70800000000000000
-      internalID: 9152180176938747654
+      spriteID: c3a4e7e0626775440800000000000000
+      internalID: 4924534623376919100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Banner_14
+      name: Death_Medusa-Sheet_3
       rect:
         serializedVersion: 2
-        x: 383
+        x: 192
         y: 0
-        width: 66
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8f97e2468a9e34cf0800000000000000
-      internalID: -269114643267552776
+      spriteID: 65ed1b7a97ca9b4f0800000000000000
+      internalID: -812428619259191722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89795ac4ae626a80800000000000000
+      internalID: -8475089894709298805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cc33ac7d3b7183a0800000000000000
+      internalID: -6664910469517329209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 409a937bd58ae6620800000000000000
+      internalID: 2769335941338867972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2255bbf597af58c30800000000000000
+      internalID: 4361167213382292770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dea465539d0531a0800000000000000
+      internalID: -6830538333393473836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea799de1a77cf7c0800000000000000
+      internalID: -4036219628671108375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42ca2981c5894a970800000000000000
+      internalID: 8765298296086506532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec4c961e9a784200800000000000000
+      internalID: 164516205801786595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 923211b9c0ed542a0800000000000000
+      internalID: -6753747920449625303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c175819ac787efc20800000000000000
+      internalID: 3242161258561558300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5500629a0a648bc0800000000000000
+      internalID: -3781781193446390435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Death_Medusa-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cec2a4b875eb20a0800000000000000
+      internalID: -6905173297053118781
       vertices: []
       indices: 
       edges: []
@@ -501,7 +535,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2f526b3b4bf61df4eb7ea198a17e5b86
     internalID: 0
     vertices: []
     indices: 
@@ -509,23 +543,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Banner_0: 8192327527931970262
-      Banner_1: 1408691873058338687
-      Banner_10: -2423058054283665666
-      Banner_11: -6708568753369150307
-      Banner_12: 5711470510866781441
-      Banner_13: 9152180176938747654
-      Banner_14: -269114643267552776
-      Banner_2: 2409106846504386428
-      Banner_3: 6188438469492479892
-      Banner_4: 2525401120965742560
-      Banner_5: 1683330927682603841
-      Banner_6: -2067004832238755576
-      Banner_7: 1879558879774001010
-      Banner_8: -6711403501535271232
-      Banner_9: 4246031690989849748
+      Death_Medusa-Sheet_0: 5892603523515973618
+      Death_Medusa-Sheet_1: -4349482260661677126
+      Death_Medusa-Sheet_10: 8765298296086506532
+      Death_Medusa-Sheet_11: 164516205801786595
+      Death_Medusa-Sheet_12: -6753747920449625303
+      Death_Medusa-Sheet_13: 3242161258561558300
+      Death_Medusa-Sheet_14: -3781781193446390435
+      Death_Medusa-Sheet_15: -6905173297053118781
+      Death_Medusa-Sheet_2: 4924534623376919100
+      Death_Medusa-Sheet_3: -812428619259191722
+      Death_Medusa-Sheet_4: -8475089894709298805
+      Death_Medusa-Sheet_5: -6664910469517329209
+      Death_Medusa-Sheet_6: 2769335941338867972
+      Death_Medusa-Sheet_7: 4361167213382292770
+      Death_Medusa-Sheet_8: -6830538333393473836
+      Death_Medusa-Sheet_9: -4036219628671108375
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
