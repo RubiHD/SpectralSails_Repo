@@ -10,15 +10,24 @@ public class PlayerHealth : MonoBehaviour
         Health = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 attackerPosition)
     {
         Health -= damage;
 
-        if (Health <= 0)
+        PlayerController controller = GetComponent<PlayerController>();
+        if (controller != null && !controller.isDead)
         {
-            Destroy(gameObject);
+            controller.ApplyKnockback(attackerPosition, 8f); // Ajusta la fuerza a tu gusto
+
+            if (Health <= 0)
+            {
+                controller.Die();
+            }
         }
     }
+
+
+
 
     public void Heal(int amount)
     {

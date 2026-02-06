@@ -1,31 +1,28 @@
 fileFormatVersion: 2
-guid: 6f28fbe61826da3499c31affec6674da
+guid: 9f0896c820dc524459d96b7c7893eab5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5414637095876816577
-    second: IdleBocadillo-Sheet_0
+      213: -6519870290408275017
+    second: ShootBocadillo-Sheet_0
   - first:
-      213: -6812717010996653788
-    second: IdleBocadillo-Sheet_1
+      213: 7370826830894463515
+    second: ShootBocadillo-Sheet_1
   - first:
-      213: -5033977910786867023
-    second: IdleBocadillo-Sheet_2
+      213: -2182023078763371424
+    second: ShootBocadillo-Sheet_2
   - first:
-      213: -3508621309599825382
-    second: IdleBocadillo-Sheet_3
+      213: -2544795353796128151
+    second: ShootBocadillo-Sheet_3
   - first:
-      213: -5364847602865449701
-    second: IdleBocadillo-Sheet_4
+      213: 2994993554778491384
+    second: ShootBocadillo-Sheet_4
   - first:
-      213: -6257185066488659611
-    second: IdleBocadillo-Sheet_5
+      213: 775826695393378257
+    second: ShootBocadillo-Sheet_5
   - first:
-      213: -4706344733389774580
-    second: IdleBocadillo-Sheet_6
-  - first:
-      213: 5662451017499319779
-    second: IdleBocadillo-Sheet_7
+      213: 5156076523390301649
+    second: ShootBocadillo-Sheet_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,7 +131,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IdleBocadillo-Sheet_0
+      name: ShootBocadillo-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f311c90df385bd4b0800000000000000
-      internalID: -5414637095876816577
+      spriteID: 7b3879eb384c485a0800000000000000
+      internalID: -6519870290408275017
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleBocadillo-Sheet_1
+      name: ShootBocadillo-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -171,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 421984c49fd5471a0800000000000000
-      internalID: -6812717010996653788
+      spriteID: b1af16c43ff6a4660800000000000000
+      internalID: 7370826830894463515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleBocadillo-Sheet_2
+      name: ShootBocadillo-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -193,14 +190,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b0c264e2c7b32ab0800000000000000
-      internalID: -5033977910786867023
+      spriteID: 064ea9a1295e7b1e0800000000000000
+      internalID: -2182023078763371424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleBocadillo-Sheet_3
+      name: ShootBocadillo-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -215,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a12cfe5228fde4fc0800000000000000
-      internalID: -3508621309599825382
+      spriteID: 962daeecb121facd0800000000000000
+      internalID: -2544795353796128151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleBocadillo-Sheet_4
+      name: ShootBocadillo-Sheet_4
       rect:
         serializedVersion: 2
         x: 256
@@ -237,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b155915878b3c85b0800000000000000
-      internalID: -5364847602865449701
+      spriteID: 8f9082915ca509920800000000000000
+      internalID: 2994993554778491384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleBocadillo-Sheet_5
+      name: ShootBocadillo-Sheet_5
       rect:
         serializedVersion: 2
         x: 320
@@ -259,14 +256,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 561801285530a29a0800000000000000
-      internalID: -6257185066488659611
+      spriteID: 1dfff2ad44a44ca00800000000000000
+      internalID: 775826695393378257
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleBocadillo-Sheet_6
+      name: ShootBocadillo-Sheet_6
       rect:
         serializedVersion: 2
         x: 384
@@ -281,30 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c01a5c77664bfaeb0800000000000000
-      internalID: -4706344733389774580
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IdleBocadillo-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3ed98101331159e40800000000000000
-      internalID: 5662451017499319779
+      spriteID: 1d5f86ba7401e8740800000000000000
+      internalID: 5156076523390301649
       vertices: []
       indices: 
       edges: []
@@ -313,7 +288,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4f457d48a9fb5f14781bb6d31928f1f7
+    spriteID: 779b64a946090a8499980d6b460abbe0
     internalID: 0
     vertices: []
     indices: 
@@ -325,14 +300,13 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      IdleBocadillo-Sheet_0: -5414637095876816577
-      IdleBocadillo-Sheet_1: -6812717010996653788
-      IdleBocadillo-Sheet_2: -5033977910786867023
-      IdleBocadillo-Sheet_3: -3508621309599825382
-      IdleBocadillo-Sheet_4: -5364847602865449701
-      IdleBocadillo-Sheet_5: -6257185066488659611
-      IdleBocadillo-Sheet_6: -4706344733389774580
-      IdleBocadillo-Sheet_7: 5662451017499319779
+      ShootBocadillo-Sheet_0: -6519870290408275017
+      ShootBocadillo-Sheet_1: 7370826830894463515
+      ShootBocadillo-Sheet_2: -2182023078763371424
+      ShootBocadillo-Sheet_3: -2544795353796128151
+      ShootBocadillo-Sheet_4: 2994993554778491384
+      ShootBocadillo-Sheet_5: 775826695393378257
+      ShootBocadillo-Sheet_6: 5156076523390301649
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

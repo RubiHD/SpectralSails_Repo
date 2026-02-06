@@ -40,7 +40,8 @@ public class GhostMouth : MonoBehaviour
         {
             PlayerHealth player = hit.GetComponent<PlayerHealth>();
             if (player != null)
-                player.TakeDamage(damage);
+                player.TakeDamage(1, transform.position);
+
         }
     }
 

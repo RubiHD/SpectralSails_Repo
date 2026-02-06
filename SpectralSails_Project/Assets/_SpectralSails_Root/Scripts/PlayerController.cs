@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     private bool wallJumping = false;
     private bool canStickToWall = true;
     private bool isClimbingLadder = false;
+    public bool isDead { get; private set; } = false;
+
 
     private void Start()
     {
@@ -53,7 +55,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!canMove) return;
+        if(!canMove || isDead) return;
+
 
         // Movimiento horizontal y orientación
         if (horizontal > 0.01f && !isStickingToWall)
@@ -265,4 +268,45 @@ public class PlayerController : MonoBehaviour
             Debug.LogWarning("DialogueUI no está asignado.");
         }
     }
+
+    public void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        canMove = false;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
+
+        if (animator != null)
+        {
+            animator.Play("PlayerDeath");
+
+        }
+
+        // Desactivar colisiones y controles
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
+
+        // No se destruye el objeto: el personaje queda en el suelo
+    }
+
+    public void ApplyKnockback(Vector2 sourcePosition, float force)
+    {
+        if (isDead) return;
+
+        Vector2 direction = ((Vector2)transform.position - sourcePosition).normalized;
+        rb.linearVelocity = Vector2.zero; // Reinicia velocidad actual
+        rb.AddForce(direction * force, ForceMode2D.Impulse);
+
+        // Opcional: reproducir animación de impacto
+        if (animator != null)
+        {
+            animator.SetTrigger("Hit"); // Asegúrate de tener un trigger "Hit" en el Animator
+        }
+    }
+
+
+
 }

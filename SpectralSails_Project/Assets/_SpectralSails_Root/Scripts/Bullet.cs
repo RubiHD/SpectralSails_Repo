@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -17,8 +17,9 @@ public class Bullet : MonoBehaviour
     {
         if (collision.TryGetComponent(out PlayerHealth playerHealth))
         {
-            playerHealth.TakeDamage(damage);
+            playerHealth.TakeDamage(damage, transform.position); // ✅ Ahora con attackerPosition
             Destroy(gameObject);
         }
     }
+
 }

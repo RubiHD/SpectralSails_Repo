@@ -12,9 +12,14 @@ public class PlayerGun : MonoBehaviour
     private bool canShoot = true;
     private PlayerController player;
 
+    private Animator animator;
+
+
     private void Start()
     {
         player = GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
+
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -38,15 +43,21 @@ public class PlayerGun : MonoBehaviour
         canShoot = false;
         ammo--;
 
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-
-        // Dirección según hacia dónde mira el jugador
-        float dir = Mathf.Sign(transform.localScale.x);
-
-        bullet.GetComponent<MyBullet>().SetDirection(new Vector2(dir, 0));
+        if (animator != null)
+            animator.SetTrigger("Shoot");
 
         Invoke(nameof(ResetShoot), fireCooldown);
     }
+
+    public void FireBullet()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        float dir = Mathf.Sign(transform.localScale.x);
+        bullet.GetComponent<MyBullet>().SetDirection(new Vector2(dir, 0));
+    }
+
+
+
 
 
 

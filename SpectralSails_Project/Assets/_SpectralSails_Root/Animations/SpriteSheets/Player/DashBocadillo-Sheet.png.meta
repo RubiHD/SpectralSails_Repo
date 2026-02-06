@@ -1,31 +1,25 @@
 fileFormatVersion: 2
-guid: 0e8a7063c0321f74ba161458f4558d6e
+guid: 50e96a57994291c4c8a318f7d7653345
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -272082335138747366
-    second: AttackFuerteBocadillo-Sheet_0
+      213: -1761329480050803984
+    second: DashBocadillo-Sheet_0
   - first:
-      213: -4934906865364767999
-    second: AttackFuerteBocadillo-Sheet_1
+      213: -5429708752010908011
+    second: DashBocadillo-Sheet_1
   - first:
-      213: -1552809315530613706
-    second: AttackFuerteBocadillo-Sheet_2
+      213: 8021090907644317482
+    second: DashBocadillo-Sheet_2
   - first:
-      213: -4585460747160047522
-    second: AttackFuerteBocadillo-Sheet_3
+      213: 3909140463530595493
+    second: DashBocadillo-Sheet_3
   - first:
-      213: -8383187440586366436
-    second: AttackFuerteBocadillo-Sheet_4
+      213: -3406717676093777602
+    second: DashBocadillo-Sheet_4
   - first:
-      213: -6099839119048160027
-    second: AttackFuerteBocadillo-Sheet_5
-  - first:
-      213: 5052458093365573171
-    second: AttackFuerteBocadillo-Sheet_6
-  - first:
-      213: -3810628064117184522
-    second: AttackFuerteBocadillo-Sheet_7
+      213: -5349121786331288559
+    second: DashBocadillo-Sheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AttackFuerteBocadillo-Sheet_0
+      name: DashBocadillo-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a1c6568ce8e593cf0800000000000000
-      internalID: -272082335138747366
+      spriteID: 0faf5297b208e87e0800000000000000
+      internalID: -1761329480050803984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackFuerteBocadillo-Sheet_1
+      name: DashBocadillo-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -171,14 +165,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 10beb4a2a50b38bb0800000000000000
-      internalID: -4934906865364767999
+      spriteID: 59e6f8a68acc5a4b0800000000000000
+      internalID: -5429708752010908011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackFuerteBocadillo-Sheet_2
+      name: DashBocadillo-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -193,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 63c51e79720537ae0800000000000000
-      internalID: -1552809315530613706
+      spriteID: a2f4145dea3a05f60800000000000000
+      internalID: 8021090907644317482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackFuerteBocadillo-Sheet_3
+      name: DashBocadillo-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -215,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e50370acebb2d50c0800000000000000
-      internalID: -4585460747160047522
+      spriteID: 5a4d8d14a8e004630800000000000000
+      internalID: 3909140463530595493
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackFuerteBocadillo-Sheet_4
+      name: DashBocadillo-Sheet_4
       rect:
         serializedVersion: 2
         x: 256
@@ -237,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c126556507fe8ab80800000000000000
-      internalID: -8383187440586366436
+      spriteID: e39d26ab258e8b0d0800000000000000
+      internalID: -3406717676093777602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AttackFuerteBocadillo-Sheet_5
+      name: DashBocadillo-Sheet_5
       rect:
         serializedVersion: 2
         x: 320
@@ -259,30 +253,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ec4a1ab3a4095ba0800000000000000
-      internalID: -6099839119048160027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AttackFuerteBocadillo-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3363a99eddfed1640800000000000000
-      internalID: 5052458093365573171
+      spriteID: 11cab61831a14c5b0800000000000000
+      internalID: -5349121786331288559
       vertices: []
       indices: 
       edges: []
@@ -291,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4ef1e4106c1aa0a4c9bcb1e9c9a574bd
+    spriteID: 4a2c6360d47d0a94eb8050a888b91352
     internalID: 0
     vertices: []
     indices: 
@@ -303,13 +275,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      AttackFuerteBocadillo-Sheet_0: -272082335138747366
-      AttackFuerteBocadillo-Sheet_1: -4934906865364767999
-      AttackFuerteBocadillo-Sheet_2: -1552809315530613706
-      AttackFuerteBocadillo-Sheet_3: -4585460747160047522
-      AttackFuerteBocadillo-Sheet_4: -8383187440586366436
-      AttackFuerteBocadillo-Sheet_5: -6099839119048160027
-      AttackFuerteBocadillo-Sheet_6: 5052458093365573171
+      DashBocadillo-Sheet_0: -1761329480050803984
+      DashBocadillo-Sheet_1: -5429708752010908011
+      DashBocadillo-Sheet_2: 8021090907644317482
+      DashBocadillo-Sheet_3: 3909140463530595493
+      DashBocadillo-Sheet_4: -3406717676093777602
+      DashBocadillo-Sheet_5: -5349121786331288559
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

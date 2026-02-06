@@ -28,16 +28,20 @@ public class EnemyFollowControl : MonoBehaviour
         {
             movement = Vector2.zero;
         }
-
-        rb.MovePosition(rb.position + movement * speed * Time.deltaTime);
     }
+
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerHealth player = other.GetComponent<PlayerHealth>();
         if (player != null)
         {
-            player.TakeDamage(damage);
+            player.TakeDamage(1, transform.position);
         }
     }
 

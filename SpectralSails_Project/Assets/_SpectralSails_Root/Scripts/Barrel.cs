@@ -27,7 +27,8 @@ public class Barrel : MonoBehaviour
             PlayerHealth player = collision.GetComponent<PlayerHealth>();
             if (player != null)
             {
-                player.TakeDamage(damage);
+                player.TakeDamage(1, transform.position);
+
             }
 
             Destroy(gameObject);
