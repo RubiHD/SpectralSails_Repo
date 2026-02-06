@@ -11,6 +11,14 @@ public class HealthPickup : MonoBehaviour
         if (player != null)
         {
             player.Heal(healAmount);
+
+            // Activar animación de curación si el jugador tiene Animator
+            Animator animator = player.GetComponentInChildren<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger("Heal");
+            }
+
             Destroy(gameObject);
         }
     }

@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.started) return;
+        if (!context.started || isDead || !canMove) return;
 
         if (coyoteTimeCounter > 0f)
         {
@@ -269,29 +270,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
-    {
-        if (isDead) return;
-
-        isDead = true;
-        canMove = false;
-
-        rb.linearVelocity = Vector2.zero;
-        rb.gravityScale = 0f;
-
-        if (animator != null)
-        {
-            animator.Play("PlayerDeath");
-
-        }
-
-        // Desactivar colisiones y controles
-        GetComponent<Collider2D>().enabled = false;
-        this.enabled = false;
-
-        // No se destruye el objeto: el personaje queda en el suelo
-    }
-
+    
     public void ApplyKnockback(Vector2 sourcePosition, float force)
     {
         if (isDead) return;
@@ -317,6 +296,34 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         canMove = true;
     }
+
+    public void Die()
+    {
+        if (isDead) return;
+
+        isDead = true;
+        canMove = false;
+
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
+
+        if (animator != null)
+        {
+            animator.SetTrigger("Die"); // Asegúrate de tener este trigger en el Animator
+        }
+
+        GetComponent<Collider2D>().enabled = false;
+
+        // Opcional: desactivar este script tras un tiempo
+        StartCoroutine(DisableAfterDelay(1.5f));
+    }
+
+    private IEnumerator DisableAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        this.enabled = false;
+    }
+
 
 
 

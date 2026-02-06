@@ -16,7 +16,7 @@ public class EnemyDeathHandler : MonoBehaviour
 
         isDying = true;
 
-        // Buscar y desactivar cualquier comportamiento de enemigo compatible
+        // Desactivar comportamientos de enemigos compatibles
         var floating = GetComponent<FloatingEnemy>();
         if (floating != null)
         {
@@ -27,6 +27,12 @@ public class EnemyDeathHandler : MonoBehaviour
         if (follower != null)
         {
             follower.DisableBehavior();
+        }
+
+        var shooter = GetComponent<EnemyShoot>();
+        if (shooter != null)
+        {
+            shooter.DisableBehavior();
         }
 
         // Reproducir animación de muerte

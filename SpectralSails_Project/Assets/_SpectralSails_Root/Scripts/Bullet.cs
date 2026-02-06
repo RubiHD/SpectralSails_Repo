@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        // Determinar dirección según la escala del padre (enemigo)
         float direction = Mathf.Sign(transform.localScale.x);
         moveDirection = new Vector2(direction, 0);
     }
@@ -27,4 +26,5 @@ public class Bullet : MonoBehaviour
         }
     }
 }
+
 

@@ -11,8 +11,6 @@ public class EnemyShoot : MonoBehaviour
     public Animator animator;
 
     private bool isDead = false;
-    private bool isAttacking = false;
-    private bool inRange = false;
 
     private void Start()
     {
@@ -30,17 +28,15 @@ public class EnemyShoot : MonoBehaviour
     {
         if (isDead || animator == null) return;
 
-        // Dirección basada en la escala del objeto
         Vector2 direction = new Vector2(Mathf.Sign(transform.localScale.x), 0);
-
         RaycastHit2D hit = Physics2D.Raycast(shootController.position, direction, laneDistance, playerLayer);
-        inRange = hit.collider != null;
+        bool inRange = hit.collider != null;
 
         Debug.DrawRay(shootController.position, direction * laneDistance, inRange ? Color.green : Color.red);
 
-        if (inRange)
+        if (inRange && Time.time > timeToShoot + timeLastShoot)
         {
-            // Voltear sprite hacia el jugador
+            // Voltear hacia el jugador
             float dirX = hit.collider.transform.position.x - transform.position.x;
             if (dirX != 0)
             {
@@ -49,38 +45,25 @@ public class EnemyShoot : MonoBehaviour
                 transform.localScale = scale;
             }
 
-            if (Time.time > timeToShoot + timeLastShoot && !isAttacking)
-            {
-                timeLastShoot = Time.time;
-                isAttacking = true;
-
-                animator.SetTrigger("Attack"); // La animación debe tener un evento que llame a Shoot()
-            }
-        }
-        else
-        {
-            animator.SetBool("isAttacking", false);
+            animator.SetTrigger("Attack");
         }
     }
 
     // Este método debe ser llamado desde un Animation Event
     public void Shoot()
     {
+        Debug.Log("¡Daga lanzada!");
         if (enemyBullet != null && shootController != null)
         {
             Instantiate(enemyBullet, shootController.position, shootController.rotation);
         }
-        isAttacking = false;
+
+        timeLastShoot = Time.time; // Se actualiza aquí para controlar bien el ritmo de disparo
     }
 
     public void DisableBehavior()
     {
         isDead = true;
-        isAttacking = false;
-        if (animator != null)
-        {
-            animator.SetBool("isAttacking", false);
-        }
     }
 
     private void OnDrawGizmos()
@@ -93,3 +76,4 @@ public class EnemyShoot : MonoBehaviour
         }
     }
 }
+
