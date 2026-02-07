@@ -30,12 +30,10 @@ public class FloatingEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isDead) return;
-
         PlayerHealth player = collision.GetComponent<PlayerHealth>();
         PlayerController controller = collision.GetComponent<PlayerController>();
 
-        if (player != null && (controller == null || !controller.isDead))
+        if (player != null)
         {
             player.TakeDamage(damageAmount, transform.position);
 
@@ -45,6 +43,7 @@ public class FloatingEnemy : MonoBehaviour
             }
         }
     }
+
 
     private IEnumerator PlayAttackAnimation()
     {

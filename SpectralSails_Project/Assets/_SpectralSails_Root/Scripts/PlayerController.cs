@@ -45,8 +45,7 @@ public class PlayerController : MonoBehaviour
     private bool wallJumping = false;
     private bool canStickToWall = true;
     private bool isClimbingLadder = false;
-    public bool isDead { get; private set; } = false;
-
+    private bool hasDied = false;
 
     private void Start()
     {
@@ -55,22 +54,23 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(!canMove || isDead) return;
+        if (hasDied)
+        {
+            return; // Salir completamente si ha muerto
+        }
 
+        if (!canMove) return;
 
-        // Movimiento horizontal y orientación
         if (horizontal > 0.01f && !isStickingToWall)
             transform.localScale = new Vector3(1f, 1f, 1f);
         else if (horizontal < -0.01f && !isStickingToWall)
             transform.localScale = new Vector3(-1f, 1f, 1f);
-
 
         if (isDashing || wallJumping || isClimbingLadder)
             return;
 
         bool grounded = IsGrounded();
         isTouchingWall = Physics2D.OverlapCircle(wallCheck.position, 0.2f, wallLayer);
-        bool isInAir = !grounded && Mathf.Abs(rb.linearVelocity.y) > 0.1f;
 
         if (!grounded && isTouchingWall && !wallJumping && canStickToWall)
             StickToWall();
@@ -81,22 +81,16 @@ public class PlayerController : MonoBehaviour
 
         coyoteTimeCounter = grounded ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
 
-        if (animator != null)
-        {
-            animator.SetFloat("Speed", Mathf.Abs(horizontal));
-            float verticalVelocity = rb.linearVelocity.y;
-
-            animator.SetBool("isFalling", !grounded && verticalVelocity < -0.1f);
-
-            if (grounded || rb.linearVelocity.y <= 0f)
-                animator.SetBool("isJumping", false);
-        }
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
+        float verticalVelocity = rb.linearVelocity.y;
+        animator.SetBool("isFalling", !grounded && verticalVelocity < -0.1f);
+        if (grounded || rb.linearVelocity.y <= 0f)
+            animator.SetBool("isJumping", false);
     }
 
     private void FixedUpdate()
     {
-        if (isDashing || wallJumping || isClimbingLadder)
-            return;
+        if (isDashing || wallJumping || isClimbingLadder || hasDied) return;
 
         rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
     }
@@ -110,10 +104,8 @@ public class PlayerController : MonoBehaviour
     {
         isStickingToWall = true;
         rb.gravityScale = 0f;
-        rb.linearVelocity = new Vector2(0f, 0f); // Detiene solo el movimiento vertical
+        rb.linearVelocity = Vector2.zero;
     }
-
-
 
     private void UnstickFromWall()
     {
@@ -123,6 +115,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (hasDied) return;
+
         Vector2 input = context.ReadValue<Vector2>();
         horizontal = input.x;
 
@@ -135,15 +129,13 @@ public class PlayerController : MonoBehaviour
         if (isStickingToWall && Mathf.Sign(horizontal) != Mathf.Sign(transform.localScale.x) && horizontal != 0)
         {
             UnstickFromWall();
-            rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y); // impulso al soltar
+            rb.linearVelocity = new Vector2(horizontal * speed, rb.linearVelocity.y);
         }
-
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!context.started) return;
-        if (!context.started || isDead || !canMove) return;
+        if (!context.started || !canMove || hasDied) return;
 
         if (coyoteTimeCounter > 0f)
         {
@@ -179,7 +171,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash)
+        if (context.started && canDash && !hasDied)
         {
             StartCoroutine(PerformDash());
         }
@@ -206,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started && currentInteractable != null)
+        if (context.started && currentInteractable != null && !hasDied)
         {
             currentInteractable.Interact(this);
             if (interactPromptUI != null)
@@ -216,6 +208,8 @@ public class PlayerController : MonoBehaviour
 
     public void StartClimbingLadder(Ladder ladder)
     {
+        if (hasDied) return;
+
         isClimbingLadder = true;
         rb.gravityScale = 0f;
         rb.linearVelocity = new Vector2(0f, 2.5f);
@@ -223,6 +217,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (hasDied) return;
+
         if (other.TryGetComponent<IInteractable>(out var interactable))
         {
             currentInteractable = interactable;
@@ -233,6 +229,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if (hasDied) return;
+
         if (other.TryGetComponent<IInteractable>(out var interactable) && interactable == currentInteractable)
         {
             currentInteractable = null;
@@ -258,7 +256,7 @@ public class PlayerController : MonoBehaviour
 
     public void StartDialogue(DialogueDataSO dialogue)
     {
-        Debug.Log("StartDialogue llamado con: " + dialogue.name);
+        if (hasDied) return;
 
         if (dialogueUI != null)
         {
@@ -270,14 +268,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
     public void ApplyKnockback(Vector2 sourcePosition, float force)
     {
-        if (isDead) return;
+        if (hasDied) return;
 
         Vector2 direction = ((Vector2)transform.position - sourcePosition).normalized;
-
-        // Aplica un impulso corto y fuerte
         StartCoroutine(KnockbackCoroutine(direction * force));
 
         if (animator != null)
@@ -288,10 +283,10 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator KnockbackCoroutine(Vector2 knockbackVelocity)
     {
-        canMove = false; // Desactiva el movimiento del jugador durante el knockback
+        canMove = false;
         rb.linearVelocity = knockbackVelocity;
 
-        yield return new WaitForSeconds(0.15f); // Duración del empujón
+        yield return new WaitForSeconds(0.15f);
 
         rb.linearVelocity = Vector2.zero;
         canMove = true;
@@ -299,9 +294,47 @@ public class PlayerController : MonoBehaviour
 
     public void Die()
     {
-        if (isDead) return;
+        if (hasDied) return;
 
-        isDead = true;
+        Debug.Log("¡Jugador ha muerto! Activando animación de muerte.");
+
+        hasDied = true;
+        canMove = false;
+
+        // Detener completamente el movimiento
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = 0f;
+
+        if (animator != null)
+        {
+            // Resetear todos los triggers que puedan estar activos
+            animator.ResetTrigger("Hit");
+
+            // Resetear parámetros del animator
+            animator.SetFloat("Speed", 0f);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
+            animator.SetBool("isDashing", false);
+            animator.SetBool("isTouchingWall", false);
+
+            // Activar el trigger de muerte
+            animator.SetTrigger("Death"); // Cambia esto por el trigger que uses para la muerte
+        }
+
+        GetComponent<Collider2D>().enabled = false;
+
+        // Opcional: reiniciar el juego después de un tiempo
+        // StartCoroutine(RestartAfterDeath());
+    }
+
+    // Método alternativo si quieres usar Play() directamente
+    public void DieAlternative()
+    {
+        if (hasDied) return;
+
+        Debug.Log("¡Jugador ha muerto! Activando animación de muerte.");
+
+        hasDied = true;
         canMove = false;
 
         rb.linearVelocity = Vector2.zero;
@@ -309,25 +342,28 @@ public class PlayerController : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetTrigger("Die"); // Asegúrate de tener este trigger en el Animator
+            // Detener el animator temporalmente
+            animator.enabled = false;
+
+            // Reactivarlo y reproducir la animación
+            StartCoroutine(PlayDeathAnimation());
         }
 
         GetComponent<Collider2D>().enabled = false;
-
-        // Opcional: desactivar este script tras un tiempo
-        StartCoroutine(DisableAfterDelay(1.5f));
     }
 
-    private IEnumerator DisableAfterDelay(float delay)
+    private IEnumerator PlayDeathAnimation()
     {
-        yield return new WaitForSeconds(delay);
-        this.enabled = false;
+        yield return null; // Esperar un frame
+
+        animator.enabled = true;
+        animator.Play("PlayerDeath", 0, 0f);
+
+        // Obtener la duración de la animación
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        yield return new WaitForSeconds(stateInfo.length);
+
+        // Congelar en el último frame
+        animator.speed = 0f;
     }
-
-
-
-
-
-
-
 }

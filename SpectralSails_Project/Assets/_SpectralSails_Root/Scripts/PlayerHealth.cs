@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
         Health -= damage;
 
         PlayerController controller = GetComponent<PlayerController>();
-        if (controller != null && !controller.isDead)
+        if (controller != null)
         {
             controller.ApplyKnockback(attackerPosition, 3f); // Puedes ajustar la fuerza del empujón
 
