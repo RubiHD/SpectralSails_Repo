@@ -35,6 +35,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float groundCheckRadius = 0.2f;
 
+    [Header("Knockback")]
+    [SerializeField] private float knockbackHorizontalForce = 3f;
+    [SerializeField] private float knockbackVerticalForce = 4f;
+    [SerializeField] private float knockbackDuration = 0.2f;
+    [SerializeField] private AnimationCurve knockbackCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
+
     [Header("Interacción")]
     public DialogueUI dialogueUI;
     private IInteractable currentInteractable;
@@ -52,10 +58,8 @@ public class PlayerController : MonoBehaviour
     private bool canStickToWall = true;
     private bool isClimbingLadder = false;
     private bool hasDied = false;
-
-    // ✅ NUEVO: Variables para el salto con animación de carga
     private bool isChargingJump = false;
-    private bool jumpQueued = false; // Para recordar que queremos saltar
+    private bool jumpQueued = false;
 
     private void Start()
     {
@@ -74,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        // ✅ FIX: No hacer nada si está muerto (ni siquiera resetear parámetros)
         if (hasDied)
         {
             return;
@@ -81,13 +86,11 @@ public class PlayerController : MonoBehaviour
 
         if (!canMove) return;
 
-        // Voltear sprite
         if (horizontal > 0.01f && !isStickingToWall)
             transform.localScale = new Vector3(1f, 1f, 1f);
         else if (horizontal < -0.01f && !isStickingToWall)
             transform.localScale = new Vector3(-1f, 1f, 1f);
 
-        // ✅ No permitir movimiento durante carga de salto
         if (isDashing || wallJumping || isClimbingLadder || isChargingJump)
             return;
 
@@ -97,7 +100,6 @@ public class PlayerController : MonoBehaviour
         isGroundedDebug = grounded;
         verticalVelocityDebug = rb.linearVelocity.y;
 
-        // Wall stick logic
         if (!grounded && isTouchingWall && !wallJumping && canStickToWall)
             StickToWall();
         else if ((grounded || !isTouchingWall) && isStickingToWall)
@@ -105,10 +107,8 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("isTouchingWall", isStickingToWall && !grounded);
 
-        // Coyote time
         coyoteTimeCounter = grounded ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
 
-        // Animaciones
         animator.SetFloat("Speed", Mathf.Abs(horizontal));
 
         float verticalVelocity = rb.linearVelocity.y;
@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // ✅ No mover durante carga de salto
         if (isDashing || wallJumping || isClimbingLadder || hasDied || isChargingJump)
             return;
 
@@ -183,24 +182,18 @@ public class PlayerController : MonoBehaviour
     {
         if (!context.started || !canMove || hasDied) return;
 
-        // ✅ SALTO NORMAL (con animación de carga)
         if (coyoteTimeCounter > 0f && !isChargingJump)
         {
-            // Iniciar animación de carga
             isChargingJump = true;
             jumpQueued = true;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // Detener movimiento vertical
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             coyoteTimeCounter = 0f;
 
-            // Activar animación de carga
-            animator.SetTrigger("JumpCharge"); // ← Trigger para iniciar la animación
+            animator.SetTrigger("JumpCharge");
 
             if (showDebugLogs)
                 Debug.Log("¡Cargando salto!");
-
-            // ⚠️ NO saltamos aquí, se hará desde ExecuteJump() llamado por Animation Event
         }
-        // ✅ WALL JUMP (sin carga, instantáneo)
         else if (isStickingToWall)
         {
             float wallDir = Mathf.Sign(transform.localScale.x);
@@ -220,12 +213,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // ✅ ESTE MÉTODO SE LLAMA DESDE UN ANIMATION EVENT EN EL FRAME 3 (después de la carga)
     public void ExecuteJump()
     {
         if (!jumpQueued) return;
 
-        // Aplicar la fuerza del salto
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
 
         jumpQueued = false;
@@ -235,7 +226,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("¡SALTO EJECUTADO!");
     }
 
-    // ✅ LLAMAR ESTO SI LA ANIMACIÓN DE CARGA SE CANCELA (opcional)
     public void CancelJumpCharge()
     {
         isChargingJump = false;
@@ -348,87 +338,137 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ApplyKnockback(Vector2 sourcePosition, float force)
+    public void ApplyKnockback(Vector2 sourcePosition, float forceMultiplier = 1f)
     {
         if (hasDied) return;
 
         Vector2 direction = ((Vector2)transform.position - sourcePosition).normalized;
-        StartCoroutine(KnockbackCoroutine(direction * force));
+
+        if (Mathf.Abs(direction.x) < 0.1f)
+        {
+            direction.x = transform.localScale.x;
+        }
+
+        StartCoroutine(KnockbackCoroutine(direction, forceMultiplier));
 
         if (animator != null)
         {
             animator.SetTrigger("Hit");
         }
+
+        if (showDebugLogs)
+            Debug.Log($"Knockback aplicado: dirección {direction}, multiplicador {forceMultiplier}");
     }
 
-    private IEnumerator KnockbackCoroutine(Vector2 knockbackVelocity)
+    private IEnumerator KnockbackCoroutine(Vector2 direction, float forceMultiplier)
     {
         canMove = false;
-        rb.linearVelocity = knockbackVelocity;
 
-        yield return new WaitForSeconds(0.15f);
+        float horizontalKnockback = direction.x * knockbackHorizontalForce * forceMultiplier;
+        float verticalKnockback = knockbackVerticalForce * forceMultiplier;
 
-        rb.linearVelocity = Vector2.zero;
+        rb.linearVelocity = new Vector2(horizontalKnockback, verticalKnockback);
+
+        float elapsed = 0f;
+        Vector2 initialVelocity = rb.linearVelocity;
+
+        while (elapsed < knockbackDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / knockbackDuration;
+
+            float curveValue = knockbackCurve.Evaluate(t);
+            rb.linearVelocity = new Vector2(
+                initialVelocity.x * (1 - t),
+                rb.linearVelocity.y
+            );
+
+            yield return null;
+        }
+
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         canMove = true;
     }
 
+    // ✅ MÉTODO DE MUERTE ARREGLADO
     public void Die()
     {
         if (hasDied) return;
 
-        Debug.Log("¡Jugador ha muerto!");
+        Debug.Log("¡Jugador ha muerto! Iniciando animación de muerte.");
 
+        // ✅ IMPORTANTE: Marcar como muerto PRIMERO
         hasDied = true;
         canMove = false;
 
+        // ✅ Detener completamente el movimiento y física
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
+        rb.bodyType = RigidbodyType2D.Kinematic; // ← NUEVO: Hacer kinematic para evitar interferencias
 
         if (animator != null)
         {
+            // ✅ Limpiar TODOS los parámetros y triggers
             animator.ResetTrigger("Hit");
+            animator.ResetTrigger("JumpCharge");
+            animator.ResetTrigger("Attack"); // Si tienes ataque
+
             animator.SetFloat("Speed", 0f);
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", false);
             animator.SetBool("isDashing", false);
             animator.SetBool("isTouchingWall", false);
-            animator.SetTrigger("Death");
+            animator.SetBool("isWalking", false);
+
+            // ✅ IMPORTANTE: Pequeño delay antes de activar Death
+            StartCoroutine(PlayDeathAnimationAfterDelay());
         }
 
-        GetComponent<Collider2D>().enabled = false;
+        // ✅ Desactivar collider
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
     }
 
+    // ✅ NUEVO: Coroutine para reproducir animación de muerte con delay
+    private IEnumerator PlayDeathAnimationAfterDelay()
+    {
+        // Esperar 1 frame para asegurar que todos los parámetros se resetearon
+        yield return null;
+
+        if (animator != null)
+        {
+            Debug.Log("Activando trigger de Death");
+            animator.SetTrigger("Death");
+        }
+    }
+
+    // ✅ MÉTODO ALTERNATIVO (Más directo, si el anterior no funciona)
     public void DieAlternative()
     {
         if (hasDied) return;
 
-        Debug.Log("¡Jugador ha muerto!");
+        Debug.Log("¡Jugador ha muerto! Método alternativo.");
 
         hasDied = true;
         canMove = false;
 
         rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0f;
+        rb.bodyType = RigidbodyType2D.Kinematic;
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
 
         if (animator != null)
         {
-            animator.enabled = false;
-            StartCoroutine(PlayDeathAnimation());
+            // ✅ Forzar reproducción directa de la animación
+            animator.Play("PlayerDeath", 0, 0f); // ← Reemplaza "PlayerDeath" con el nombre exacto de tu animación
         }
-
-        GetComponent<Collider2D>().enabled = false;
-    }
-
-    private IEnumerator PlayDeathAnimation()
-    {
-        yield return null;
-
-        animator.enabled = true;
-        animator.Play("PlayerDeath", 0, 0f);
-
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        yield return new WaitForSeconds(stateInfo.length);
-
-        animator.speed = 0f;
     }
 }

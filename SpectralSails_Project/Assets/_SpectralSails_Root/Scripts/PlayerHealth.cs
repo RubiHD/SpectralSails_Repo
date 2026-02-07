@@ -1,14 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Configuración de Salud")]
+    [Header("ConfiguraciÃ³n de Salud")]
     public int maxHealth = 5;
-    public int Health { get; private set; } // Hacer Health de solo lectura desde fuera
+    public int Health { get; private set; }
+
+    [Header("Knockback")]
+    [SerializeField] private float knockbackForceMultiplier = 1f; // Ajusta la intensidad del knockback
 
     [Header("Eventos (Opcional)")]
-    public UnityEvent<int, int> OnHealthChanged; // Evento: (vidaActual, vidaMaxima)
+    public UnityEvent<int, int> OnHealthChanged;
     public UnityEvent OnDeath;
 
     private void Start()
@@ -17,23 +20,23 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(Health, maxHealth);
     }
 
-    // Método principal con knockback
+    // âœ… MÃ©todo principal con knockback mejorado
     public void TakeDamage(int damage, Vector2 attackerPosition)
     {
-        if (Health <= 0) return; // Ya está muerto, ignorar daño adicional
+        if (Health <= 0) return;
 
         Health -= damage;
-        Health = Mathf.Max(Health, 0); // Asegurar que no sea negativo
+        Health = Mathf.Max(Health, 0);
 
-        Debug.Log($"Jugador recibió {damage} daño. Vida restante: {Health}/{maxHealth}");
+        Debug.Log($"Jugador recibiÃ³ {damage} daÃ±o. Vida restante: {Health}/{maxHealth}");
 
-        // Invocar evento de cambio de salud
         OnHealthChanged?.Invoke(Health, maxHealth);
 
         PlayerController controller = GetComponent<PlayerController>();
         if (controller != null)
         {
-            controller.ApplyKnockback(attackerPosition, 3f);
+            // âœ… APLICAR KNOCKBACK CON SALTITO
+            controller.ApplyKnockback(attackerPosition, knockbackForceMultiplier);
 
             if (Health <= 0)
             {
@@ -43,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // Sobrecarga opcional para compatibilidad con llamadas antiguas
+    // Sobrecarga opcional para compatibilidad
     public void TakeDamage(int damage)
     {
         TakeDamage(damage, transform.position);
@@ -51,19 +54,17 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal(int amount)
     {
-        if (Health <= 0) return; // No curar si está muerto
+        if (Health <= 0) return;
 
         int previousHealth = Health;
         Health += amount;
-        Health = Mathf.Min(Health, maxHealth); // No exceder vida máxima
+        Health = Mathf.Min(Health, maxHealth);
 
         Debug.Log($"Jugador curado: +{Health - previousHealth}. Vida: {Health}/{maxHealth}");
 
-        // Invocar evento de cambio de salud
         OnHealthChanged?.Invoke(Health, maxHealth);
     }
 
-    // Método útil para debugging
     public float GetHealthPercentage()
     {
         return (float)Health / (float)maxHealth;
