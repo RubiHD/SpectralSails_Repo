@@ -199,8 +199,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 47
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,8 +221,8 @@ TextureImporter:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 47
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,8 +243,8 @@ TextureImporter:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 47
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,8 +265,8 @@ TextureImporter:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 47
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -285,10 +285,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_4
       rect:
         serializedVersion: 2
-        x: 256
+        x: 261
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 45
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,10 +307,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_5
       rect:
         serializedVersion: 2
-        x: 320
+        x: 325
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 45
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -329,10 +329,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_6
       rect:
         serializedVersion: 2
-        x: 384
+        x: 394
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 45
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -351,10 +351,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_7
       rect:
         serializedVersion: 2
-        x: 448
+        x: 458
         y: 0
-        width: 64
-        height: 64
+        width: 38
+        height: 45
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,10 +373,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_8
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
-        width: 64
-        height: 64
+        x: 534
+        y: 27
+        width: 31
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -395,10 +395,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_9
       rect:
         serializedVersion: 2
-        x: 576
-        y: 0
-        width: 64
-        height: 64
+        x: 598
+        y: 27
+        width: 31
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -417,10 +417,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_10
       rect:
         serializedVersion: 2
-        x: 640
-        y: 0
-        width: 64
-        height: 64
+        x: 688
+        y: 12
+        width: 15
+        height: 31
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -439,10 +439,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_11
       rect:
         serializedVersion: 2
-        x: 704
-        y: 0
-        width: 64
-        height: 64
+        x: 752
+        y: 12
+        width: 15
+        height: 31
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -461,10 +461,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_12
       rect:
         serializedVersion: 2
-        x: 768
+        x: 1025
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 28
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -483,10 +483,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_13
       rect:
         serializedVersion: 2
-        x: 832
+        x: 1089
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 28
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -505,10 +505,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_14
       rect:
         serializedVersion: 2
-        x: 896
-        y: 0
-        width: 64
-        height: 64
+        x: 1177
+        y: 18
+        width: 15
+        height: 13
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -527,10 +527,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_15
       rect:
         serializedVersion: 2
-        x: 960
+        x: 513
         y: 0
-        width: 64
-        height: 64
+        width: 54
+        height: 18
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -549,10 +549,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_16
       rect:
         serializedVersion: 2
-        x: 1024
+        x: 577
         y: 0
-        width: 64
-        height: 64
+        width: 54
+        height: 18
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -571,10 +571,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_17
       rect:
         serializedVersion: 2
-        x: 1088
+        x: 641
         y: 0
-        width: 64
-        height: 64
+        width: 54
+        height: 18
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -593,10 +593,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_18
       rect:
         serializedVersion: 2
-        x: 1152
+        x: 705
         y: 0
-        width: 64
-        height: 64
+        width: 54
+        height: 18
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -615,10 +615,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_19
       rect:
         serializedVersion: 2
-        x: 1216
+        x: 769
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -637,10 +637,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_20
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 833
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -659,10 +659,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_21
       rect:
         serializedVersion: 2
-        x: 1344
+        x: 897
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 21
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -681,10 +681,10 @@ TextureImporter:
       name: DieBocadillo-Sheet_22
       rect:
         serializedVersion: 2
-        x: 1408
+        x: 961
         y: 0
-        width: 64
-        height: 64
+        width: 58
+        height: 24
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -695,6 +695,116 @@ TextureImporter:
       bones: []
       spriteID: 6f7cb8de645cded90800000000000000
       internalID: -7066775331850696714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DieBocadillo-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 1153
+        y: 0
+        width: 58
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057a329127a2c594784aa8dbeda56695
+      internalID: -1745944825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DieBocadillo-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 0
+        width: 58
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c15cc83bea0283d45afdba4867c170f5
+      internalID: -1253182587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DieBocadillo-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 0
+        width: 58
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9072784c050739245ac7494d3399d710
+      internalID: 1944338759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DieBocadillo-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 1345
+        y: 0
+        width: 58
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27fb867e0e54d4240b363991cd730955
+      internalID: 732039606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DieBocadillo-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 0
+        width: 58
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ae469039d4a7b14f9ec14055f1fb7bc
+      internalID: -41232821
       vertices: []
       indices: 
       edges: []
@@ -713,7 +823,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       DieBocadillo-Sheet_0: -4411572168290436658
       DieBocadillo-Sheet_1: 6138631152539565502
@@ -731,6 +841,11 @@ TextureImporter:
       DieBocadillo-Sheet_20: -9110716279817237417
       DieBocadillo-Sheet_21: 3103909644020130410
       DieBocadillo-Sheet_22: -7066775331850696714
+      DieBocadillo-Sheet_23: -1745944825
+      DieBocadillo-Sheet_24: -1253182587
+      DieBocadillo-Sheet_25: 1944338759
+      DieBocadillo-Sheet_26: 732039606
+      DieBocadillo-Sheet_27: -41232821
       DieBocadillo-Sheet_3: -6776228690008682168
       DieBocadillo-Sheet_4: 2942570017205297033
       DieBocadillo-Sheet_5: 2265409116055174622

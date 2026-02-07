@@ -1,11 +1,16 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyFollowControl : MonoBehaviour
 {
+    [Header("Referencias")]
     public Transform player;
+
+    [Header("Detección y Movimiento")]
     public float detectionRadius = 5.0f;
-    public float attackRange = 0.8f;
+    public float attackRange = 1.3f;
     public float speed = 0.3f;
+
+    [Header("Combate")]
     public int damage = 1;
     public float attackCooldown = 1.5f;
 
@@ -82,22 +87,36 @@ public class EnemyFollowControl : MonoBehaviour
         Vector2 pushBack = (transform.position - player.position).normalized * 0.2f;
         rb.MovePosition(rb.position + pushBack);
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer <= attackRange)
-        {
-            PlayerHealth ph = player.GetComponent<PlayerHealth>();
-            if (ph != null)
-            {
-                ph.TakeDamage(damage, transform.position);
-            }
-        }
+        // ⚠️ YA NO SE HACE DAÑO AQUÍ - Se hace desde DealDamage() llamado por Animation Event
 
-        Invoke(nameof(EndAttack), 0.5f); // Ajusta seg�n la animaci�n
+        Invoke(nameof(EndAttack), 0.7f); // Ajusta según duración de la animación
     }
 
     private void EndAttack()
     {
         isAttacking = false;
+    }
+
+    // ✅ ESTE MÉTODO SE LLAMA DESDE UN ANIMATION EVENT EN EL FRAME EXACTO DEL GOLPE
+    public void DealDamage()
+    {
+        if (isDead || player == null) return;
+
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= attackRange)
+        {
+            PlayerHealth ph = player.GetComponent<PlayerHealth>();
+            if (ph != null)
+            {
+                Debug.Log($"¡{gameObject.name} golpeó al jugador! Daño: {damage}");
+                ph.TakeDamage(damage, transform.position);
+            }
+        }
+        else
+        {
+            Debug.Log($"{gameObject.name} atacó pero el jugador está fuera de rango ({distanceToPlayer:F2}m)");
+        }
     }
 
     public void DisableBehavior()
@@ -108,7 +127,7 @@ public class EnemyFollowControl : MonoBehaviour
         // Detener completamente el Rigidbody2D
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
-        rb.bodyType = RigidbodyType2D.Static; // Esto congela el cuerpo por completo
+        rb.bodyType = RigidbodyType2D.Static;
 
         animator?.SetBool("isWalking", false);
     }
