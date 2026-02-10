@@ -1,16 +1,31 @@
-using UnityEngine;
+锘縰sing UnityEngine;
 
 public class MyBullet : MonoBehaviour
 {
+    [Header("Normal Settings")]
     public float speed = 10f;
     public int damage = 1;
     public float lifetime = 2f;
 
+    [Header("馃寠 Underwater Settings")]
+    public float underwaterSpeedMultiplier = 0.6f; // M谩s lento bajo el agua
+    public float underwaterLifetime = 1.5f; // Duraci贸n reducida
+    public LayerMask waterLayer; // Layer del agua
+
     private Vector2 direction;
+    private bool isUnderwater = false;
+    private float currentSpeed;
 
     private void Start()
     {
-        Destroy(gameObject, lifetime);
+        // Detectar si empieza bajo el agua
+        CheckIfUnderwater();
+
+        // Ajustar velocidad y lifetime seg煤n el contexto
+        currentSpeed = isUnderwater ? speed * underwaterSpeedMultiplier : speed;
+        float actualLifetime = isUnderwater ? underwaterLifetime : lifetime;
+
+        Destroy(gameObject, actualLifetime);
     }
 
     public void SetDirection(Vector2 dir)
@@ -20,11 +35,30 @@ public class MyBullet : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime);
+        transform.Translate(direction * currentSpeed * Time.deltaTime);
+    }
+
+    private void CheckIfUnderwater()
+    {
+        // Verificar si hay un collider de agua en la posici贸n inicial
+        Collider2D waterCollider = Physics2D.OverlapPoint(transform.position, waterLayer);
+        isUnderwater = waterCollider != null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 馃寠 Detectar entrada al agua (cambio de medio)
+        if (((1 << collision.gameObject.layer) & waterLayer) != 0)
+        {
+            if (!isUnderwater)
+            {
+                // Entr贸 al agua desde el aire
+                isUnderwater = true;
+                currentSpeed = speed * underwaterSpeedMultiplier;
+            }
+            return; // No destruir al tocar agua
+        }
+
         // Damage boss
         BossPirate boss = collision.GetComponent<BossPirate>();
         if (boss != null)
@@ -40,7 +74,7 @@ public class MyBullet : MonoBehaviour
         {
             enemy.TakeDamage(damage);
 
-            // Reproducir animaci髇 de impacto si el enemigo tiene el componente
+            // Reproducir animaci贸n de impacto si el enemigo tiene el componente
             EnemyAnimationHandler animHandler = collision.GetComponent<EnemyAnimationHandler>();
             if (animHandler != null)
             {

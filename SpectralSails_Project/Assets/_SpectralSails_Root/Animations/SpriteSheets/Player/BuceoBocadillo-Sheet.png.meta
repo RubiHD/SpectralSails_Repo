@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: fc05c30ed344b774493d1bb114a96241
+guid: 115c5ea503f45cd4299c03f1ea859649
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8294575675143512177
-    second: WalkAnimation1-Sheet_0
+      213: 4095569864982727708
+    second: BuceoBocadillo-Sheet_0
   - first:
-      213: -1661612861651868342
-    second: WalkAnimation1-Sheet_1
+      213: -7178847845879394467
+    second: BuceoBocadillo-Sheet_1
   - first:
-      213: -834283419557456625
-    second: WalkAnimation1-Sheet_2
+      213: -3750740399052477202
+    second: BuceoBocadillo-Sheet_2
   - first:
-      213: 8578752965990654088
-    second: WalkAnimation1-Sheet_3
+      213: 80065578598070573
+    second: BuceoBocadillo-Sheet_3
   - first:
-      213: -8074073104780857943
-    second: WalkAnimation1-Sheet_4
+      213: 1868419022782131036
+    second: BuceoBocadillo-Sheet_4
   - first:
-      213: -8226971808685951273
-    second: WalkAnimation1-Sheet_5
+      213: -3761161741792419182
+    second: BuceoBocadillo-Sheet_5
+  - first:
+      213: -2602818645636603484
+    second: BuceoBocadillo-Sheet_6
+  - first:
+      213: -1809061816413773866
+    second: BuceoBocadillo-Sheet_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,7 +134,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_0
+      name: BuceoBocadillo-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 170668741a04c1370800000000000000
-      internalID: 8294575675143512177
+      spriteID: c1c071bc71366d830800000000000000
+      internalID: 4095569864982727708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_1
+      name: BuceoBocadillo-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -165,96 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a45250be7e3c0f8e0800000000000000
-      internalID: -1661612861651868342
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkAnimation1-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f05974f66a70c64f0800000000000000
-      internalID: -834283419557456625
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkAnimation1-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 880a3b1de5add0770800000000000000
-      internalID: 8578752965990654088
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkAnimation1-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9ad600b1a4123ff80800000000000000
-      internalID: -8074073104780857943
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkAnimation1-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 64
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d6fe167abce3dd80800000000000000
-      internalID: -8226971808685951273
+      spriteID: d5fc7c95beb9f5c90800000000000000
+      internalID: -7178847845879394467
       vertices: []
       indices: 
       edges: []
@@ -263,7 +181,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3c81899af5c248c4e92434b0ce3f9431
+    spriteID: 989d851d718df594bba57c382da09a33
     internalID: 0
     vertices: []
     indices: 
@@ -275,12 +193,8 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      WalkAnimation1-Sheet_0: 8294575675143512177
-      WalkAnimation1-Sheet_1: -1661612861651868342
-      WalkAnimation1-Sheet_2: -834283419557456625
-      WalkAnimation1-Sheet_3: 8578752965990654088
-      WalkAnimation1-Sheet_4: -8074073104780857943
-      WalkAnimation1-Sheet_5: -8226971808685951273
+      BuceoBocadillo-Sheet_0: 4095569864982727708
+      BuceoBocadillo-Sheet_1: -7178847845879394467
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerGun : MonoBehaviour
@@ -9,17 +9,23 @@ public class PlayerGun : MonoBehaviour
     public int ammo = 0;
     public float fireCooldown = 0.2f;
 
+    [Header("🌊 Underwater Settings")]
+    public GameObject waterBulletPrefab; // Prefab diferente para agua (opcional)
+    public float waterFireCooldown = 0.3f; // Cooldown diferente bajo el agua
+
     private bool canShoot = true;
     private PlayerController player;
-
     private Animator animator;
-
 
     private void Start()
     {
         player = GetComponent<PlayerController>();
         animator = GetComponent<Animator>();
 
+        if (player == null)
+        {
+            Debug.LogError("PlayerController no encontrado!");
+        }
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -35,31 +41,68 @@ public class PlayerGun : MonoBehaviour
         if (!canShoot || ammo <= 0)
             return;
 
-        Shoot();
+        // 🌊 Verificar si está bajo el agua
+        bool isUnderwater = player != null && player.IsUnderwater();
+
+        if (isUnderwater)
+        {
+            ShootUnderwater();
+        }
+        else
+        {
+            ShootNormal();
+        }
     }
 
-    private void Shoot()
+    // 🏝️ DISPARO NORMAL (TERRESTRE)
+    private void ShootNormal()
     {
         canShoot = false;
         ammo--;
 
+        // ✅ Activar animación de disparo NORMAL
         if (animator != null)
+        {
             animator.SetTrigger("Shoot");
+        }
 
         Invoke(nameof(ResetShoot), fireCooldown);
     }
 
-    public void FireBullet()
+    // 🌊 DISPARO BAJO EL AGUA
+    private void ShootUnderwater()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        float dir = Mathf.Sign(transform.localScale.x);
-        bullet.GetComponent<MyBullet>().SetDirection(new Vector2(dir, 0));
+        canShoot = false;
+        ammo--;
+
+        // ✅ Activar animación de disparo ACUÁTICO
+        if (animator != null)
+        {
+            animator.SetTrigger("WaterShoot");
+        }
+
+        Invoke(nameof(ResetShoot), waterFireCooldown);
     }
 
+    // ✅ Este método lo llama el ANIMATION EVENT
+    public void FireBullet()
+    {
+        bool isUnderwater = player != null && player.IsUnderwater();
 
+        // Elegir el prefab correcto
+        GameObject prefabToUse = isUnderwater && waterBulletPrefab != null
+            ? waterBulletPrefab
+            : bulletPrefab;
 
+        GameObject bullet = Instantiate(prefabToUse, firePoint.position, Quaternion.identity);
+        float dir = Mathf.Sign(transform.localScale.x);
 
-
+        MyBullet bulletScript = bullet.GetComponent<MyBullet>();
+        if (bulletScript != null)
+        {
+            bulletScript.SetDirection(new Vector2(dir, 0));
+        }
+    }
 
     private void ResetShoot()
     {
@@ -71,4 +114,3 @@ public class PlayerGun : MonoBehaviour
         ammo += amount;
     }
 }
-

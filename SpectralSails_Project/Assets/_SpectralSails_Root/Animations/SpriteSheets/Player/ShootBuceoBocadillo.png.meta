@@ -1,25 +1,37 @@
 fileFormatVersion: 2
-guid: fc05c30ed344b774493d1bb114a96241
+guid: 16346a742f655f646948bc6306c17860
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8294575675143512177
-    second: WalkAnimation1-Sheet_0
+      213: 1008674161862405669
+    second: ShootBuceoBocadillo_0
   - first:
-      213: -1661612861651868342
-    second: WalkAnimation1-Sheet_1
+      213: -4782454821808973797
+    second: ShootBuceoBocadillo_1
   - first:
-      213: -834283419557456625
-    second: WalkAnimation1-Sheet_2
+      213: 1107764738234439883
+    second: ShootBuceoBocadillo_2
   - first:
-      213: 8578752965990654088
-    second: WalkAnimation1-Sheet_3
+      213: 8312715370819893683
+    second: ShootBuceoBocadillo_3
   - first:
-      213: -8074073104780857943
-    second: WalkAnimation1-Sheet_4
+      213: -5879377562272731422
+    second: ShootBuceoBocadillo_4
   - first:
-      213: -8226971808685951273
-    second: WalkAnimation1-Sheet_5
+      213: -1417778593068447132
+    second: ShootBuceoBocadillo_5
+  - first:
+      213: 2616803307700838230
+    second: ShootBuceoBocadillo_6
+  - first:
+      213: -8502059663374625146
+    second: ShootBuceoBocadillo_7
+  - first:
+      213: 2756758410010621271
+    second: ShootBuceoBocadillo_8
+  - first:
+      213: 5970018771023548340
+    second: ShootBuceoBocadillo_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -128,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_0
+      name: ShootBuceoBocadillo_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 170668741a04c1370800000000000000
-      internalID: 8294575675143512177
+      spriteID: 52e6ce75ec78ffd00800000000000000
+      internalID: 1008674161862405669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_1
+      name: ShootBuceoBocadillo_1
       rect:
         serializedVersion: 2
         x: 64
@@ -165,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a45250be7e3c0f8e0800000000000000
-      internalID: -1661612861651868342
+      spriteID: b18d8b79dae41adb0800000000000000
+      internalID: -4782454821808973797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_2
+      name: ShootBuceoBocadillo_2
       rect:
         serializedVersion: 2
         x: 128
@@ -187,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f05974f66a70c64f0800000000000000
-      internalID: -834283419557456625
+      spriteID: bc8da2509229f5f00800000000000000
+      internalID: 1107764738234439883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_3
+      name: ShootBuceoBocadillo_3
       rect:
         serializedVersion: 2
         x: 192
@@ -209,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 880a3b1de5add0770800000000000000
-      internalID: 8578752965990654088
+      spriteID: 3b936ac4692bc5370800000000000000
+      internalID: 8312715370819893683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_4
+      name: ShootBuceoBocadillo_4
       rect:
         serializedVersion: 2
         x: 256
@@ -231,14 +243,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9ad600b1a4123ff80800000000000000
-      internalID: -8074073104780857943
+      spriteID: 2eee454e141486ea0800000000000000
+      internalID: -5879377562272731422
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WalkAnimation1-Sheet_5
+      name: ShootBuceoBocadillo_5
       rect:
         serializedVersion: 2
         x: 320
@@ -253,8 +265,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d6fe167abce3dd80800000000000000
-      internalID: -8226971808685951273
+      spriteID: 46a800e91e9035ce0800000000000000
+      internalID: -1417778593068447132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShootBuceoBocadillo_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65f53927eb0c05420800000000000000
+      internalID: 2616803307700838230
       vertices: []
       indices: 
       edges: []
@@ -263,7 +297,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 3c81899af5c248c4e92434b0ce3f9431
+    spriteID: cec55544fff79464b8c7161ed2e7d422
     internalID: 0
     vertices: []
     indices: 
@@ -275,12 +309,13 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      WalkAnimation1-Sheet_0: 8294575675143512177
-      WalkAnimation1-Sheet_1: -1661612861651868342
-      WalkAnimation1-Sheet_2: -834283419557456625
-      WalkAnimation1-Sheet_3: 8578752965990654088
-      WalkAnimation1-Sheet_4: -8074073104780857943
-      WalkAnimation1-Sheet_5: -8226971808685951273
+      ShootBuceoBocadillo_0: 1008674161862405669
+      ShootBuceoBocadillo_1: -4782454821808973797
+      ShootBuceoBocadillo_2: 1107764738234439883
+      ShootBuceoBocadillo_3: 8312715370819893683
+      ShootBuceoBocadillo_4: -5879377562272731422
+      ShootBuceoBocadillo_5: -1417778593068447132
+      ShootBuceoBocadillo_6: 2616803307700838230
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
