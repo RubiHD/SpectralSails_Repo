@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyDeathHandler : MonoBehaviour
 {
@@ -13,7 +13,6 @@ public class EnemyDeathHandler : MonoBehaviour
     public void Die()
     {
         if (isDying) return;
-
         isDying = true;
 
         // Desactivar comportamientos de enemigos compatibles
@@ -35,10 +34,17 @@ public class EnemyDeathHandler : MonoBehaviour
             shooter.DisableBehavior();
         }
 
-        // Reproducir animaci�n de muerte
+        // ✅ AÑADIR SOPORTE PARA TIBURÓN
+        var shark = GetComponent<SharkEnemy>();
+        if (shark != null)
+        {
+            shark.DisableBehavior();
+        }
+
+        // Reproducir animación de muerte
         animHandler?.PlayDeath();
 
-        // Destruir tras la animaci�n
+        // Destruir tras la animación
         Destroy(gameObject, 1.5f);
     }
 }

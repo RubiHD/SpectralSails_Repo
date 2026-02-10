@@ -393,7 +393,21 @@ public class PlayerController : MonoBehaviour
         }
         else if (isStickingToWall)
         {
-            // ... código wall jump
+            float wallDir = Mathf.Sign(transform.localScale.x);
+            rb.gravityScale = normalGravity;
+            rb.linearVelocity = new Vector2(-wallDir * wallJumpForce.x, wallJumpForce.y);
+            transform.localScale = new Vector3(-wallDir, 1, 1);
+            isStickingToWall = false;
+            wallJumping = true;
+            canStickToWall = false;
+
+            if (animator != null)
+                animator.SetBool("isTouchingWall", false);
+
+            StartCoroutine(ResetWallJumpState(0.2f));
+
+            if (showDebugLogs)
+                Debug.Log("¡WALL JUMP EJECUTADO!");
         }
     }
     // ... resto del código

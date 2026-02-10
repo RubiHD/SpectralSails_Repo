@@ -5,35 +5,46 @@ using System.Collections;
 public class HealthBarController : MonoBehaviour
 {
     [Header("Referencias")]
-    [SerializeField] private Image healthBarFill; // La imagen con Image Type = Filled
-    [SerializeField] private PlayerHealth playerHealth; // Referencia al script de salud
+    [SerializeField] private Image healthBarFill;
+    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private Image healthBarBackground; // Opcional: fondo de la barra
+    [SerializeField] private ParticleSystem healParticles; // Partículas en la UI
 
     [Header("Configuración de Color")]
     [SerializeField] private Color fullHealthColor = Color.green;
     [SerializeField] private Color lowHealthColor = Color.red;
-    [SerializeField] private float lowHealthThreshold = 0.3f; // 30%
+    [SerializeField] private float lowHealthThreshold = 0.3f;
 
-    [Header("Animación de Degradado")] // ✅ NUEVO
-    [SerializeField] private bool useSmoothing = true; // Activar/desactivar animación
-    [SerializeField] private float smoothSpeed = 5f; // Velocidad del degradado (mayor = más rápido)
-    [SerializeField] private AnimationCurve smoothCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); // Curva de suavizado
+    [Header("Animación de Degradado")]
+    [SerializeField] private bool useSmoothing = true;
+    [SerializeField] private float smoothSpeed = 5f;
+    [SerializeField] private AnimationCurve smoothCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
-    private float currentFillAmount; // Valor actual de la barra (para animación)
-    private float targetFillAmount;  // Valor objetivo de la barra
-    private Coroutine smoothCoroutine; // Referencia a la coroutine activa
+    [Header("⭐ EFECTO DE CURACIÓN")]
+    [SerializeField] private Color healGlowColor = new Color(0f, 1f, 0.5f, 1f); // Verde brillante
+    [SerializeField] private float healGlowDuration = 0.5f;
+    [SerializeField] private float healPulseDuration = 0.3f;
+    [SerializeField] private AnimationCurve healPulseCurve = AnimationCurve.EaseInOut(0, 1, 1, 1.2f);
+    [SerializeField] private bool spawnHealParticles = true;
+
+    private float currentFillAmount;
+    private float targetFillAmount;
+    private Coroutine smoothCoroutine;
+    private Coroutine healEffectCoroutine;
+    private Color originalColor;
 
     private void Start()
     {
-        // Si no asignaste el PlayerHealth manualmente, búscalo
         if (playerHealth == null)
         {
             playerHealth = FindObjectOfType<PlayerHealth>();
         }
 
-        // ✅ Inicializar valores
         float initialHealth = (float)playerHealth.Health / (float)playerHealth.maxHealth;
         currentFillAmount = initialHealth;
         targetFillAmount = initialHealth;
+
+        originalColor = healthBarFill.color;
 
         UpdateHealthBar();
     }
@@ -42,53 +53,110 @@ public class HealthBarController : MonoBehaviour
     {
         if (!useSmoothing)
         {
-            // Modo sin animación (actualización instantánea)
             UpdateHealthBar();
         }
         else
         {
-            // Modo con animación (usar smoothing)
             float newTargetHealth = (float)playerHealth.Health / (float)playerHealth.maxHealth;
 
-            // Solo iniciar animación si el objetivo cambió
             if (Mathf.Abs(newTargetHealth - targetFillAmount) > 0.001f)
             {
                 targetFillAmount = newTargetHealth;
 
-                // Detener animación anterior si existe
                 if (smoothCoroutine != null)
                 {
                     StopCoroutine(smoothCoroutine);
                 }
 
-                // Iniciar nueva animación
                 smoothCoroutine = StartCoroutine(SmoothHealthChange());
             }
 
-            // Actualizar color siempre
             UpdateHealthColor();
         }
     }
 
-    // ✅ NUEVA COROUTINE: Anima el cambio de vida suavemente
+    // ⭐ MÉTODO PÚBLICO PARA ACTIVAR EFECTO DE CURACIÓN
+    public void TriggerHealEffect()
+    {
+        // Detener efecto anterior si existe
+        if (healEffectCoroutine != null)
+        {
+            StopCoroutine(healEffectCoroutine);
+        }
+
+        healEffectCoroutine = StartCoroutine(HealEffectCoroutine());
+
+        // Activar partículas si están asignadas
+        if (spawnHealParticles && healParticles != null)
+        {
+            healParticles.Play();
+        }
+    }
+
+    // ⭐ CORRUTINA DEL EFECTO DE CURACIÓN
+    private IEnumerator HealEffectCoroutine()
+    {
+        // === FASE 1: PULSO DE ESCALA ===
+        float elapsed = 0f;
+        Vector3 originalScale = healthBarFill.transform.localScale;
+
+        while (elapsed < healPulseDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / healPulseDuration;
+            float pulseValue = healPulseCurve.Evaluate(t);
+
+            healthBarFill.transform.localScale = originalScale * pulseValue;
+
+            yield return null;
+        }
+
+        healthBarFill.transform.localScale = originalScale;
+
+        // === FASE 2: BRILLO VERDE ===
+        elapsed = 0f;
+        Color startColor = healthBarFill.color;
+
+        while (elapsed < healGlowDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / healGlowDuration;
+
+            // Interpolar del color de curación al color normal
+            healthBarFill.color = Color.Lerp(healGlowColor, startColor, t);
+
+            // Opcional: hacer que el fondo también brille
+            if (healthBarBackground != null)
+            {
+                float glowIntensity = Mathf.Sin(t * Mathf.PI); // Crea un pulso
+                healthBarBackground.color = Color.Lerp(Color.white, healGlowColor, glowIntensity * 0.3f);
+            }
+
+            yield return null;
+        }
+
+        // Restaurar colores
+        healthBarFill.color = startColor;
+        if (healthBarBackground != null)
+        {
+            healthBarBackground.color = Color.white;
+        }
+    }
+
     private IEnumerator SmoothHealthChange()
     {
         float startFillAmount = currentFillAmount;
         float elapsed = 0f;
-        float duration = 1f / smoothSpeed; // Convertir velocidad a duración
+        float duration = 1f / smoothSpeed;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / duration);
 
-            // Aplicar curva de suavizado
             float curveValue = smoothCurve.Evaluate(t);
-
-            // Interpolar entre valor actual y objetivo
             currentFillAmount = Mathf.Lerp(startFillAmount, targetFillAmount, curveValue);
 
-            // Actualizar la barra
             if (healthBarFill != null)
             {
                 healthBarFill.fillAmount = currentFillAmount;
@@ -97,7 +165,6 @@ public class HealthBarController : MonoBehaviour
             yield return null;
         }
 
-        // Asegurar que llegue exactamente al objetivo
         currentFillAmount = targetFillAmount;
         if (healthBarFill != null)
         {
@@ -113,10 +180,8 @@ public class HealthBarController : MonoBehaviour
             return;
         }
 
-        // Calcular el porcentaje de vida (0.0 a 1.0)
         float healthPercentage = (float)playerHealth.Health / (float)playerHealth.maxHealth;
 
-        // Actualizar el Fill Amount
         healthBarFill.fillAmount = healthPercentage;
         currentFillAmount = healthPercentage;
         targetFillAmount = healthPercentage;
@@ -128,10 +193,8 @@ public class HealthBarController : MonoBehaviour
     {
         if (healthBarFill == null) return;
 
-        // Usar currentFillAmount para el color (así el color sigue la animación)
         float healthPercentage = currentFillAmount;
 
-        // Cambiar color según la vida restante
         if (healthPercentage <= lowHealthThreshold)
         {
             healthBarFill.color = lowHealthColor;
@@ -141,5 +204,7 @@ public class HealthBarController : MonoBehaviour
             healthBarFill.color = Color.Lerp(lowHealthColor, fullHealthColor,
                 (healthPercentage - lowHealthThreshold) / (1f - lowHealthThreshold));
         }
+
+        originalColor = healthBarFill.color;
     }
 }

@@ -90,7 +90,7 @@ public class EnemyHealth : MonoBehaviour
         // Reproducir animación de muerte
         if (animator != null)
         {
-            animator.SetTrigger("Death");
+            animator.SetTrigger("Death"); // ⚠️ Asegúrate que sea "Death"
         }
 
         EnemyDeathHandler deathHandler = GetComponent<EnemyDeathHandler>();
@@ -100,9 +100,9 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            // Destruir después de la animación (ajusta el tiempo según tu animación)
             Destroy(gameObject, 2f);
         }
     }
 }
+
 

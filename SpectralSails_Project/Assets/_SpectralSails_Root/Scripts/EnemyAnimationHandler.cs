@@ -23,7 +23,7 @@ public class EnemyAnimationHandler : MonoBehaviour
         if (animator != null && !isDead)
         {
             isDead = true;
-            animator.SetTrigger("Die");
+            animator.SetTrigger("Death");
         }
     }
 }
