@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Prop_32_Jarron_0
+      name: Prop_32_Jarron_1
       rect:
         serializedVersion: 2
-        x: 59
+        x: 60
         y: 0
-        width: 202
-        height: 311
+        width: 200
+        height: 310
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a860c90e86cc10c50800000000000000
-      internalID: 6629804877283067530
+      spriteID: ec4e32c377ea79f45986d64c74486201
+      internalID: -1087329409
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3719d66d5a35fad49af44310df644ea4
     internalID: 0
     vertices: []
     indices: 
@@ -159,9 +159,29 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Prop_32_Jarron_0: 6629804877283067530
+      Prop_32_Jarron_1: -1087329409
+      Prop_32_Jarron_10: -468048675
+      Prop_32_Jarron_11: 1010701514
+      Prop_32_Jarron_12: -984711463
+      Prop_32_Jarron_13: 345309558
+      Prop_32_Jarron_14: -2046332244
+      Prop_32_Jarron_15: 1687293145
+      Prop_32_Jarron_16: -1272990525
+      Prop_32_Jarron_17: -593076588
+      Prop_32_Jarron_18: 706970059
+      Prop_32_Jarron_2: 574040079
+      Prop_32_Jarron_3: 1541823094
+      Prop_32_Jarron_4: -215181965
+      Prop_32_Jarron_5: 1571708210
+      Prop_32_Jarron_6: 536185171
+      Prop_32_Jarron_7: 1512612827
+      Prop_32_Jarron_8: -38589208
+      Prop_32_Jarron_9: 319208042
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
