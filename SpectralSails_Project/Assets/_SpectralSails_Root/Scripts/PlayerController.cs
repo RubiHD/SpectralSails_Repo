@@ -90,14 +90,20 @@ public class PlayerController : MonoBehaviour
         if (hasDied) return;
         if (!canMove) return;
 
-        // ✅ Actualizar animaciones según el estado
+        // ✅ DEBUG COMPLETO
+        if (showDebugLogs && isUnderwater)
+        {
+            Debug.Log($"UNDERWATER - isUnderwater: {isUnderwater}, Animator isUnderwater: {animator.GetBool("isUnderwater")}");
+            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+            Debug.Log($"Estado actual: {state.fullPathHash}, Normalizado: {state.normalizedTime}");
+        }
+
         UpdateAnimations();
 
-        // 🌊 Si está bajo el agua, usar lógica diferente
         if (isUnderwater)
         {
             UpdateUnderwaterMovement();
-            return; // Salir temprano para evitar lógica terrestre
+            return;
         }
 
         // --- LÓGICA TERRESTRE NORMAL ---
@@ -352,6 +358,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // ✅ SALTO - Cambia según el contexto (tierra vs agua)
+    // ✅ SALTO - Cambia según el contexto (tierra vs agua)
     public void OnJump(InputAction.CallbackContext context)
     {
         if (!context.started || !canMove || hasDied) return;
@@ -363,7 +370,8 @@ public class PlayerController : MonoBehaviour
 
             if (animator != null)
             {
-                animator.SetTrigger("WaterFlap"); // Trigger para animación de "aleteo"
+                animator.SetTrigger("WaterShoot");
+                Debug.Log("🌊 Trigger WaterShoot activado"); // ✅ AÑADE ESTE LOG
             }
 
             if (showDebugLogs)
@@ -373,6 +381,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // --- SALTO TERRESTRE NORMAL ---
+        Debug.Log($"Intento salto normal - Grounded: {IsGrounded()}, Coyote: {coyoteTimeCounter}"); // ✅ AÑADE ESTE LOG
+
         if (coyoteTimeCounter > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
@@ -383,23 +393,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (isStickingToWall)
         {
-            float wallDir = Mathf.Sign(transform.localScale.x);
-            rb.gravityScale = normalGravity;
-            rb.linearVelocity = new Vector2(-wallDir * wallJumpForce.x, wallJumpForce.y);
-            transform.localScale = new Vector3(-wallDir, 1, 1);
-            isStickingToWall = false;
-            wallJumping = true;
-            canStickToWall = false;
-
-            if (animator != null)
-                animator.SetBool("isTouchingWall", false);
-
-            StartCoroutine(ResetWallJumpState(0.2f));
-
-            if (showDebugLogs)
-                Debug.Log("¡WALL JUMP EJECUTADO!");
+            // ... código wall jump
         }
     }
+    // ... resto del código
 
     private IEnumerator ResetWallJumpState(float delay)
     {
@@ -448,15 +445,11 @@ public class PlayerController : MonoBehaviour
     {
         if (animator == null) return;
 
-        // 🌊 Animaciones bajo el agua
+        // 🌊 Animaciones bajo el agua - SOLO isUnderwater
         if (isUnderwater)
         {
-            animator.SetFloat("WaterSpeed", Mathf.Abs(horizontal));
-            animator.SetFloat("WaterVerticalVelocity", rb.linearVelocity.y);
-
-            // Determinar si está subiendo o cayendo
-            animator.SetBool("isSwimmingUp", rb.linearVelocity.y > 0.1f);
-            animator.SetBool("isSwimmingDown", rb.linearVelocity.y < -0.1f);
+            // isUnderwater ya se setea en EnterWater() y ExitWater()
+            // No necesitas hacer nada más aquí para las animaciones básicas
             return;
         }
 
