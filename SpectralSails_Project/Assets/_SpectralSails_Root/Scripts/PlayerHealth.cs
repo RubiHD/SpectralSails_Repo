@@ -1,127 +1,152 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
     [Header("Configuración de Salud")]
     public int maxHealth = 5;
-    public int Health { get; private set; }
+    private int currentHealth;
 
-    [Header("Knockback")]
-    [SerializeField] private float knockbackForceMultiplier = 1f;
+    [Header("Referencias")]
+    private PlayerController playerController;
 
-    [Header("Invulnerabilidad temporal")]
-    [SerializeField] private float invulnerabilityDuration = 0.5f; // Tiempo de invulnerabilidad tras recibir daño
-    private bool isInvulnerable = false;
+    [Header("Configuración de Daño")]
+    public float invulnerabilityTime = 1.5f; // Tiempo de invulnerabilidad después de recibir daño
+    private float invulnerabilityTimer = 0f;
 
-    [Header("Eventos (Opcional)")]
-    public UnityEvent<int, int> OnHealthChanged;
-    public UnityEvent OnDeath;
+    [Header("Efectos Visuales")]
+    public bool useFlashEffect = true;
+    public float flashSpeed = 5f;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
 
-    private PlayerController controller;
-    private bool isDead = false;
+    [Header("Debug")]
+    [SerializeField] private bool showDebugLogs = true;
 
     private void Start()
     {
-        Health = maxHealth;
-        OnHealthChanged?.Invoke(Health, maxHealth);
-        controller = GetComponent<PlayerController>();
+        currentHealth = maxHealth;
+        playerController = GetComponent<PlayerController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (controller == null)
+        if (spriteRenderer != null)
         {
-            Debug.LogError("PlayerController no encontrado en el GameObject!");
+            originalColor = spriteRenderer.color;
+        }
+
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController no encontrado en " + gameObject.name);
+        }
+
+        if (showDebugLogs)
+        {
+            Debug.Log($"PlayerHealth inicializado. Vida máxima: {maxHealth}");
         }
     }
 
-    // ✅ MÉTODO PRINCIPAL MEJORADO
-    public void TakeDamage(int damage, Vector2 attackerPosition)
+    private void Update()
     {
-        // ✅ Prevenir daño si está muerto o invulnerable
-        if (isDead || isInvulnerable) return;
-
-        Health -= damage;
-        Health = Mathf.Max(Health, 0);
-
-        Debug.Log($"Jugador recibió {damage} daño. Vida restante: {Health}/{maxHealth}");
-
-        OnHealthChanged?.Invoke(Health, maxHealth);
-
-        // ✅ COMPROBAR MUERTE PRIMERO
-        if (Health <= 0)
+        // Reducir timer de invulnerabilidad
+        if (invulnerabilityTimer > 0f)
         {
-            HandleDeath();
-        }
-        else
-        {
-            // ✅ Solo aplicar knockback si sigue vivo
-            if (controller != null)
+            invulnerabilityTimer -= Time.deltaTime;
+
+            // Efecto de parpadeo mientras es invulnerable
+            if (useFlashEffect && spriteRenderer != null)
             {
-                controller.ApplyKnockback(attackerPosition, knockbackForceMultiplier);
+                float alpha = Mathf.PingPong(Time.time * flashSpeed, 1f);
+                spriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
             }
-
-            // ✅ Activar invulnerabilidad temporal
-            StartCoroutine(InvulnerabilityCoroutine());
         }
-    }
-
-    // ✅ NUEVO: Método separado para manejar la muerte
-    private void HandleDeath()
-    {
-        if (isDead) return;
-
-        isDead = true;
-
-        Debug.Log("¡Jugador ha muerto! Activando secuencia de muerte.");
-
-        // ✅ Invocar evento de muerte
-        OnDeath?.Invoke();
-
-        // ✅ Llamar al método Die() del controller
-        if (controller != null)
+        else if (spriteRenderer != null && spriteRenderer.color != originalColor)
         {
-            controller.Die();
+            // Restaurar color original cuando termine la invulnerabilidad
+            spriteRenderer.color = originalColor;
         }
     }
 
-    // ✅ NUEVO: Coroutine de invulnerabilidad
-    private System.Collections.IEnumerator InvulnerabilityCoroutine()
+    public void TakeDamage(int amount)
     {
-        isInvulnerable = true;
-        yield return new WaitForSeconds(invulnerabilityDuration);
-        isInvulnerable = false;
-    }
+        // Si está en invulnerabilidad, ignorar daño
+        if (invulnerabilityTimer > 0f)
+        {
+            if (showDebugLogs)
+                Debug.Log("Jugador es invulnerable, daño ignorado");
+            return;
+        }
 
-    // Sobrecarga opcional para compatibilidad
-    public void TakeDamage(int damage)
-    {
-        TakeDamage(damage, transform.position);
+        currentHealth -= amount;
+        currentHealth = Mathf.Max(currentHealth, 0);
+
+        if (showDebugLogs)
+            Debug.Log($"Jugador recibió {amount} de daño. Vida restante: {currentHealth}/{maxHealth}");
+
+        // Activar invulnerabilidad
+        invulnerabilityTimer = invulnerabilityTime;
+
+        // Aplicar knockback si hay PlayerController
+        if (playerController != null)
+        {
+            // Buscar al tiburón más cercano para calcular dirección del knockback
+            GameObject shark = GameObject.FindGameObjectWithTag("Enemy");
+            if (shark != null)
+            {
+                playerController.ApplyKnockback(shark.transform.position, 1f);
+            }
+            else
+            {
+                // Si no hay tiburón, aplicar knockback genérico
+                Vector2 knockbackDir = new Vector2(transform.localScale.x * -1, 0);
+                playerController.ApplyKnockback(transform.position + (Vector3)knockbackDir, 1f);
+            }
+        }
+
+        // Verificar si murió
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void Heal(int amount)
     {
-        if (isDead) return;
+        currentHealth += amount;
+        currentHealth = Mathf.Min(currentHealth, maxHealth);
 
-        int previousHealth = Health;
-        Health += amount;
-        Health = Mathf.Min(Health, maxHealth);
-
-        Debug.Log($"Jugador curado: +{Health - previousHealth}. Vida: {Health}/{maxHealth}");
-
-        OnHealthChanged?.Invoke(Health, maxHealth);
+        if (showDebugLogs)
+            Debug.Log($"Jugador curado por {amount}. Vida actual: {currentHealth}/{maxHealth}");
     }
 
+    private void Die()
+    {
+        if (showDebugLogs)
+            Debug.Log("PlayerHealth: Jugador ha muerto, llamando a PlayerController.Die()");
+
+        if (playerController != null)
+        {
+            playerController.Die();
+        }
+        else
+        {
+            Debug.LogError("No se pudo llamar a Die() porque PlayerController es null");
+        }
+    }
+
+    // Método público para obtener la vida actual
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+
+    // Método público para verificar si está vivo
+    public bool IsAlive()
+    {
+        return currentHealth > 0;
+    }
+
+    // Método para mostrar la barra de vida (si la implementas más adelante)
     public float GetHealthPercentage()
     {
-        return (float)Health / (float)maxHealth;
-    }
-
-    public bool IsDead()
-    {
-        return isDead;
-    }
-
-    public bool IsInvulnerable()
-    {
-        return isInvulnerable;
+        return (float)currentHealth / maxHealth;
     }
 }
