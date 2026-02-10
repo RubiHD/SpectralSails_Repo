@@ -4,16 +4,19 @@ public class TiburonAI : MonoBehaviour
 {
     [Header("Referencias")]
     public Transform player; // Arrastra aquí el jugador desde el Inspector
+    public SpriteRenderer spriteRenderer; // Arrastra aquí el SpriteRenderer del tiburón
 
     [Header("Configuración de Movimiento")]
     public float detectionRange = 10f; // Rango para detectar al jugador
     public float attackRange = 2f; // Rango para atacar
     public float moveSpeed = 3f;
-    public float rotationSpeed = 5f;
 
     [Header("Configuración de Ataque")]
     public float attackCooldown = 2f; // Tiempo entre ataques
     public int attackDamage = 1;
+
+    [Header("Configuración 2D")]
+    public bool facingRight = true; // ¿El sprite mira a la derecha por defecto?
 
     private Animator animator;
     private float lastAttackTime;
@@ -32,6 +35,16 @@ public class TiburonAI : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+
+        // Obtener SpriteRenderer si no está asignado
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer == null)
+            {
+                Debug.LogError("No se encontró SpriteRenderer en " + gameObject.name);
+            }
+        }
 
         // Si no asignaste el jugador en el Inspector, búscalo automáticamente
         if (player == null)
@@ -96,8 +109,8 @@ public class TiburonAI : MonoBehaviour
         Vector3 direction = (player.position - transform.position).normalized;
         transform.position += direction * moveSpeed * Time.deltaTime;
 
-        // Rotar hacia el jugador
-        RotateTowards(player.position);
+        // Voltear el sprite según la dirección (para 2D)
+        FlipSprite(direction.x);
 
         animator.SetBool("IsMoving", true);
     }
@@ -107,8 +120,9 @@ public class TiburonAI : MonoBehaviour
         // Dejar de moverse y atacar
         animator.SetBool("IsMoving", false);
 
-        // Mirar al jugador
-        RotateTowards(player.position);
+        // Voltear sprite hacia el jugador
+        Vector3 direction = (player.position - transform.position).normalized;
+        FlipSprite(direction.x);
 
         // Atacar si ha pasado el cooldown
         if (Time.time >= lastAttackTime + attackCooldown)
@@ -143,15 +157,22 @@ public class TiburonAI : MonoBehaviour
         }
     }
 
-    private void RotateTowards(Vector3 target)
+    // Voltear el sprite horizontalmente según la dirección
+    private void FlipSprite(float directionX)
     {
-        Vector3 direction = (target - transform.position).normalized;
-        direction.y = 0; // Mantener rotación solo en el plano horizontal
+        if (spriteRenderer == null) return;
 
-        if (direction != Vector3.zero)
+        // Si el sprite mira a la derecha por defecto (facingRight = true)
+        if (facingRight)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            // Voltear si se mueve a la izquierda
+            spriteRenderer.flipX = directionX < 0;
+        }
+        else
+        {
+            // Si el sprite mira a la izquierda por defecto
+            // Voltear si se mueve a la derecha
+            spriteRenderer.flipX = directionX > 0;
         }
     }
 
