@@ -11,7 +11,6 @@ public class PlayerCombat : MonoBehaviour
     [Header("Animator del jugador")]
     public Animator animator;
 
-
     [Header("Input Actions")]
     public InputAction attackAction;
     public InputAction switchSwordAction;
@@ -32,7 +31,6 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed && swords.Count > 0)
         {
-            // ⚠️ Ya no llamamos a Attack aquí
             if (animator != null)
             {
                 if (swords[currentSwordIndex] is AdvancedSword)
@@ -47,12 +45,10 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-
     public void ApplyAttackDamage()
     {
         swords[currentSwordIndex].Attack(this);
     }
-
 
     public void OnSwitchSword(InputAction.CallbackContext context)
     {
@@ -65,12 +61,10 @@ public class PlayerCombat : MonoBehaviour
     private void SwitchSword()
     {
         currentSwordIndex = (currentSwordIndex + 1) % swords.Count;
-
         if (animator != null && swords[currentSwordIndex].animatorOverride != null)
         {
             animator.runtimeAnimatorController = swords[currentSwordIndex].animatorOverride;
         }
-
         Debug.Log("Espada equipada: " + swords[currentSwordIndex].swordName);
     }
 
@@ -88,16 +82,25 @@ public class PlayerCombat : MonoBehaviour
         return swords.Contains(sword);
     }
 
+    // ✅ MÉTODO ACTUALIZADO - Ahora detecta tablas destructibles
     public void DealDamage(int amount)
     {
         Vector2 direction = new Vector2(Mathf.Sign(transform.localScale.x), 0);
         Vector2 attackPosition = (Vector2)transform.position + direction * 1f;
-
         float radius = 1f;
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(attackPosition, radius);
+
         foreach (var hit in hits)
         {
+            // ✅ NUEVO: Detectar tablas destructibles
+            DestructiblePlank plank = hit.GetComponent<DestructiblePlank>();
+            if (plank != null)
+            {
+                plank.TakeDamage(amount);
+                continue; // Pasar al siguiente objeto
+            }
+
             // Enemigos normales
             EnemyHealth enemy = hit.GetComponent<EnemyHealth>();
             if (enemy != null)
@@ -109,7 +112,6 @@ public class PlayerCombat : MonoBehaviour
                 {
                     animHandler.PlayHit();
                 }
-
                 continue;
             }
 
@@ -122,8 +124,6 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-
-
     private void OnDrawGizmosSelected()
     {
         Vector2 direction = new Vector2(Mathf.Sign(transform.localScale.x), 0);
@@ -131,5 +131,4 @@ public class PlayerCombat : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition, 1f);
     }
-
 }
