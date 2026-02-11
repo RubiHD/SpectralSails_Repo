@@ -1,0 +1,572 @@
+fileFormatVersion: 2
+guid: 6bba84ec331529d4985583d038702ffc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5253820580607123426
+    second: AtaqueBocaBoss-Sheet_0
+  - first:
+      213: 5862812473757060338
+    second: AtaqueBocaBoss-Sheet_1
+  - first:
+      213: -5728123586876524486
+    second: AtaqueBocaBoss-Sheet_2
+  - first:
+      213: -2793238098340051701
+    second: AtaqueBocaBoss-Sheet_3
+  - first:
+      213: 7179043455029948109
+    second: AtaqueBocaBoss-Sheet_4
+  - first:
+      213: 7767485323530185760
+    second: AtaqueBocaBoss-Sheet_5
+  - first:
+      213: 6169464403571701283
+    second: AtaqueBocaBoss-Sheet_6
+  - first:
+      213: 1596354769368984314
+    second: AtaqueBocaBoss-Sheet_7
+  - first:
+      213: -2517776863160994768
+    second: AtaqueBocaBoss-Sheet_8
+  - first:
+      213: -8985877142110188290
+    second: AtaqueBocaBoss-Sheet_9
+  - first:
+      213: -1848791002915727752
+    second: AtaqueBocaBoss-Sheet_10
+  - first:
+      213: 5411516251372191464
+    second: AtaqueBocaBoss-Sheet_11
+  - first:
+      213: -613415087463452958
+    second: AtaqueBocaBoss-Sheet_12
+  - first:
+      213: -6965547087156247106
+    second: AtaqueBocaBoss-Sheet_13
+  - first:
+      213: 2906732455989645816
+    second: AtaqueBocaBoss-Sheet_14
+  - first:
+      213: 8202712273894387265
+    second: AtaqueBocaBoss-Sheet_15
+  - first:
+      213: -3731749997157450294
+    second: AtaqueBocaBoss-Sheet_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 116
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef59bc6bf159e840800000000000000
+      internalID: 5253820580607123426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 96
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fcc403e1e4ec5150800000000000000
+      internalID: 5862812473757060338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 103
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3830b652fd9180b0800000000000000
+      internalID: -5728123586876524486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 69
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b058a5fafbc6c39d0800000000000000
+      internalID: -2793238098340051701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 0
+        width: 75
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dce27247cf511a360800000000000000
+      internalID: 7179043455029948109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 0
+        width: 79
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ca3137fb6abcb60800000000000000
+      internalID: 7767485323530185760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 0
+        width: 83
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 326fe4510375e9550800000000000000
+      internalID: 6169464403571701283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 1
+        width: 112
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa2db37434672610800000000000000
+      internalID: 1596354769368984314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 0
+        width: 115
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 034779f584f0f0dd0800000000000000
+      internalID: -2517776863160994768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 0
+        width: 87
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efc48353950cb4380800000000000000
+      internalID: -8985877142110188290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1305
+        y: 0
+        width: 104
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 876154fc066c756e0800000000000000
+      internalID: -1848791002915727752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 0
+        width: 108
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eefa43fb51991b40800000000000000
+      internalID: 5411516251372191464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 0
+        width: 116
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ee20eb5a36bc77f0800000000000000
+      internalID: -613415087463452958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 0
+        width: 120
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb58bcb44d7655f90800000000000000
+      internalID: -6965547087156247106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 0
+        width: 126
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f19c58a4c9c65820800000000000000
+      internalID: 2906732455989645816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1919
+        y: 0
+        width: 129
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e26307a53e5d170800000000000000
+      internalID: 8202712273894387265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AtaqueBocaBoss-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 75
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acd7dd43629263cc0800000000000000
+      internalID: -3731749997157450294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      AtaqueBocaBoss-Sheet_0: 5253820580607123426
+      AtaqueBocaBoss-Sheet_1: 5862812473757060338
+      AtaqueBocaBoss-Sheet_10: -1848791002915727752
+      AtaqueBocaBoss-Sheet_11: 5411516251372191464
+      AtaqueBocaBoss-Sheet_12: -613415087463452958
+      AtaqueBocaBoss-Sheet_13: -6965547087156247106
+      AtaqueBocaBoss-Sheet_14: 2906732455989645816
+      AtaqueBocaBoss-Sheet_15: 8202712273894387265
+      AtaqueBocaBoss-Sheet_16: -3731749997157450294
+      AtaqueBocaBoss-Sheet_2: -5728123586876524486
+      AtaqueBocaBoss-Sheet_3: -2793238098340051701
+      AtaqueBocaBoss-Sheet_4: 7179043455029948109
+      AtaqueBocaBoss-Sheet_5: 7767485323530185760
+      AtaqueBocaBoss-Sheet_6: 6169464403571701283
+      AtaqueBocaBoss-Sheet_7: 1596354769368984314
+      AtaqueBocaBoss-Sheet_8: -2517776863160994768
+      AtaqueBocaBoss-Sheet_9: -8985877142110188290
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

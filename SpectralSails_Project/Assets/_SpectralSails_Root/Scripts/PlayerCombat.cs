@@ -61,10 +61,12 @@ public class PlayerCombat : MonoBehaviour
     private void SwitchSword()
     {
         currentSwordIndex = (currentSwordIndex + 1) % swords.Count;
+
         if (animator != null && swords[currentSwordIndex].animatorOverride != null)
         {
             animator.runtimeAnimatorController = swords[currentSwordIndex].animatorOverride;
         }
+
         Debug.Log("Espada equipada: " + swords[currentSwordIndex].swordName);
     }
 
@@ -80,6 +82,12 @@ public class PlayerCombat : MonoBehaviour
     public bool HasSword(Sword sword)
     {
         return swords.Contains(sword);
+    }
+
+    // ✅ NUEVO MÉTODO - Para que SwordUI pueda acceder al índice actual
+    public int GetCurrentSwordIndex()
+    {
+        return currentSwordIndex;
     }
 
     // ✅ MÉTODO ACTUALIZADO - Ahora detecta tablas destructibles
@@ -128,6 +136,7 @@ public class PlayerCombat : MonoBehaviour
     {
         Vector2 direction = new Vector2(Mathf.Sign(transform.localScale.x), 0);
         Vector2 attackPosition = (Vector2)transform.position + direction * 1f;
+
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition, 1f);
     }

@@ -1,0 +1,676 @@
+fileFormatVersion: 2
+guid: 851eaa17d77b71d41b692686497ca679
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1774855656260563911
+    second: AttackRageBoss-Sheet_0
+  - first:
+      213: -4962910638325652872
+    second: AttackRageBoss-Sheet_1
+  - first:
+      213: -5715251495618243637
+    second: AttackRageBoss-Sheet_2
+  - first:
+      213: 5587680374621077383
+    second: AttackRageBoss-Sheet_3
+  - first:
+      213: 6615464415856432039
+    second: AttackRageBoss-Sheet_4
+  - first:
+      213: 2607076119201697033
+    second: AttackRageBoss-Sheet_5
+  - first:
+      213: 1061962318205287002
+    second: AttackRageBoss-Sheet_6
+  - first:
+      213: 1877843718074924571
+    second: AttackRageBoss-Sheet_7
+  - first:
+      213: -7857872455421080330
+    second: AttackRageBoss-Sheet_8
+  - first:
+      213: 4828884407794063179
+    second: AttackRageBoss-Sheet_9
+  - first:
+      213: 2180179984621466686
+    second: AttackRageBoss-Sheet_10
+  - first:
+      213: -7715103474453735547
+    second: AttackRageBoss-Sheet_11
+  - first:
+      213: 6909599977121911442
+    second: AttackRageBoss-Sheet_12
+  - first:
+      213: 2376420193737830475
+    second: AttackRageBoss-Sheet_13
+  - first:
+      213: 6633158899345617163
+    second: AttackRageBoss-Sheet_14
+  - first:
+      213: 87296224102105690
+    second: AttackRageBoss-Sheet_15
+  - first:
+      213: -5252252435266333925
+    second: AttackRageBoss-Sheet_16
+  - first:
+      213: -268145398445054883
+    second: AttackRageBoss-Sheet_17
+  - first:
+      213: 4045038614927779908
+    second: AttackRageBoss-Sheet_18
+  - first:
+      213: -332251504909456561
+    second: AttackRageBoss-Sheet_19
+  - first:
+      213: -2440793063265463121
+    second: AttackRageBoss-Sheet_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c3f007d0dd81a810800000000000000
+      internalID: 1774855656260563911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 0
+        width: 109
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872a79ea113302bb0800000000000000
+      internalID: -4962910638325652872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 107
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc397a1ab095fa0b0800000000000000
+      internalID: -5715251495618243637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 100
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78ff5b722bd6b8d40800000000000000
+      internalID: 5587680374621077383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 92
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a31c5306d9decb50800000000000000
+      internalID: 6615464415856432039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 108
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90dcb63eae13e2420800000000000000
+      internalID: 2607076119201697033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 0
+        width: 126
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5af9751a19dcbe00800000000000000
+      internalID: 1061962318205287002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 0
+        width: 129
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1efd8f89e07f0a10800000000000000
+      internalID: 1877843718074924571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 108
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fccc4472aa33f290800000000000000
+      internalID: -7857872455421080330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 0
+        width: 120
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b47dcfbc8c4a30340800000000000000
+      internalID: 4828884407794063179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 0
+        width: 121
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3477c9152e814e10800000000000000
+      internalID: 2180179984621466686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 47
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5879dcf24427ee490800000000000000
+      internalID: -7715103474453735547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 75
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29216601294d3ef50800000000000000
+      internalID: 6909599977121911442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 602
+        y: 73
+        width: 15
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b40fecc439dbaf020800000000000000
+      internalID: 2376420193737830475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 38
+        width: 16
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b01773effd6bd0c50800000000000000
+      internalID: 6633158899345617163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 38
+        width: 22
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a52c6db0473263100800000000000000
+      internalID: 87296224102105690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 39
+        width: 23
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b13154ddc304c17b0800000000000000
+      internalID: -5252252435266333925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 39
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54e6894e2b574cf0800000000000000
+      internalID: -268145398445054883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 44
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4482281503dd22830800000000000000
+      internalID: 4045038614927779908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 42
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4b68c1440b936bf0800000000000000
+      internalID: -332251504909456561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AttackRageBoss-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 46
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa413dd04af802ed0800000000000000
+      internalID: -2440793063265463121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      AttackRageBoss-Sheet_0: 1774855656260563911
+      AttackRageBoss-Sheet_1: -4962910638325652872
+      AttackRageBoss-Sheet_10: 2180179984621466686
+      AttackRageBoss-Sheet_11: -7715103474453735547
+      AttackRageBoss-Sheet_12: 6909599977121911442
+      AttackRageBoss-Sheet_13: 2376420193737830475
+      AttackRageBoss-Sheet_14: 6633158899345617163
+      AttackRageBoss-Sheet_15: 87296224102105690
+      AttackRageBoss-Sheet_16: -5252252435266333925
+      AttackRageBoss-Sheet_17: -268145398445054883
+      AttackRageBoss-Sheet_18: 4045038614927779908
+      AttackRageBoss-Sheet_19: -332251504909456561
+      AttackRageBoss-Sheet_2: -5715251495618243637
+      AttackRageBoss-Sheet_20: -2440793063265463121
+      AttackRageBoss-Sheet_3: 5587680374621077383
+      AttackRageBoss-Sheet_4: 6615464415856432039
+      AttackRageBoss-Sheet_5: 2607076119201697033
+      AttackRageBoss-Sheet_6: 1061962318205287002
+      AttackRageBoss-Sheet_7: 1877843718074924571
+      AttackRageBoss-Sheet_8: -7857872455421080330
+      AttackRageBoss-Sheet_9: 4828884407794063179
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
