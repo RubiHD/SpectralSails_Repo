@@ -38,7 +38,6 @@ public class PlayerGun : MonoBehaviour
 
     private void TryShoot()
     {
-        // ✅ Verificar munición SIEMPRE
         if (!canShoot || ammo <= 0)
         {
             if (ammo <= 0)
@@ -48,7 +47,6 @@ public class PlayerGun : MonoBehaviour
             return;
         }
 
-        // 🌊 Verificar si está bajo el agua
         bool isUnderwater = player != null && player.IsUnderwater();
 
         if (isUnderwater)
@@ -61,7 +59,6 @@ public class PlayerGun : MonoBehaviour
         }
     }
 
-    // 🏝️ DISPARO NORMAL (TERRESTRE)
     private void ShootNormal()
     {
         canShoot = false;
@@ -73,11 +70,9 @@ public class PlayerGun : MonoBehaviour
         }
 
         Invoke(nameof(ResetShoot), fireCooldown);
-
         Debug.Log($"💥 Disparo normal - Munición restante: {ammo}");
     }
 
-    // 🌊 DISPARO BAJO EL AGUA
     private void ShootUnderwater()
     {
         canShoot = false;
@@ -89,7 +84,6 @@ public class PlayerGun : MonoBehaviour
         }
 
         Invoke(nameof(ResetShoot), waterFireCooldown);
-
         Debug.Log($"🌊 Disparo acuático - Munición restante: {ammo}");
     }
 
@@ -103,12 +97,14 @@ public class PlayerGun : MonoBehaviour
             : bulletPrefab;
 
         GameObject bullet = Instantiate(prefabToUse, firePoint.position, Quaternion.identity);
+
         float dir = Mathf.Sign(transform.localScale.x);
 
         MyBullet bulletScript = bullet.GetComponent<MyBullet>();
         if (bulletScript != null)
         {
             bulletScript.SetDirection(new Vector2(dir, 0));
+            bulletScript.SetShooter(gameObject); // ✅ ESTA ES LA LÍNEA NUEVA
         }
     }
 
