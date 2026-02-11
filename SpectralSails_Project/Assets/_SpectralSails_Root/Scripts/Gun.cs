@@ -10,8 +10,8 @@ public class PlayerGun : MonoBehaviour
     public float fireCooldown = 0.2f;
 
     [Header("🌊 Underwater Settings")]
-    public GameObject waterBulletPrefab; // Prefab diferente para agua (opcional)
-    public float waterFireCooldown = 0.3f; // Cooldown diferente bajo el agua
+    public GameObject waterBulletPrefab;
+    public float waterFireCooldown = 0.3f;
 
     private bool canShoot = true;
     private PlayerController player;
@@ -38,8 +38,15 @@ public class PlayerGun : MonoBehaviour
 
     private void TryShoot()
     {
+        // ✅ Verificar munición SIEMPRE
         if (!canShoot || ammo <= 0)
+        {
+            if (ammo <= 0)
+            {
+                Debug.Log("⚠️ Sin munición!");
+            }
             return;
+        }
 
         // 🌊 Verificar si está bajo el agua
         bool isUnderwater = player != null && player.IsUnderwater();
@@ -60,13 +67,14 @@ public class PlayerGun : MonoBehaviour
         canShoot = false;
         ammo--;
 
-        // ✅ Activar animación de disparo NORMAL
         if (animator != null)
         {
             animator.SetTrigger("Shoot");
         }
 
         Invoke(nameof(ResetShoot), fireCooldown);
+
+        Debug.Log($"💥 Disparo normal - Munición restante: {ammo}");
     }
 
     // 🌊 DISPARO BAJO EL AGUA
@@ -75,13 +83,14 @@ public class PlayerGun : MonoBehaviour
         canShoot = false;
         ammo--;
 
-        // ✅ Activar animación de disparo ACUÁTICO
         if (animator != null)
         {
-            animator.SetTrigger("WaterShoot");
+            animator.SetTrigger("Shoot");
         }
 
         Invoke(nameof(ResetShoot), waterFireCooldown);
+
+        Debug.Log($"🌊 Disparo acuático - Munición restante: {ammo}");
     }
 
     // ✅ Este método lo llama el ANIMATION EVENT
@@ -89,7 +98,6 @@ public class PlayerGun : MonoBehaviour
     {
         bool isUnderwater = player != null && player.IsUnderwater();
 
-        // Elegir el prefab correcto
         GameObject prefabToUse = isUnderwater && waterBulletPrefab != null
             ? waterBulletPrefab
             : bulletPrefab;
@@ -112,5 +120,6 @@ public class PlayerGun : MonoBehaviour
     public void AddAmmo(int amount)
     {
         ammo += amount;
+        Debug.Log($"🎁 Munición añadida: +{amount}. Total: {ammo}");
     }
 }
