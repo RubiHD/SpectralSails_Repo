@@ -3,101 +3,136 @@
 public class GhostMouth : MonoBehaviour
 {
     [Header("Configuración")]
-    public float maxLifetime = 3f;
-    public int damage = 2;
-    public float damageRadius = 1.5f;
+    [SerializeField] private float maxLifetime = 3f;
+    [SerializeField] private int damage = 2;
+    [SerializeField] private float damageRadius = 1.5f;
 
     [Header("Referencias")]
     [SerializeField] private Animator mouthAnimator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Efectos")]
-    public AudioClip spawnSound;
-    public AudioClip closeSound;
-    public GameObject closeEffect;
+    [SerializeField] private AudioClip spawnSound;
+    [SerializeField] private AudioClip closeSound;
+    [SerializeField] private GameObject closeEffect;
+
+    [Header("Debug")]
+    [SerializeField] private bool showDebugLogs = true;
 
     private bool hasDealtDamage = false;
-    private Vector3 targetPosition;
+
+    private void Awake()
+    {
+        if (mouthAnimator == null)
+            mouthAnimator = GetComponent<Animator>();
+
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (showDebugLogs)
+        {
+            Debug.Log($"✅ GhostMouth creado en: {transform.position}");
+        }
+    }
 
     private void Start()
     {
-        // Sonido de aparición
         if (spawnSound != null)
         {
-            AudioSource.PlayClipAtPoint(spawnSound, transform.position);
+            AudioSource.PlayClipAtPoint(spawnSound, transform.position, 0.5f);
         }
 
-        // Destruir automáticamente si no se destruye antes
         Destroy(gameObject, maxLifetime);
     }
 
-    public void Initialize(Vector3 target)
+    /// <summary>
+    /// ✅ Inicializar con la dirección del boss
+    /// Solo voltea el sprite en X, SIN rotar
+    /// </summary>
+    public void Initialize(float bossDirection)
     {
-        targetPosition = target;
+        // bossDirection: 1 = derecha, -1 = izquierda
 
-        // Calcular dirección y rotación
-        Vector3 direction = (target - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        // ✅ SOLO voltear el sprite en X (flip horizontal)
+        // NO rotación, NO cambio en Y o Z
+        transform.localScale = new Vector3(bossDirection, 1f, 1f);
 
-        // Rotar la boca para que "mire" al jugador
-        // +180 porque la boca está "cerrada" mirando hacia atrás
-        transform.rotation = Quaternion.Euler(0, 0, angle + 180f);
-
-        // Aparecer un poco más adelante
-        float offsetDistance = 0.5f;
-        transform.position += direction * offsetDistance;
-
-        // Activar animación de cierre
-        if (mouthAnimator != null)
+        if (showDebugLogs)
         {
-            mouthAnimator.SetTrigger("Close");
+            Debug.Log($"=== GHOST MOUTH INICIALIZADO ===");
+            Debug.Log($"Boss mira hacia: {(bossDirection > 0 ? "DERECHA" : "IZQUIERDA")}");
+            Debug.Log($"Scale aplicada: {transform.localScale}");
         }
     }
 
-    // ✅ LLAMADO DESDE ANIMATION EVENT EN EL FRAME DEL MORDISCO
     public void DealDamage()
     {
         if (hasDealtDamage) return;
         hasDealtDamage = true;
 
-        // Sonido de cierre
+        if (showDebugLogs)
+        {
+            Debug.Log("=== GHOST MOUTH MORDIENDO ===");
+        }
+
         if (closeSound != null)
         {
             AudioSource.PlayClipAtPoint(closeSound, transform.position, 0.7f);
         }
 
-        // Detectar jugador en el área
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, damageRadius, LayerMask.GetMask("Player"));
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            transform.position,
+            damageRadius,
+            LayerMask.GetMask("Player")
+        );
 
-        if (hit != null)
+        if (showDebugLogs)
         {
-            PlayerHealth player = hit.GetComponent<PlayerHealth>();
-            if (player != null)
+            Debug.Log($"Detectados {hits.Length} objetos en radio {damageRadius}");
+        }
+
+        bool hitPlayer = false;
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Player"))
             {
-                player.TakeDamage(damage, transform.position);
-                Debug.Log("¡Boca fantasma mordió al jugador!");
+                PlayerHealth player = hit.GetComponent<PlayerHealth>();
+                if (player != null)
+                {
+                    player.TakeDamage(damage, transform.position);
+                    hitPlayer = true;
+
+                    if (showDebugLogs)
+                    {
+                        Debug.Log($"✅ ¡Mordió al jugador! Daño: {damage}");
+                    }
+                }
             }
         }
-        else
+
+        if (!hitPlayer && showDebugLogs)
         {
-            Debug.Log("Boca fantasma falló el mordisco");
+            Debug.Log("❌ Falló el mordisco");
         }
 
-        // Efecto visual
         if (closeEffect != null)
         {
             Instantiate(closeEffect, transform.position, Quaternion.identity);
         }
     }
 
-    // ✅ LLAMADO DESDE ANIMATION EVENT AL FINAL DE LA ANIMACIÓN
     public void DestroySelf()
     {
+        if (showDebugLogs)
+        {
+            Debug.Log("GhostMouth destruyéndose");
+        }
         Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()
     {
+        // Área de daño
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, damageRadius);
     }

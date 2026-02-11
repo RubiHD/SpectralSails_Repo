@@ -136,9 +136,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 79
-        width: 41
-        height: 42
+        y: 0
+        width: 160
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,55 +153,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Pickup_16_TanqueDeOxigeno_1
-      rect:
-        serializedVersion: 2
-        x: 49
-        y: 0
-        width: 72
-        height: 151
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7932a7dd0b9854330800000000000000
-      internalID: 3694510462050378647
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pickup_16_TanqueDeOxigeno_2
-      rect:
-        serializedVersion: 2
-        x: 9
-        y: 29
-        width: 22
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f97ac13a28215f180800000000000000
-      internalID: -9082332721231124577
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: af949deb5a436f248a7fc2ebe8036f31
     internalID: 0
     vertices: []
     indices: 
@@ -209,11 +165,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":160.0,"y":160.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Pickup_16_TanqueDeOxigeno_0: 4743123945825558858
-      Pickup_16_TanqueDeOxigeno_1: 3694510462050378647
-      Pickup_16_TanqueDeOxigeno_2: -9082332721231124577
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
