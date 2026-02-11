@@ -1,43 +1,25 @@
 fileFormatVersion: 2
-guid: 6249a92bf764bb24a9dff84e53e1d821
+guid: 9ff205c4d1e6c7b41bc993f34da77b38
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6197524440411272310
-    second: IdleRageBoss-Sheet_0
+      213: 6348192277694680984
+    second: ObjetivoTutorialHit-Sheet_0
   - first:
-      213: -9016707999303928812
-    second: IdleRageBoss-Sheet_1
+      213: -3949444941599158047
+    second: ObjetivoTutorialHit-Sheet_1
   - first:
-      213: 2506696587153546299
-    second: IdleRageBoss-Sheet_2
+      213: 7327685908827252718
+    second: ObjetivoTutorialHit-Sheet_2
   - first:
-      213: 3107588595195474452
-    second: IdleRageBoss-Sheet_3
+      213: -3556628180021480715
+    second: ObjetivoTutorialHit-Sheet_3
   - first:
-      213: -5984216149179492398
-    second: IdleRageBoss-Sheet_4
+      213: -2291899317172363514
+    second: ObjetivoTutorialHit-Sheet_4
   - first:
-      213: -2440590768168748369
-    second: IdleRageBoss-Sheet_5
-  - first:
-      213: -2126344090932529707
-    second: IdleRageBoss-Sheet_6
-  - first:
-      213: -2576390117241133706
-    second: IdleRageBoss-Sheet_7
-  - first:
-      213: -3751306167262297188
-    second: IdleRageBoss-Sheet_8
-  - first:
-      213: -8208625626698107960
-    second: IdleRageBoss-Sheet_9
-  - first:
-      213: -4410869589280580411
-    second: IdleRageBoss-Sheet_10
-  - first:
-      213: -507561428381923604
-    second: IdleRageBoss-Sheet_11
+      213: 2622425484107037747
+    second: ObjetivoTutorialHit-Sheet_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -70,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -84,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +90,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -146,177 +128,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_0
+      name: ObjetivoTutorialHit-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 12
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a8b0c7a7b58fdf9a0800000000000000
-      internalID: -6197524440411272310
+      spriteID: 89f8edd0e3f491850800000000000000
+      internalID: 6348192277694680984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_1
+      name: ObjetivoTutorialHit-Sheet_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 76
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 414f012e8d73ed280800000000000000
-      internalID: -9016707999303928812
+      spriteID: 1e0d40c20c0c039c0800000000000000
+      internalID: -3949444941599158047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_2
+      name: ObjetivoTutorialHit-Sheet_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 140
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3c98f4d34399c220800000000000000
-      internalID: 2506696587153546299
+      spriteID: ee7a845a28b21b560800000000000000
+      internalID: 7327685908827252718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_3
+      name: ObjetivoTutorialHit-Sheet_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 204
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4127ea4dc5f502b20800000000000000
-      internalID: 3107588595195474452
+      spriteID: 5f2fcab938154aec0800000000000000
+      internalID: -3556628180021480715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_4
+      name: ObjetivoTutorialHit-Sheet_4
       rect:
         serializedVersion: 2
-        x: 512
+        x: 268
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2d710093e1bc3fca0800000000000000
-      internalID: -5984216149179492398
+      spriteID: 60f1bfac6b98130e0800000000000000
+      internalID: -2291899317172363514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_5
+      name: ObjetivoTutorialHit-Sheet_5
       rect:
         serializedVersion: 2
-        x: 640
+        x: 332
         y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: faa343d80a7412ed0800000000000000
-      internalID: -2440590768168748369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IdleRageBoss-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5d537bda055bd72e0800000000000000
-      internalID: -2126344090932529707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IdleRageBoss-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 675e303b6d2de3cd0800000000000000
-      internalID: -2576390117241133706
+      spriteID: 33cb126651ab46420800000000000000
+      internalID: 2622425484107037747
       vertices: []
       indices: 
       edges: []
@@ -325,7 +263,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 00d09a25ab8bd9941aa76f796fa8358a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -333,18 +271,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      IdleRageBoss-Sheet_0: -6197524440411272310
-      IdleRageBoss-Sheet_1: -9016707999303928812
-      IdleRageBoss-Sheet_2: 2506696587153546299
-      IdleRageBoss-Sheet_3: 3107588595195474452
-      IdleRageBoss-Sheet_4: -5984216149179492398
-      IdleRageBoss-Sheet_5: -2440590768168748369
-      IdleRageBoss-Sheet_6: -2126344090932529707
-      IdleRageBoss-Sheet_7: -2576390117241133706
+      ObjetivoTutorialHit-Sheet_0: 6348192277694680984
+      ObjetivoTutorialHit-Sheet_1: -3949444941599158047
+      ObjetivoTutorialHit-Sheet_2: 7327685908827252718
+      ObjetivoTutorialHit-Sheet_3: -3556628180021480715
+      ObjetivoTutorialHit-Sheet_4: -2291899317172363514
+      ObjetivoTutorialHit-Sheet_5: 2622425484107037747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

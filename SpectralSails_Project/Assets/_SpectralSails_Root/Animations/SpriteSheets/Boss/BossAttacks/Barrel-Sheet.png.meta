@@ -1,43 +1,19 @@
 fileFormatVersion: 2
-guid: 6249a92bf764bb24a9dff84e53e1d821
+guid: 19149e698f61b5f4b8974273e2e2e56a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6197524440411272310
-    second: IdleRageBoss-Sheet_0
+      213: -961077348138168917
+    second: Barrel-Sheet_0
   - first:
-      213: -9016707999303928812
-    second: IdleRageBoss-Sheet_1
+      213: 313452228208665943
+    second: Barrel-Sheet_1
   - first:
-      213: 2506696587153546299
-    second: IdleRageBoss-Sheet_2
+      213: -1305110652248272386
+    second: Barrel-Sheet_2
   - first:
-      213: 3107588595195474452
-    second: IdleRageBoss-Sheet_3
-  - first:
-      213: -5984216149179492398
-    second: IdleRageBoss-Sheet_4
-  - first:
-      213: -2440590768168748369
-    second: IdleRageBoss-Sheet_5
-  - first:
-      213: -2126344090932529707
-    second: IdleRageBoss-Sheet_6
-  - first:
-      213: -2576390117241133706
-    second: IdleRageBoss-Sheet_7
-  - first:
-      213: -3751306167262297188
-    second: IdleRageBoss-Sheet_8
-  - first:
-      213: -8208625626698107960
-    second: IdleRageBoss-Sheet_9
-  - first:
-      213: -4410869589280580411
-    second: IdleRageBoss-Sheet_10
-  - first:
-      213: -507561428381923604
-    second: IdleRageBoss-Sheet_11
+      213: -8491125113582665603
+    second: Barrel-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -146,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_0
+      name: Barrel-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a8b0c7a7b58fdf9a0800000000000000
-      internalID: -6197524440411272310
+      spriteID: badcc8e6e3199a2f0800000000000000
+      internalID: -961077348138168917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_1
+      name: Barrel-Sheet_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 32
         y: 0
-        width: 128
-        height: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 414f012e8d73ed280800000000000000
-      internalID: -9016707999303928812
+      spriteID: 755ae6c042b995400800000000000000
+      internalID: 313452228208665943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_2
+      name: Barrel-Sheet_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 64
         y: 0
-        width: 128
-        height: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b3c98f4d34399c220800000000000000
-      internalID: 2506696587153546299
+      spriteID: ef1d92cc6c053ede0800000000000000
+      internalID: -1305110652248272386
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleRageBoss-Sheet_3
+      name: Barrel-Sheet_3
       rect:
         serializedVersion: 2
-        x: 384
+        x: 96
         y: 0
-        width: 128
-        height: 128
+        width: 32
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -227,96 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4127ea4dc5f502b20800000000000000
-      internalID: 3107588595195474452
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IdleRageBoss-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2d710093e1bc3fca0800000000000000
-      internalID: -5984216149179492398
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IdleRageBoss-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: faa343d80a7412ed0800000000000000
-      internalID: -2440590768168748369
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IdleRageBoss-Sheet_6
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5d537bda055bd72e0800000000000000
-      internalID: -2126344090932529707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IdleRageBoss-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 128
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 675e303b6d2de3cd0800000000000000
-      internalID: -2576390117241133706
+      spriteID: d70c18572b6792a80800000000000000
+      internalID: -8491125113582665603
       vertices: []
       indices: 
       edges: []
@@ -325,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 00d09a25ab8bd9941aa76f796fa8358a
+    spriteID: 8b64ad9cb6e2ff145a2ae26fbab62344
     internalID: 0
     vertices: []
     indices: 
@@ -335,16 +223,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      IdleRageBoss-Sheet_0: -6197524440411272310
-      IdleRageBoss-Sheet_1: -9016707999303928812
-      IdleRageBoss-Sheet_2: 2506696587153546299
-      IdleRageBoss-Sheet_3: 3107588595195474452
-      IdleRageBoss-Sheet_4: -5984216149179492398
-      IdleRageBoss-Sheet_5: -2440590768168748369
-      IdleRageBoss-Sheet_6: -2126344090932529707
-      IdleRageBoss-Sheet_7: -2576390117241133706
+      Barrel-Sheet_0: -961077348138168917
+      Barrel-Sheet_1: 313452228208665943
+      Barrel-Sheet_2: -1305110652248272386
+      Barrel-Sheet_3: -8491125113582665603
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
