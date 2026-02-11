@@ -439,16 +439,49 @@ public class BossPirate : MonoBehaviour
         }
     }
 
+    // ✅ MÉTODO CORREGIDO PARA BossPirate.cs
+    // Reemplaza el método SpawnGhostMouth() existente
+
+    // ✅ MÉTODO SIMPLIFICADO PARA BossPirate.cs
+    // Reemplaza tu método SpawnGhostMouth() actual
+
     public void SpawnGhostMouth()
     {
-        if (ghostMouthPrefab == null || mouthSpawnPoint == null || player == null) return;
+        if (ghostMouthPrefab == null || mouthSpawnPoint == null || player == null)
+        {
+            Debug.LogError("GhostMouth: Faltan referencias!");
+            return;
+        }
 
-        Vector3 targetPos = player.position;
+        Debug.Log("=== SPAWN GHOST MOUTH ===");
 
-        GameObject mouth = Instantiate(ghostMouthPrefab, mouthSpawnPoint.position, Quaternion.identity);
+        // ✅ Obtener dirección del boss (1 = derecha, -1 = izquierda)
+        float bossDirection = Mathf.Sign(transform.localScale.x);
+
+        Debug.Log($"Boss mira hacia: {(bossDirection > 0 ? "DERECHA" : "IZQUIERDA")}");
+
+        // ✅ Spawn en la posición del spawn point (o delante del boss si prefieres)
+        Vector3 spawnPosition = mouthSpawnPoint.position;
+
+        // O si quieres que aparezca delante del boss:
+        // Vector3 spawnPosition = transform.position + new Vector3(bossDirection * 2f, 0f, 0f);
+
+        Debug.Log($"Spawn position: {spawnPosition}");
+
+        // ✅ Instanciar SIN rotación (Quaternion.identity)
+        GameObject mouth = Instantiate(ghostMouthPrefab, spawnPosition, Quaternion.identity);
+
         GhostMouth mouthScript = mouth.GetComponent<GhostMouth>();
         if (mouthScript != null)
-            mouthScript.Initialize(targetPos);
+        {
+            // ✅ Solo pasar la dirección para el flip en X
+            mouthScript.Initialize(bossDirection);
+            Debug.Log("✅ GhostMouth inicializado con flip en X");
+        }
+        else
+        {
+            Debug.LogError("❌ El prefab no tiene componente GhostMouth!");
+        }
     }
 
     // ========================================
