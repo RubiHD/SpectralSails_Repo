@@ -9,13 +9,20 @@ public class BossPirate : MonoBehaviour
 
     [Header("Phase Control")]
     public bool isEnraged = false;
-    [SerializeField] private float enrageHealthThreshold = 0.5f; // 50%
+    [SerializeField] private float enrageHealthThreshold = 0.5f;
 
     [Header("Movement")]
-    public float moveSpeed = 2f;
-    public float enragedMoveSpeed = 3f;
-    public float chaseRange = 6f;
-    public float stopDistance = 2f;
+    public float moveSpeed = 1.2f; // ✅ Reducido de 2f
+    public float enragedMoveSpeed = 1.8f; // ✅ Reducido de 3f
+    public float chaseRange = 8f; // ✅ Aumentado de 6f
+    public float stopDistance = 2.5f; // ✅ Aumentado de 2f
+
+    [Header("⭐ PAUSAS ESTRATÉGICAS")]
+    public bool usePauses = true;
+    public float pauseDuration = 1.5f; // Tiempo que se queda quieto
+    public float pauseInterval = 3f; // Cada cuánto tiempo pausa
+    private float pauseTimer = 0f;
+    private bool isPaused = false;
 
     [Header("Sword Attack")]
     public Transform attackPoint;
@@ -53,10 +60,14 @@ public class BossPirate : MonoBehaviour
     [SerializeField] private RuntimeAnimatorController enragedAnimatorController;
 
     [Header("Efectos de Transformación")]
-    [SerializeField] private GameObject transformationEffect; // Partículas
+    [SerializeField] private GameObject transformationEffect;
     [SerializeField] private AudioClip transformationSound;
     [SerializeField] private float transformationDuration = 2f;
-    [SerializeField] private Color enragedTint = new Color(1f, 0.5f, 0.5f); // Tinte rojo
+    [SerializeField] private Color enragedTint = new Color(1f, 0.5f, 0.5f);
+
+    [Header("👻 CONFIGURACIÓN FANTASMA")]
+    public bool isGhost = true; // ✅ NUEVO - El boss es atravesable
+    public float ghostAlpha = 0.7f; // ✅ NUEVO - Transparencia
 
     [Header("UI")]
     public BossHealthUI bossHealthUI;
@@ -66,46 +77,81 @@ public class BossPirate : MonoBehaviour
 
     private Transform player;
     private Rigidbody2D rb;
+    private Collider2D mainCollider;
     private Vector2 moveDirection = Vector2.zero;
     private bool isTransforming = false;
     private bool canAttack = true;
+    private bool isAttacking = false; // ✅ NUEVO - Para evitar movimiento durante ataque
 
     private void Start()
     {
         currentHealth = maxHealth;
 
-        // Obtener componentes
         rb = GetComponent<Rigidbody2D>();
+        mainCollider = GetComponent<Collider2D>();
+
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
         if (animator == null)
             animator = GetComponent<Animator>();
 
-        // Buscar jugador
+        // ✅ CONFIGURAR COMO FANTASMA
+        if (isGhost)
+        {
+            SetupAsGhost();
+        }
+
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
             player = playerObj.transform;
 
-        // Configurar UI
         if (bossHealthUI != null)
         {
             bossHealthUI.Show();
             bossHealthUI.SetHealth(1f);
         }
+
+        pauseTimer = pauseInterval;
+    }
+
+    // ✅ NUEVO MÉTODO: Configurar como fantasma
+    private void SetupAsGhost()
+    {
+        // Hacer el collider atravesable (trigger)
+        if (mainCollider != null)
+        {
+            mainCollider.isTrigger = true;
+        }
+
+        // Aplicar transparencia
+        if (spriteRenderer != null)
+        {
+            Color currentColor = spriteRenderer.color;
+            spriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, ghostAlpha);
+        }
+
+        // Configurar Rigidbody2D para que no empuje al jugador
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        Debug.Log("Boss configurado como fantasma (atravesable)");
     }
 
     private void Update()
     {
         if (isTransforming) return;
 
-        HandleMovementLogic();
         UpdateTimers();
+        HandlePauses(); // ✅ NUEVO
+        HandleMovementLogic();
         HandleAttacks();
     }
 
     private void FixedUpdate()
     {
-        if (!isTransforming)
+        if (!isTransforming && !isPaused && !isAttacking)
             HandleMovementPhysics();
     }
 
@@ -115,11 +161,44 @@ public class BossPirate : MonoBehaviour
         barrelTimer -= Time.deltaTime;
         ghostOrbTimer -= Time.deltaTime;
         ghostMouthTimer -= Time.deltaTime;
+
+        // ✅ Timer de pausas
+        if (usePauses && !isPaused && !isAttacking)
+        {
+            pauseTimer -= Time.deltaTime;
+        }
+    }
+
+    // ✅ NUEVO MÉTODO: Sistema de pausas
+    private void HandlePauses()
+    {
+        if (!usePauses || isAttacking) return;
+
+        if (pauseTimer <= 0f && !isPaused)
+        {
+            StartCoroutine(PauseMovement());
+        }
+    }
+
+    private IEnumerator PauseMovement()
+    {
+        isPaused = true;
+        moveDirection = Vector2.zero;
+        UpdateAnimation(0f);
+
+        Debug.Log("Boss en pausa estratégica");
+
+        yield return new WaitForSeconds(pauseDuration);
+
+        isPaused = false;
+        pauseTimer = pauseInterval;
+
+        Debug.Log("Boss reanuda movimiento");
     }
 
     private void HandleMovementLogic()
     {
-        if (player == null)
+        if (player == null || isPaused || isAttacking)
         {
             moveDirection = Vector2.zero;
             return;
@@ -166,7 +245,7 @@ public class BossPirate : MonoBehaviour
 
     private void HandleAttacks()
     {
-        if (!canAttack || player == null) return;
+        if (!canAttack || player == null || isPaused) return;
 
         float distanceX = Mathf.Abs(transform.position.x - player.position.x);
 
@@ -188,7 +267,7 @@ public class BossPirate : MonoBehaviour
             PerformSwordAttack();
         }
         // Barril si está lejos
-        else if (distanceX > stopDistance && barrelTimer <= 0f)
+        else if (distanceX > stopDistance && distanceX <= chaseRange && barrelTimer <= 0f)
         {
             PerformBarrelAttack();
         }
@@ -207,7 +286,7 @@ public class BossPirate : MonoBehaviour
             PerformGhostOrbAttack();
         }
         // Ghost Mouth si está a DISTANCIA MEDIA
-        else if (distanceX > ghostMouthMinRange && distanceX < ghostMouthMaxRange && ghostMouthTimer <= 0f)
+        else if (distanceX >= ghostMouthMinRange && distanceX <= ghostMouthMaxRange && ghostMouthTimer <= 0f)
         {
             PerformGhostMouthAttack();
         }
@@ -216,62 +295,46 @@ public class BossPirate : MonoBehaviour
     private void PerformSwordAttack()
     {
         swordTimer = isEnraged ? swordCooldown * 0.7f : swordCooldown;
-
-        // Activar animación
-        animator?.SetTrigger("SwordAttack");
-
-        Debug.Log("Boss atacó con ESPADA");
-
-        // El daño se aplicará desde un Animation Event
-        // Ver método DealSwordDamage() más abajo
+        StartCoroutine(AttackRoutine("SwordAttack", 0.8f)); // ✅ Usar coroutine
     }
 
     private void PerformBarrelAttack()
     {
         barrelTimer = barrelCooldown;
-
-        // Activar animación
-        animator?.SetTrigger("BarrelAttack");
-
-        Debug.Log("Boss lanzó BARRIL");
-
-        // El barril se instanciará desde un Animation Event
-        // Ver método SpawnBarrel() más abajo
+        StartCoroutine(AttackRoutine("BarrelAttack", 1.0f)); // ✅ Usar coroutine
     }
 
     private void PerformGhostOrbAttack()
     {
         ghostOrbTimer = ghostOrbCooldown;
-
-        // Activar animación
-        animator?.SetTrigger("GhostOrbAttack");
-
-        Debug.Log("Boss lanzó ORBES FANTASMA");
-
-        // Los orbes se instanciarán desde un Animation Event
-        // Ver método SpawnGhostOrbs() más abajo
+        StartCoroutine(AttackRoutine("GhostOrbAttack", 1.0f)); // ✅ Usar coroutine
     }
 
     private void PerformGhostMouthAttack()
     {
         ghostMouthTimer = ghostMouthCooldown;
+        StartCoroutine(AttackRoutine("GhostMouthAttack", 1.2f)); // ✅ Usar coroutine
+    }
 
-        // Activar animación
-        animator?.SetTrigger("GhostMouthAttack");
+    // ✅ NUEVO: Coroutine para bloquear movimiento durante ataque
+    private IEnumerator AttackRoutine(string triggerName, float duration)
+    {
+        isAttacking = true;
+        moveDirection = Vector2.zero;
+        UpdateAnimation(0f);
 
-        Debug.Log("Boss lanzó BOCA FANTASMA");
+        animator?.SetTrigger(triggerName);
+        Debug.Log($"Boss ejecutó: {triggerName}");
 
-        // La boca se instanciará desde un Animation Event
-        // Ver método SpawnGhostMouth() más abajo
+        yield return new WaitForSeconds(duration);
+
+        isAttacking = false;
     }
 
     // ========================================
     // MÉTODOS PARA ANIMATION EVENTS
     // ========================================
 
-    /// <summary>
-    /// Llamar desde Animation Event en el frame del golpe de espada
-    /// </summary>
     public void DealSwordDamage()
     {
         if (attackPoint == null) return;
@@ -291,12 +354,9 @@ public class BossPirate : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Llamar desde Animation Event cuando lanza el barril
-    /// </summary>
     public void SpawnBarrel()
     {
-        if (barrelPrefab == null || barrelSpawnPoint == null) return;
+        if (barrelPrefab == null || barrelSpawnPoint == null || player == null) return;
 
         float direction = player.position.x > transform.position.x ? 1f : -1f;
 
@@ -306,16 +366,12 @@ public class BossPirate : MonoBehaviour
             barrelScript.SetDirection(direction);
     }
 
-    /// <summary>
-    /// Llamar desde Animation Event cuando lanza los orbes
-    /// </summary>
     public void SpawnGhostOrbs()
     {
         if (ghostOrbPrefab == null || player == null) return;
 
         Vector3 targetPos = player.position;
 
-        // Orbe desde mano izquierda
         if (leftHandSpawn != null)
         {
             GameObject orbLeft = Instantiate(ghostOrbPrefab, leftHandSpawn.position, Quaternion.identity);
@@ -324,7 +380,6 @@ public class BossPirate : MonoBehaviour
                 orbLeftScript.Initialize(targetPos);
         }
 
-        // Orbe desde mano derecha
         if (rightHandSpawn != null)
         {
             GameObject orbRight = Instantiate(ghostOrbPrefab, rightHandSpawn.position, Quaternion.identity);
@@ -334,9 +389,6 @@ public class BossPirate : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Llamar desde Animation Event cuando lanza la boca
-    /// </summary>
     public void SpawnGhostMouth()
     {
         if (ghostMouthPrefab == null || mouthSpawnPoint == null || player == null) return;
@@ -358,24 +410,20 @@ public class BossPirate : MonoBehaviour
         currentHealth -= amount;
         currentHealth = Mathf.Max(currentHealth, 0);
 
-        // Actualizar UI
         if (bossHealthUI != null)
         {
             float normalized = (float)currentHealth / maxHealth;
             bossHealthUI.SetHealth(normalized);
         }
 
-        // Reproducir animación de golpe
         animator?.SetTrigger("Hit");
 
-        // Verificar transformación
         float healthPercentage = (float)currentHealth / maxHealth;
         if (!isEnraged && healthPercentage <= enrageHealthThreshold)
         {
             StartCoroutine(EnterEnragedPhase());
         }
 
-        // Verificar muerte
         if (currentHealth <= 0)
         {
             Die();
@@ -390,27 +438,22 @@ public class BossPirate : MonoBehaviour
 
         Debug.Log("¡BOSS ENTRA EN FASE ENRAGED!");
 
-        // Detener movimiento
         rb.linearVelocity = Vector2.zero;
         moveDirection = Vector2.zero;
 
-        // Activar animación de transformación
         animator?.SetTrigger("Transform");
 
-        // Efecto de partículas
         if (transformationEffect != null)
         {
             GameObject effect = Instantiate(transformationEffect, transform.position, Quaternion.identity, transform);
             Destroy(effect, transformationDuration);
         }
 
-        // Sonido
         if (transformationSound != null)
         {
             AudioSource.PlayClipAtPoint(transformationSound, transform.position);
         }
 
-        // Cambiar tinte del sprite progresivamente
         if (spriteRenderer != null)
         {
             Color originalColor = spriteRenderer.color;
@@ -420,22 +463,25 @@ public class BossPirate : MonoBehaviour
             {
                 elapsed += Time.deltaTime;
                 float t = elapsed / transformationDuration;
-                spriteRenderer.color = Color.Lerp(originalColor, enragedTint, t);
+
+                // ✅ Mantener transparencia de fantasma
+                Color targetColor = new Color(enragedTint.r, enragedTint.g, enragedTint.b, ghostAlpha);
+                spriteRenderer.color = Color.Lerp(originalColor, targetColor, t);
+
                 yield return null;
             }
         }
 
-        // Cambiar Animator Controller si está configurado
         if (enragedAnimatorController != null && animator != null)
         {
             animator.runtimeAnimatorController = enragedAnimatorController;
         }
 
-        // Esperar a que termine la animación
         yield return new WaitForSeconds(transformationDuration);
 
         isTransforming = false;
         canAttack = true;
+        pauseTimer = pauseInterval; // ✅ Reiniciar timer de pausas
 
         Debug.Log("Transformación completada. ¡BOSS ENRAGED!");
     }
@@ -450,18 +496,14 @@ public class BossPirate : MonoBehaviour
     {
         Debug.Log("¡BOSS DERROTADO!");
 
-        // Desactivar comportamiento
         canAttack = false;
         rb.linearVelocity = Vector2.zero;
 
-        // Animación de muerte
         animator?.SetTrigger("Death");
 
-        // Ocultar UI
         if (bossHealthUI != null)
             bossHealthUI.Hide();
 
-        // Destruir después de la animación
         Destroy(gameObject, 3f);
     }
 
@@ -469,7 +511,6 @@ public class BossPirate : MonoBehaviour
     {
         if (!showDebugGizmos) return;
 
-        // Rango de espada
         if (attackPoint != null)
         {
             Gizmos.color = Color.red;
@@ -482,14 +523,12 @@ public class BossPirate : MonoBehaviour
             }
         }
 
-        // Rangos de ataque
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, stopDistance);
 
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
 
-        // Rangos de ataques especiales (enraged)
         if (isEnraged)
         {
             Gizmos.color = Color.green;
