@@ -1,50 +1,93 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Barrel : MonoBehaviour
+/// <summary>
+/// Versión SIMPLE de barril estilo bolos
+/// El barril hace un pequeño arco y luego rueda por el suelo
+/// </summary>
+public class BarrelSimple : MonoBehaviour
 {
-    [Header("Movimiento")]
-    public float speed = 5f;
-    public float lifeTime = 8f;
-    private float moveDirection = 1f;
+    [Header("Lanzamiento")]
+    [SerializeField] private float horizontalSpeed = 7f;
+    [SerializeField] private float verticalSpeed = 3f; // Arco inicial
 
-    [Header("Da�o")]
-    public int damage = 1;
+    [Header("Rotación")]
+    [SerializeField] private float rotationSpeed = 360f;
+
+    [Header("Daño")]
+    [SerializeField] private int damage = 1;
+
+    [Header("Vida")]
+    [SerializeField] private float lifeTime = 8f;
 
     [Header("Efectos")]
-    public GameObject explosionEffect; // Opcional
-    public AudioClip hitSound; // Opcional
-
-    [Header("Rotaci�n")]
-    public bool rotateWhileMoving = true;
-    public float rotationSpeed = 360f;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private AudioClip hitSound;
 
     private Rigidbody2D rb;
     private bool hasHit = false;
+    private float direction = 1f;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+        }
+
+        // Configuración para bola de bolos
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = 2.5f; // Gravedad normal
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        // Collider principal (física)
+        CircleCollider2D physicsCollider = GetComponent<CircleCollider2D>();
+        if (physicsCollider == null)
+        {
+            physicsCollider = gameObject.AddComponent<CircleCollider2D>();
+        }
+        physicsCollider.radius = 0.5f;
+
+        // Material de física para fricción
+        PhysicsMaterial2D material = new PhysicsMaterial2D();
+        material.friction = 0.3f;
+        material.bounciness = 0.2f;
+        physicsCollider.sharedMaterial = material;
+
+        // Trigger collider para daño al jugador
+        CircleCollider2D triggerCollider = gameObject.AddComponent<CircleCollider2D>();
+        triggerCollider.isTrigger = true;
+        triggerCollider.radius = 0.5f;
+    }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, lifeTime);
-
-        // Aplicar velocidad inicial
-        if (rb != null)
-        {
-            rb.linearVelocity = new Vector2(moveDirection * speed, 0);
-        }
     }
 
     private void Update()
     {
-        // Rotaci�n visual del barril
-        if (rotateWhileMoving)
+        // Rotar basado en velocidad
+        if (rb != null)
         {
-            transform.Rotate(0, 0, rotationSpeed * moveDirection * Time.deltaTime);
+            float rotation = -(rb.linearVelocity.x / horizontalSpeed) * rotationSpeed;
+            transform.Rotate(0, 0, rotation * Time.deltaTime);
         }
+    }
 
-        // Si no tiene Rigidbody2D, mover manualmente
-        if (rb == null)
+    public void SetDirection(float dir)
+    {
+        direction = Mathf.Sign(dir);
+
+        // Voltear sprite
+        transform.localScale = new Vector3(direction, 1, 1);
+
+        // Aplicar velocidad inicial (arco de lanzamiento)
+        if (rb != null)
         {
-            transform.Translate(Vector2.right * moveDirection * speed * Time.deltaTime);
+            rb.linearVelocity = new Vector2(direction * horizontalSpeed, verticalSpeed);
+            Debug.Log($"Barrel lanzado: velocidad = {rb.linearVelocity}");
         }
     }
 
@@ -52,58 +95,51 @@ public class Barrel : MonoBehaviour
     {
         if (hasHit) return;
 
-        // Golpear al jugador
+        // Daño al jugador
         if (collision.CompareTag("Player"))
         {
             PlayerHealth player = collision.GetComponent<PlayerHealth>();
             if (player != null)
             {
                 player.TakeDamage(damage, transform.position);
+                Debug.Log($"Barrel golpeó al jugador");
             }
-
-            hasHit = true;
-            DestroyBarrel();
-        }
-
-        // Chocar con terreno
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
             hasHit = true;
             DestroyBarrel();
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Si choca con una pared, destruir
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            // Verificar si es una pared vertical
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                // Si la normal es muy horizontal, es una pared
+                if (Mathf.Abs(contact.normal.x) > 0.7f)
+                {
+                    hasHit = true;
+                    DestroyBarrel();
+                    return;
+                }
+            }
+        }
+    }
+
     private void DestroyBarrel()
     {
-        // Efecto de explosi�n
         if (explosionEffect != null)
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
         }
 
-        // Sonido
         if (hitSound != null)
         {
             AudioSource.PlayClipAtPoint(hitSound, transform.position);
         }
 
         Destroy(gameObject);
-    }
-
-    public void SetDirection(float dir)
-    {
-        moveDirection = dir;
-
-        // Actualizar velocidad si tiene Rigidbody2D
-        if (rb != null)
-        {
-            rb.linearVelocity = new Vector2(moveDirection * speed, 0);
-        }
-
-        // Voltear sprite si es necesario
-        if (dir < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
     }
 }

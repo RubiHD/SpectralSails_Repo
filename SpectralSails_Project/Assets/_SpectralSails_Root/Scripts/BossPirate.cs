@@ -354,16 +354,66 @@ public class BossPirate : MonoBehaviour
         }
     }
 
+    // ✅ MÉTODO CORREGIDO PARA BossPirate.cs
+    // Reemplaza el método SpawnBarrel() existente
+
     public void SpawnBarrel()
     {
-        if (barrelPrefab == null || barrelSpawnPoint == null || player == null) return;
+        Debug.Log("=== SPAWN BARREL LLAMADO ===");
 
+        // ✅ VERIFICACIÓN 1: Prefab asignado
+        if (barrelPrefab == null)
+        {
+            Debug.LogError("❌ barrelPrefab no está asignado en el Inspector!");
+            return;
+        }
+        Debug.Log("✅ barrelPrefab asignado correctamente");
+
+        // ✅ VERIFICACIÓN 2: Spawn point asignado
+        if (barrelSpawnPoint == null)
+        {
+            Debug.LogError("❌ barrelSpawnPoint no está asignado en el Inspector!");
+            return;
+        }
+        Debug.Log($"✅ barrelSpawnPoint asignado: {barrelSpawnPoint.position}");
+
+        // ✅ VERIFICACIÓN 3: Jugador existe
+        if (player == null)
+        {
+            Debug.LogError("❌ Player es null!");
+            return;
+        }
+        Debug.Log($"✅ Player encontrado en: {player.position}");
+
+        // ✅ CALCULAR DIRECCIÓN
         float direction = player.position.x > transform.position.x ? 1f : -1f;
+        Debug.Log($"Dirección calculada: {direction} (Player X: {player.position.x}, Boss X: {transform.position.x})");
 
+        // ✅ INSTANCIAR BARRIL
         GameObject barrel = Instantiate(barrelPrefab, barrelSpawnPoint.position, Quaternion.identity);
-        Barrel barrelScript = barrel.GetComponent<Barrel>();
-        if (barrelScript != null)
-            barrelScript.SetDirection(direction);
+
+        if (barrel == null)
+        {
+            Debug.LogError("❌ Instantiate devolvió null!");
+            return;
+        }
+        Debug.Log($"✅ Barril instanciado: {barrel.name} en posición {barrel.transform.position}");
+
+        // ✅ CONFIGURAR DIRECCIÓN
+        BarrelSimple barrelScript = barrel.GetComponent<BarrelSimple>();
+
+        if (barrelScript == null)
+        {
+            Debug.LogError("❌ El prefab no tiene el componente Barrel!");
+            Destroy(barrel);
+            return;
+        }
+
+        Debug.Log("✅ Componente Barrel encontrado");
+        barrelScript.SetDirection(direction);
+        Debug.Log($"✅ Dirección {direction} aplicada al barril");
+
+        Debug.Log("=== SPAWN BARREL COMPLETADO ===");
     }
 
     public void SpawnGhostOrbs()
@@ -497,14 +547,115 @@ public class BossPirate : MonoBehaviour
         Debug.Log("¡BOSS DERROTADO!");
 
         canAttack = false;
+        isAttacking = false;
         rb.linearVelocity = Vector2.zero;
 
-        animator?.SetTrigger("Death");
-
+        // Ocultar UI inmediatamente
         if (bossHealthUI != null)
             bossHealthUI.Hide();
 
-        Destroy(gameObject, 3f);
+        // Iniciar efecto de muerte
+        StartCoroutine(DeathEffect());
+    }
+
+    // ✅ NUEVO: Efecto de muerte visual sin animación
+    private IEnumerator DeathEffect()
+    {
+        float duration = 2f;
+        float elapsed = 0f;
+
+        // Obtener componentes
+        SpriteRenderer sprite = spriteRenderer;
+        Vector3 originalScale = transform.localScale;
+        Color originalColor = sprite != null ? sprite.color : Color.white;
+
+        // ✅ EFECTO 1: Partículas de desvanecimiento (opcional)
+        GameObject particles = CreateDissolveParticles();
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // ✅ EFECTO 2: Fade out (transparencia)
+            if (sprite != null)
+            {
+                Color newColor = originalColor;
+                newColor.a = Mathf.Lerp(originalColor.a, 0f, t);
+                sprite.color = newColor;
+            }
+
+            // ✅ EFECTO 3: Escala reducida (se encoge)
+            float scaleMultiplier = Mathf.Lerp(1f, 0.5f, t);
+            transform.localScale = originalScale * scaleMultiplier;
+
+            // ✅ EFECTO 4: Elevación lenta (flota hacia arriba)
+            transform.position += Vector3.up * Time.deltaTime * 0.5f;
+
+            // ✅ EFECTO 5: Rotación lenta
+            transform.Rotate(0, 0, 50f * Time.deltaTime);
+
+            yield return null;
+        }
+
+        // Destruir partículas si existen
+        if (particles != null)
+            Destroy(particles);
+
+        // Destruir el boss
+        Destroy(gameObject);
+    }
+
+    // ✅ NUEVO: Crear partículas de disolución
+    private GameObject CreateDissolveParticles()
+    {
+        GameObject particlesObj = new GameObject("BossDissolveEffect");
+        particlesObj.transform.position = transform.position;
+        particlesObj.transform.SetParent(transform);
+
+        ParticleSystem ps = particlesObj.AddComponent<ParticleSystem>();
+
+        var main = ps.main;
+        main.duration = 2f;
+        main.loop = false;
+        main.startLifetime = 1.5f;
+        main.startSpeed = 2f;
+        main.startSize = 0.3f;
+        main.startColor = new Color(0.5f, 0f, 1f, 1f); // Púrpura fantasmal
+        main.gravityModifier = -0.5f; // Flotar hacia arriba
+        main.maxParticles = 50;
+
+        var emission = ps.emission;
+        emission.rateOverTime = 25;
+
+        var shape = ps.shape;
+        shape.shapeType = ParticleSystemShapeType.Sphere;
+        shape.radius = 1f;
+
+        var colorOverLifetime = ps.colorOverLifetime;
+        colorOverLifetime.enabled = true;
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] {
+            new GradientColorKey(new Color(0.5f, 0f, 1f), 0f),      // Púrpura
+            new GradientColorKey(new Color(1f, 1f, 1f), 0.5f),      // Blanco
+            new GradientColorKey(new Color(0.5f, 0f, 1f), 1f)       // Púrpura
+            },
+            new GradientAlphaKey[] {
+            new GradientAlphaKey(1f, 0f),
+            new GradientAlphaKey(0.5f, 0.5f),
+            new GradientAlphaKey(0f, 1f)
+            }
+        );
+        colorOverLifetime.color = gradient;
+
+        var sizeOverLifetime = ps.sizeOverLifetime;
+        sizeOverLifetime.enabled = true;
+        sizeOverLifetime.size = new ParticleSystem.MinMaxCurve(1f, AnimationCurve.Linear(0f, 1f, 1f, 0f));
+
+        ps.Play();
+
+        return particlesObj;
     }
 
     private void OnDrawGizmosSelected()
