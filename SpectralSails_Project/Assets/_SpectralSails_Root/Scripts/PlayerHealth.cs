@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float knockbackForceMultiplier = 1f;
 
     [Header("Invulnerabilidad temporal")]
-    [SerializeField] private float invulnerabilityDuration = 0.5f; // Tiempo de invulnerabilidad tras recibir daño
+    [SerializeField] private float invulnerabilityDuration = 0.5f;
     private bool isInvulnerable = false;
 
     [Header("Eventos (Opcional)")]
@@ -20,12 +20,14 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerController controller;
     private bool isDead = false;
+    private MenuPausa menuPausa; // ✅ AÑADIDO
 
     private void Start()
     {
         Health = maxHealth;
         OnHealthChanged?.Invoke(Health, maxHealth);
         controller = GetComponent<PlayerController>();
+        menuPausa = FindObjectOfType<MenuPausa>(); // ✅ AÑADIDO
 
         if (controller == null)
         {
@@ -41,9 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
         Health -= damage;
         Health = Mathf.Max(Health, 0);
-
         Debug.Log($"Jugador recibió {damage} daño. Vida restante: {Health}/{maxHealth}");
-
         OnHealthChanged?.Invoke(Health, maxHealth);
 
         // ✅ COMPROBAR MUERTE PRIMERO
@@ -64,26 +64,32 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    // ✅ NUEVO: Método separado para manejar la muerte
+    // ✅ MÉTODO SEPARADO PARA MANEJAR LA MUERTE
     private void HandleDeath()
     {
         if (isDead) return;
-
         isDead = true;
-
         Debug.Log("¡Jugador ha muerto! Activando secuencia de muerte.");
 
-        // ✅ Invocar evento de muerte
         OnDeath?.Invoke();
 
-        // ✅ Llamar al método Die() del controller
         if (controller != null)
         {
             controller.Die();
         }
+
+        // ✅ CAMBIAR ESTA LÍNEA
+        if (menuPausa != null)
+        {
+            menuPausa.MostrarPanelMuerte(); // Cambiado de Pausar() a MostrarPanelMuerte()
+        }
+        else
+        {
+            Debug.LogWarning("MenuPausa no encontrado en la escena!");
+        }
     }
 
-    // ✅ NUEVO: Coroutine de invulnerabilidad
+    // ✅ COROUTINE DE INVULNERABILIDAD
     private System.Collections.IEnumerator InvulnerabilityCoroutine()
     {
         isInvulnerable = true;
@@ -100,13 +106,10 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(int amount)
     {
         if (isDead) return;
-
         int previousHealth = Health;
         Health += amount;
         Health = Mathf.Min(Health, maxHealth);
-
         Debug.Log($"Jugador curado: +{Health - previousHealth}. Vida: {Health}/{maxHealth}");
-
         OnHealthChanged?.Invoke(Health, maxHealth);
     }
 
