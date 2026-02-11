@@ -7,19 +7,25 @@ public class JellyfishEnemy : MonoBehaviour
     private PlayerController playerController;
 
     [Header("Patrulla")]
-    public Transform pointA; // Punto inicial de patrulla
-    public Transform pointB; // Punto final de patrulla
+    public Transform pointA;
+    public Transform pointB;
     public float moveSpeed = 2f;
-    public float pauseTime = 1f; // Tiempo de pausa en cada extremo
+    public float pauseTime = 1f;
+    public float waypointReachDistance = 0.2f; // ✅ Distancia para considerar que llegó
 
     [Header("Contacto y Daño")]
     public int contactDamage = 1;
     public float knockbackForce = 5f;
-    public GameObject damageParticlePrefab; // Partículas de daño eléctrico
-    public float damageCooldown = 1f; // Tiempo entre daños
+    public GameObject damageParticlePrefab;
+    public float damageCooldown = 1f;
+
+    [Header("🎨 Rotación del Sprite")]
+    public bool rotateTowardsMovement = false;
+    public bool flipSpriteInsteadOfRotate = true;
 
     [Header("🔧 DEBUG")]
     public bool ignoreWaterCheck = false;
+    public bool showDebugLogs = false; // ✅ NUEVO
 
     private Animator animator;
     private Rigidbody2D rb;
@@ -35,7 +41,14 @@ public class JellyfishEnemy : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        // Buscar al jugador
+        // ✅ Configurar Rigidbody2D correctamente
+        if (rb != null)
+        {
+            rb.gravityScale = 0; // Sin gravedad
+            rb.linearDamping = 0; // Sin fricción
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation; // No rotar
+        }
+
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -46,10 +59,8 @@ public class JellyfishEnemy : MonoBehaviour
             }
         }
 
-        // Configurar puntos de patrulla
         if (pointA == null || pointB == null)
         {
-            // Crear puntos por defecto si no están asignados
             CreateDefaultPatrolPoints();
         }
 
@@ -57,7 +68,8 @@ public class JellyfishEnemy : MonoBehaviour
         transform.position = pointA.position;
         targetPosition = pointB.position;
 
-        Debug.Log($"Jellyfish iniciada. PointA: {pointA.position}, PointB: {pointB.position}");
+        if (showDebugLogs)
+            Debug.Log($"Jellyfish iniciada. PointA: {pointA.position}, PointB: {pointB.position}");
     }
 
     private void CreateDefaultPatrolPoints()
@@ -82,50 +94,54 @@ public class JellyfishEnemy : MonoBehaviour
     {
         if (isDead) return;
 
-        // ✅ Solo actuar si el jugador está bajo el agua (opcional)
+        // Solo actuar si el jugador está bajo el agua
         if (!ignoreWaterCheck && playerController != null && !playerController.IsUnderwater())
         {
-            // Si el jugador no está bajo el agua, pausar el enemigo
             if (animator != null)
                 animator.SetFloat("Speed", 0f);
+
+            if (rb != null)
+                rb.linearVelocity = Vector2.zero;
+
             return;
         }
 
-        // Lógica de patrulla
+        // ✅ SISTEMA DE PAUSAS
         if (isPaused)
         {
             pauseTimer -= Time.deltaTime;
+
             if (pauseTimer <= 0f)
             {
                 isPaused = false;
+                if (showDebugLogs)
+                    Debug.Log("Jellyfish reanuda movimiento");
             }
 
             if (animator != null)
                 animator.SetFloat("Speed", 0f);
 
+            if (rb != null)
+                rb.linearVelocity = Vector2.zero;
+
             return;
         }
 
-        // Moverse hacia el objetivo
-        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-        transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        // ✅ Verificar si llegó al objetivo
+        float distanceToTarget = Vector2.Distance(transform.position, targetPosition);
 
-        // Actualizar animación de movimiento
-        if (animator != null)
-        {
-            animator.SetFloat("Speed", moveSpeed);
-        }
+        if (showDebugLogs)
+            Debug.Log($"Distancia al objetivo: {distanceToTarget:F2}");
 
-        // Voltear sprite según dirección
-        if (direction.x > 0.01f)
-            transform.localScale = new Vector3(1, 1, 1);
-        else if (direction.x < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
-
-        // Verificar si llegó al objetivo
-        if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
+        if (distanceToTarget < waypointReachDistance)
         {
             ReachedPoint();
+        }
+
+        // Actualizar animación
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", isPaused ? 0f : moveSpeed);
         }
     }
 
@@ -133,16 +149,55 @@ public class JellyfishEnemy : MonoBehaviour
     {
         if (isDead || isPaused) return;
 
-        // Movimiento con física (si usas Rigidbody2D)
+        // ✅ MOVIMIENTO ÚNICO EN FIXEDUPDATE
         if (rb != null)
         {
-            Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
+            Vector2 currentPos = rb.position;
+            Vector2 direction = (targetPosition - currentPos).normalized;
+
+            // ✅ Actualizar orientación del sprite
+            UpdateSpriteOrientation(direction);
+
+            // ✅ Mover usando velocidad (más suave)
             rb.linearVelocity = direction * moveSpeed;
+
+            if (showDebugLogs)
+            {
+                Debug.Log($"Moviéndose hacia {targetPosition}, velocidad: {rb.linearVelocity}");
+            }
+        }
+    }
+
+    private void UpdateSpriteOrientation(Vector2 direction)
+    {
+        if (direction.magnitude < 0.01f) return;
+
+        if (rotateTowardsMovement)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+        else if (flipSpriteInsteadOfRotate)
+        {
+            if (Mathf.Abs(direction.x) > 0.01f)
+            {
+                if (direction.x > 0.01f)
+                    transform.localScale = new Vector3(1, 1, 1);
+                else if (direction.x < -0.01f)
+                    transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
     }
 
     private void ReachedPoint()
     {
+        if (showDebugLogs)
+            Debug.Log("Jellyfish alcanzó punto de patrulla");
+
+        // ✅ Detener movimiento inmediatamente
+        if (rb != null)
+            rb.linearVelocity = Vector2.zero;
+
         // Cambiar dirección
         if (movingToB)
         {
@@ -160,18 +215,13 @@ public class JellyfishEnemy : MonoBehaviour
         {
             isPaused = true;
             pauseTimer = pauseTime;
-
-            if (rb != null)
-                rb.linearVelocity = Vector2.zero;
         }
     }
 
-    // ⚡ DAÑO POR CONTACTO
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isDead) return;
 
-        // Verificar si es el jugador
         if (collision.gameObject.CompareTag("Player"))
         {
             DamagePlayer(collision.gameObject);
@@ -182,7 +232,6 @@ public class JellyfishEnemy : MonoBehaviour
     {
         if (isDead) return;
 
-        // Daño continuo mientras está en contacto
         if (collision.gameObject.CompareTag("Player"))
         {
             if (Time.time >= lastDamageTime + damageCooldown)
@@ -196,22 +245,19 @@ public class JellyfishEnemy : MonoBehaviour
     {
         lastDamageTime = Time.time;
 
-        // ⚡ Instanciar partículas de daño
         if (damageParticlePrefab != null)
         {
             Vector3 contactPoint = playerObj.transform.position;
             GameObject particles = Instantiate(damageParticlePrefab, contactPoint, Quaternion.identity);
-            Destroy(particles, 2f); // Destruir partículas después de 2 segundos
+            Destroy(particles, 2f);
         }
 
-        // Aplicar daño al jugador
         PlayerHealth playerHealth = playerObj.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.TakeDamage(contactDamage);
+            playerHealth.TakeDamage(contactDamage, transform.position);
         }
 
-        // Aplicar knockback al jugador
         PlayerController playerCtrl = playerObj.GetComponent<PlayerController>();
         if (playerCtrl != null)
         {
@@ -221,7 +267,6 @@ public class JellyfishEnemy : MonoBehaviour
         Debug.Log("¡Jellyfish hizo daño al jugador!");
     }
 
-    // ✅ COMPATIBILIDAD CON EnemyDeathHandler
     public void DisableBehavior()
     {
         isDead = true;
@@ -229,7 +274,7 @@ public class JellyfishEnemy : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
-            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.bodyType = RigidbodyType2D.Static;
         }
 
         if (animator != null)
@@ -237,7 +282,6 @@ public class JellyfishEnemy : MonoBehaviour
             animator.SetFloat("Speed", 0f);
         }
 
-        // Desactivar collider para evitar más daño
         Collider2D col = GetComponent<Collider2D>();
         if (col != null)
         {
@@ -245,27 +289,64 @@ public class JellyfishEnemy : MonoBehaviour
         }
     }
 
-    // ✅ GIZMOS PARA VISUALIZAR PATRULLA
     private void OnDrawGizmosSelected()
     {
         if (pointA != null && pointB != null)
         {
-            // Línea de patrulla
             Gizmos.color = Color.cyan;
             Gizmos.DrawLine(pointA.position, pointB.position);
 
-            // Puntos de patrulla
+            Vector3 center = (pointA.position + pointB.position) / 2f;
+            Vector3 direction = (pointB.position - pointA.position).normalized;
+            DrawArrow(center, direction, Color.yellow);
+
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(pointA.position, 0.3f);
+            Gizmos.DrawSphere(pointA.position, 0.1f);
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(pointB.position, 0.3f);
+            Gizmos.DrawSphere(pointB.position, 0.1f);
+
+            // Mostrar rango de detección de llegada
+            if (Application.isPlaying)
+            {
+                Gizmos.color = Color.yellow;
+                Vector3 currentTarget = movingToB ? pointB.position : pointA.position;
+                Gizmos.DrawWireSphere(currentTarget, waypointReachDistance);
+            }
+
+#if UNITY_EDITOR
+            float distance = Vector3.Distance(pointA.position, pointB.position);
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            UnityEditor.Handles.Label(
+                center + Vector3.up * 0.5f,
+                $"Dist: {distance:F1}u\nÁngulo: {angle:F0}°"
+            );
+#endif
         }
         else
         {
-            // Vista previa de patrulla por defecto
             Gizmos.color = Color.yellow;
-            Gizmos.DrawLine(transform.position + Vector3.left * 3f, transform.position + Vector3.right * 3f);
+            Vector3 left = transform.position + Vector3.left * 3f;
+            Vector3 right = transform.position + Vector3.right * 3f;
+            Gizmos.DrawLine(left, right);
+            Gizmos.DrawWireSphere(left, 0.2f);
+            Gizmos.DrawWireSphere(right, 0.2f);
         }
+    }
+
+    private void DrawArrow(Vector3 position, Vector3 direction, Color color)
+    {
+        Gizmos.color = color;
+
+        Vector3 arrowEnd = position + direction * 0.5f;
+        Gizmos.DrawLine(position, arrowEnd);
+
+        Vector3 right = Quaternion.Euler(0, 0, 150) * direction * 0.3f;
+        Vector3 left = Quaternion.Euler(0, 0, -150) * direction * 0.3f;
+
+        Gizmos.DrawLine(arrowEnd, arrowEnd + right);
+        Gizmos.DrawLine(arrowEnd, arrowEnd + left);
     }
 }

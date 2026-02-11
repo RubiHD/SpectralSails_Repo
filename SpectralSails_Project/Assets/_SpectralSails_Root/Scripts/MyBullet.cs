@@ -8,9 +8,12 @@ public class MyBullet : MonoBehaviour
     public float lifetime = 2f;
 
     [Header("🌊 Underwater Settings")]
-    public float underwaterSpeedMultiplier = 0.6f; // Más lento bajo el agua
-    public float underwaterLifetime = 1.5f; // Duración reducida
-    public LayerMask waterLayer; // Layer del agua
+    public float underwaterSpeedMultiplier = 0.6f;
+    public float underwaterLifetime = 1.5f;
+    public LayerMask waterLayer;
+
+    [Header("Tablas Destructibles")]
+    public int plankDamage = 3; // 3 = rompe en un solo impacto (maxHits por defecto es 3)
 
     private Vector2 direction;
     private bool isUnderwater = false;
@@ -18,13 +21,9 @@ public class MyBullet : MonoBehaviour
 
     private void Start()
     {
-        // Detectar si empieza bajo el agua
         CheckIfUnderwater();
-
-        // Ajustar velocidad y lifetime según el contexto
         currentSpeed = isUnderwater ? speed * underwaterSpeedMultiplier : speed;
         float actualLifetime = isUnderwater ? underwaterLifetime : lifetime;
-
         Destroy(gameObject, actualLifetime);
     }
 
@@ -40,26 +39,33 @@ public class MyBullet : MonoBehaviour
 
     private void CheckIfUnderwater()
     {
-        // Verificar si hay un collider de agua en la posición inicial
         Collider2D waterCollider = Physics2D.OverlapPoint(transform.position, waterLayer);
         isUnderwater = waterCollider != null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 🌊 Detectar entrada al agua (cambio de medio)
+        // 🌊 Entrada al agua
         if (((1 << collision.gameObject.layer) & waterLayer) != 0)
         {
             if (!isUnderwater)
             {
-                // Entró al agua desde el aire
                 isUnderwater = true;
                 currentSpeed = speed * underwaterSpeedMultiplier;
             }
-            return; // No destruir al tocar agua
+            return;
         }
 
-        // Damage boss
+        // 🪵 Tablas destructibles (1 impacto de bala)
+        DestructiblePlank plank = collision.GetComponent<DestructiblePlank>();
+        if (plank != null)
+        {
+            plank.TakeDamage(plankDamage);
+            Destroy(gameObject);
+            return;
+        }
+
+        // Boss
         BossPirate boss = collision.GetComponent<BossPirate>();
         if (boss != null)
         {
@@ -68,24 +74,18 @@ public class MyBullet : MonoBehaviour
             return;
         }
 
-        // Damage normal enemies
+        // Enemigos normales
         EnemyHealth enemy = collision.GetComponent<EnemyHealth>();
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
-
-            // Reproducir animación de impacto si el enemigo tiene el componente
             EnemyAnimationHandler animHandler = collision.GetComponent<EnemyAnimationHandler>();
-            if (animHandler != null)
-            {
-                animHandler.PlayHit();
-            }
-
+            animHandler?.PlayHit();
             Destroy(gameObject);
             return;
         }
 
-        // Destroy on ground
+        // Suelo
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Destroy(gameObject);
