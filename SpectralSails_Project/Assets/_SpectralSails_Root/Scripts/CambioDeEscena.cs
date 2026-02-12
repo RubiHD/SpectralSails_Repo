@@ -3,13 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class CambioDeEscena : MonoBehaviour
 {
-    public string nombreDeLaEscena;
+    public int indiceDeLaEscena;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(nombreDeLaEscena);
+            SceneManager.LoadScene(indiceDeLaEscena);
         }
     }
 }
+
+
