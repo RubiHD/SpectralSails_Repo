@@ -71,6 +71,8 @@ public class BossPirate : MonoBehaviour
 
     [Header("UI")]
     public BossHealthUI bossHealthUI;
+    public float uiActivationRange = 10f; // ✅ NUEVO - Rango para mostrar UI
+    private bool hasShownUI = false; // ✅ NUEVO - Control de primera aparición
 
     [Header("Debug")]
     [SerializeField] private bool showDebugGizmos = true;
@@ -95,7 +97,6 @@ public class BossPirate : MonoBehaviour
         if (animator == null)
             animator = GetComponent<Animator>();
 
-        // ✅ CONFIGURAR COMO FANTASMA
         if (isGhost)
         {
             SetupAsGhost();
@@ -105,9 +106,10 @@ public class BossPirate : MonoBehaviour
         if (playerObj != null)
             player = playerObj.transform;
 
+        // ✅ CAMBIAR ESTO: UI empieza oculta
         if (bossHealthUI != null)
         {
-            bossHealthUI.Show();
+            bossHealthUI.Hide(); // ✅ Oculta al inicio
             bossHealthUI.SetHealth(1f);
         }
 
@@ -117,7 +119,8 @@ public class BossPirate : MonoBehaviour
     // ✅ NUEVO MÉTODO: Configurar como fantasma
     private void SetupAsGhost()
     {
-        // Hacer el collider atravesable (trigger)
+        // ✅ SOLUCIÓN: Usar un collider separado para el ataque
+        // El collider principal es trigger (atravesable)
         if (mainCollider != null)
         {
             mainCollider.isTrigger = true;
@@ -130,7 +133,7 @@ public class BossPirate : MonoBehaviour
             spriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, ghostAlpha);
         }
 
-        // Configurar Rigidbody2D para que no empuje al jugador
+        // Configurar Rigidbody2D
         if (rb != null)
         {
             rb.bodyType = RigidbodyType2D.Kinematic;
@@ -144,7 +147,8 @@ public class BossPirate : MonoBehaviour
         if (isTransforming) return;
 
         UpdateTimers();
-        HandlePauses(); // ✅ NUEVO
+        HandlePauses();
+        HandleUIVisibility(); // ✅ NUEVO - Verificar si mostrar/ocultar UI
         HandleMovementLogic();
         HandleAttacks();
     }
@@ -337,19 +341,60 @@ public class BossPirate : MonoBehaviour
 
     public void DealSwordDamage()
     {
-        if (attackPoint == null) return;
+        Debug.Log("=== DEAL SWORD DAMAGE LLAMADO ===");
+
+        if (attackPoint == null)
+        {
+            Debug.LogError("❌ attackPoint NO está asignado!");
+            return;
+        }
 
         float range = isEnraged ? attackRange + 0.5f : attackRange;
+        Debug.Log($"Buscando jugador en rango {range} desde posición {attackPoint.position}");
+
+        // ✅ VERSIÓN 1: Buscar por capa "Player"
         Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, range, LayerMask.GetMask("Player"));
 
         if (hit != null)
         {
+            Debug.Log($"✅ Collider encontrado: {hit.name} en capa {LayerMask.LayerToName(hit.gameObject.layer)}");
+
             PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 int damage = isEnraged ? swordDamage + 1 : swordDamage;
                 playerHealth.TakeDamage(damage, transform.position);
-                Debug.Log($"Boss golpeó al jugador con espada. Daño: {damage}");
+                Debug.Log($"✅ Daño aplicado: {damage} a {hit.name}");
+            }
+            else
+            {
+                Debug.LogError($"❌ {hit.name} NO tiene componente PlayerHealth!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("❌ NO se encontró ningún collider en el rango");
+
+            // ✅ VERSIÓN 2 (FALLBACK): Buscar por tag
+            Collider2D[] allColliders = Physics2D.OverlapCircleAll(attackPoint.position, range);
+            Debug.Log($"Colliders totales encontrados: {allColliders.Length}");
+
+            foreach (var col in allColliders)
+            {
+                Debug.Log($"  - {col.name} (Layer: {LayerMask.LayerToName(col.gameObject.layer)}, Tag: {col.tag})");
+
+                if (col.CompareTag("Player"))
+                {
+                    Debug.Log("✅ Jugador encontrado por TAG!");
+                    PlayerHealth ph = col.GetComponent<PlayerHealth>();
+                    if (ph != null)
+                    {
+                        int damage = isEnraged ? swordDamage + 1 : swordDamage;
+                        ph.TakeDamage(damage, transform.position);
+                        Debug.Log($"✅ Daño aplicado por TAG: {damage}");
+                        return;
+                    }
+                }
             }
         }
     }
@@ -573,6 +618,29 @@ public class BossPirate : MonoBehaviour
     {
         if (animator != null)
             animator.SetFloat("Speed", speed);
+    }
+
+    // ✅ NUEVO MÉTODO: Mostrar/ocultar UI según distancia
+    private void HandleUIVisibility()
+    {
+        if (player == null || bossHealthUI == null) return;
+
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        // Mostrar UI si el jugador está cerca
+        if (distanceToPlayer <= uiActivationRange && !hasShownUI)
+        {
+            bossHealthUI.Show();
+            hasShownUI = true;
+            Debug.Log("¡Barra de vida del boss activada!");
+        }
+        // Mantener visible mientras esté en rango
+        else if (distanceToPlayer > uiActivationRange && hasShownUI)
+        {
+            // Opcional: ocultar si el jugador se aleja mucho
+            // bossHealthUI.Hide();
+            // hasShownUI = false;
+        }
     }
 
     private void Die()
