@@ -31,7 +31,6 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed && swords.Count > 0)
         {
-            AudioManagerAudioManager.Instance.PlaySFX(1);
             if (animator != null)
             {
                 if (swords[currentSwordIndex] is AdvancedSword)
