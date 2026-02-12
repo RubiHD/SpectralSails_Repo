@@ -29,5 +29,11 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(int musicIndex)
     {
         musicSource.clip = musicList[musicIndex];
+        musicSource.Play();
+    }
+
+    public void PlaySFX(int sfxIndex)
+    {
+        sfxSource.PlayOneShot(sfxList[sfxIndex]);
     }
 }
