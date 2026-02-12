@@ -476,7 +476,8 @@ public class PlayerController : MonoBehaviour
 
         if (dialogueUI != null)
         {
-            dialogueUI.ShowDialogue(dialogue);
+            // ✅ CAMBIO: Pasar 'null' como segundo parámetro si no hay NPC específico
+            dialogueUI.ShowDialogue(dialogue, null);
         }
         else
         {

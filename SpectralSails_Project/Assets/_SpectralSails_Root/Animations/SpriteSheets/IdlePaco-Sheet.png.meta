@@ -1,0 +1,737 @@
+fileFormatVersion: 2
+guid: e906b773255f862428f9fb6f109a9a5c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6337624883146992499
+    second: IdlePaco-Sheet_0
+  - first:
+      213: -2364805841590393416
+    second: IdlePaco-Sheet_1
+  - first:
+      213: -8662152405918264640
+    second: IdlePaco-Sheet_2
+  - first:
+      213: 5297032773840723953
+    second: IdlePaco-Sheet_3
+  - first:
+      213: 6789326235062261799
+    second: IdlePaco-Sheet_4
+  - first:
+      213: -4468920690369384275
+    second: IdlePaco-Sheet_5
+  - first:
+      213: -7517773778715932679
+    second: IdlePaco-Sheet_6
+  - first:
+      213: 8392977404166015502
+    second: IdlePaco-Sheet_7
+  - first:
+      213: -2101495277354226990
+    second: IdlePaco-Sheet_8
+  - first:
+      213: 3375993244698205867
+    second: IdlePaco-Sheet_9
+  - first:
+      213: 2715337213745933562
+    second: IdlePaco-Sheet_10
+  - first:
+      213: -7878053418532794088
+    second: IdlePaco-Sheet_11
+  - first:
+      213: -6858170297327882122
+    second: IdlePaco-Sheet_12
+  - first:
+      213: 8898529156514281655
+    second: IdlePaco-Sheet_13
+  - first:
+      213: 6235919225534295872
+    second: IdlePaco-Sheet_14
+  - first:
+      213: 683147991115896523
+    second: IdlePaco-Sheet_15
+  - first:
+      213: -4982892124360322862
+    second: IdlePaco-Sheet_16
+  - first:
+      213: -6929974360787312920
+    second: IdlePaco-Sheet_17
+  - first:
+      213: -6843123416976744569
+    second: IdlePaco-Sheet_18
+  - first:
+      213: 1486398969890281658
+    second: IdlePaco-Sheet_19
+  - first:
+      213: -539693314166511942
+    second: IdlePaco-Sheet_20
+  - first:
+      213: 3694849089192781649
+    second: IdlePaco-Sheet_21
+  - first:
+      213: -6418440493790289580
+    second: IdlePaco-Sheet_22
+  - first:
+      213: -3157159570618269084
+    second: IdlePaco-Sheet_23
+  - first:
+      213: -8868208816664117479
+    second: IdlePaco-Sheet_24
+  - first:
+      213: -6323673908942612132
+    second: IdlePaco-Sheet_25
+  - first:
+      213: 3704062184295798185
+    second: IdlePaco-Sheet_26
+  - first:
+      213: 5615880263697320431
+    second: IdlePaco-Sheet_27
+  - first:
+      213: -1464840755091944511
+    second: IdlePaco-Sheet_28
+  - first:
+      213: 3796942568405676904
+    second: IdlePaco-Sheet_29
+  - first:
+      213: -5050840441315496570
+    second: IdlePaco-Sheet_30
+  - first:
+      213: -6117985763664685045
+    second: IdlePaco-Sheet_31
+  - first:
+      213: -6542459610518935782
+    second: IdlePaco-Sheet_32
+  - first:
+      213: -5875746515426870636
+    second: IdlePaco-Sheet_33
+  - first:
+      213: 1854064352706100752
+    second: IdlePaco-Sheet_34
+  - first:
+      213: 1338803771865931411
+    second: IdlePaco-Sheet_35
+  - first:
+      213: -8267308161741393656
+    second: IdlePaco-Sheet_36
+  - first:
+      213: -7834895671177595814
+    second: IdlePaco-Sheet_37
+  - first:
+      213: 7412176333897687293
+    second: IdlePaco-Sheet_38
+  - first:
+      213: 6501295142050662882
+    second: IdlePaco-Sheet_39
+  - first:
+      213: 3595897460541356485
+    second: IdlePaco-Sheet_40
+  - first:
+      213: -8111137318646945567
+    second: IdlePaco-Sheet_41
+  - first:
+      213: -6855454302322893699
+    second: IdlePaco-Sheet_42
+  - first:
+      213: -1154691473899099171
+    second: IdlePaco-Sheet_43
+  - first:
+      213: -8995322546279086440
+    second: IdlePaco-Sheet_44
+  - first:
+      213: 6649674920970810093
+    second: IdlePaco-Sheet_45
+  - first:
+      213: -9091522050563797142
+    second: IdlePaco-Sheet_46
+  - first:
+      213: 756596268257853225
+    second: IdlePaco-Sheet_47
+  - first:
+      213: -8053914106221408572
+    second: IdlePaco-Sheet_48
+  - first:
+      213: 7121398967181279892
+    second: IdlePaco-Sheet_49
+  - first:
+      213: -315694292851199312
+    second: IdlePaco-Sheet_50
+  - first:
+      213: -7075608485171169593
+    second: IdlePaco-Sheet_51
+  - first:
+      213: -3672976189042984066
+    second: IdlePaco-Sheet_52
+  - first:
+      213: -2615154654439303450
+    second: IdlePaco-Sheet_53
+  - first:
+      213: 1832346371063204786
+    second: IdlePaco-Sheet_54
+  - first:
+      213: -847276423717611235
+    second: IdlePaco-Sheet_55
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d84d8583fbb3c08a0800000000000000
+      internalID: -6337624883146992499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b56c39cd958e2fd0800000000000000
+      internalID: -2364805841590393416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c252f6e74ad9c780800000000000000
+      internalID: -8662152405918264640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ffd0603e37d28940800000000000000
+      internalID: 5297032773840723953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72850294d38883e50800000000000000
+      internalID: 6789326235062261799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da0b3293f443bf1c0800000000000000
+      internalID: -4468920690369384275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f704e144908ba790800000000000000
+      internalID: -7517773778715932679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0a023f2b78d97470800000000000000
+      internalID: 8392977404166015502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dae320fd2df5d2e0800000000000000
+      internalID: -2101495277354226990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baeda5228ffe9de20800000000000000
+      internalID: 3375993244698205867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afca9b63fc0dea520800000000000000
+      internalID: 2715337213745933562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8111dc2d7288ba290800000000000000
+      internalID: -7878053418532794088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 670f2a26372e2d0a0800000000000000
+      internalID: -6858170297327882122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b87d751f1ded7b70800000000000000
+      internalID: 8898529156514281655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04f200e0f7f6a8650800000000000000
+      internalID: 6235919225534295872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc61c7b7a770b7900800000000000000
+      internalID: 683147991115896523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d0596d630639dab0800000000000000
+      internalID: -4982892124360322862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ee15b21909c3df90800000000000000
+      internalID: -6929974360787312920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IdlePaco-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78f91f832875801a0800000000000000
+      internalID: -6843123416976744569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5a9f2ff5e6bfa4144a17232acfcfb7d9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":64.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      IdlePaco-Sheet_0: -6337624883146992499
+      IdlePaco-Sheet_1: -2364805841590393416
+      IdlePaco-Sheet_10: 2715337213745933562
+      IdlePaco-Sheet_11: -7878053418532794088
+      IdlePaco-Sheet_12: -6858170297327882122
+      IdlePaco-Sheet_13: 8898529156514281655
+      IdlePaco-Sheet_14: 6235919225534295872
+      IdlePaco-Sheet_15: 683147991115896523
+      IdlePaco-Sheet_16: -4982892124360322862
+      IdlePaco-Sheet_17: -6929974360787312920
+      IdlePaco-Sheet_18: -6843123416976744569
+      IdlePaco-Sheet_2: -8662152405918264640
+      IdlePaco-Sheet_3: 5297032773840723953
+      IdlePaco-Sheet_4: 6789326235062261799
+      IdlePaco-Sheet_5: -4468920690369384275
+      IdlePaco-Sheet_6: -7517773778715932679
+      IdlePaco-Sheet_7: 8392977404166015502
+      IdlePaco-Sheet_8: -2101495277354226990
+      IdlePaco-Sheet_9: 3375993244698205867
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

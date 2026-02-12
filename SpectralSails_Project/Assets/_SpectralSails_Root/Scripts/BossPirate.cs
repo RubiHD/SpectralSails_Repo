@@ -77,6 +77,9 @@ public class BossPirate : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool showDebugGizmos = true;
 
+    [Header("Drop al Morir")]
+    public GameObject itemDropPrefab; // Prefab del item "Velas"
+
     private Transform player;
     private Rigidbody2D rb;
     private Collider2D mainCollider;
@@ -645,17 +648,25 @@ public class BossPirate : MonoBehaviour
 
     private void Die()
     {
+
+        // ✅ DROPEAR ITEM AL MORIR
+        if (itemDropPrefab != null)
+        {
+            Vector3 dropPosition = transform.position + new Vector3(0f, 1f, 0f);
+            Instantiate(itemDropPrefab, dropPosition, Quaternion.identity);
+            Debug.Log("🎁 Boss dropeó item!");
+        }
         Debug.Log("¡BOSS DERROTADO!");
 
         canAttack = false;
         isAttacking = false;
         rb.linearVelocity = Vector2.zero;
 
-        // Ocultar UI inmediatamente
         if (bossHealthUI != null)
             bossHealthUI.Hide();
 
-        // Iniciar efecto de muerte
+        
+
         StartCoroutine(DeathEffect());
     }
 

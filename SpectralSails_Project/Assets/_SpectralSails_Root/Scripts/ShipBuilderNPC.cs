@@ -18,45 +18,62 @@ public class ShipBuilderNPC : MonoBehaviour, IInteractable
 
     public void Interact(PlayerController player)
     {
+        // ✅ VALIDACIONES MEJORADAS
+        if (player == null)
+        {
+            Debug.LogError("❌ Player es NULL en ShipBuilderNPC.Interact!");
+            return;
+        }
+
         if (hasCompletedQuest)
         {
             Debug.Log("Ya has completado la quest del barco.");
             return;
         }
 
-        if (player != null && player.dialogueUI != null)
+        if (player.dialogueUI == null)
         {
-            player.dialogueUI.ShowDialogue(initialDialogue, this);
+            Debug.LogError("❌ DialogueUI NO está asignado en el PlayerController!");
+            Debug.LogError("→ SOLUCIÓN: Selecciona el Player en la Jerarquía > PlayerController > Arrastra DialogueUI del Canvas al campo 'Dialogue UI'");
+            return;
         }
-        else
+
+        if (initialDialogue == null)
         {
-            Debug.LogError("Player o DialogueUI es null!");
+            Debug.LogError("❌ Initial Dialogue NO está asignado en ShipBuilderNPC!");
+            return;
         }
+
+        Debug.Log($"✅ Iniciando diálogo con NPC: {gameObject.name}");
+        player.dialogueUI.ShowDialogue(initialDialogue, this);
     }
 
     public bool HasRequirements(PlayerInventory inventory)
     {
         if (inventory == null)
         {
-            Debug.LogError("Inventory es null!");
+            Debug.LogError("❌ Inventory es null!");
             return false;
         }
 
+        // Verificar monedas
         if (inventory.coinCount < requiredCoins)
         {
-            Debug.Log($"Faltan monedas. Tiene: {inventory.coinCount}/{requiredCoins}");
+            Debug.Log($"❌ Faltan monedas. Tiene: {inventory.coinCount}/{requiredCoins}");
             return false;
         }
 
+        // Verificar items
         foreach (string itemID in requiredItems)
         {
             if (!inventory.HasItem(itemID))
             {
-                Debug.Log($"Falta item: {itemID}");
+                Debug.Log($"❌ Falta item: {itemID}");
                 return false;
             }
         }
 
+        Debug.Log("✅ Jugador tiene todos los requisitos!");
         return true;
     }
 
@@ -64,14 +81,16 @@ public class ShipBuilderNPC : MonoBehaviour, IInteractable
     {
         if (inventory == null)
         {
-            Debug.LogError("Inventory es null!");
+            Debug.LogError("❌ Inventory es null!");
             return;
         }
 
-        Debug.Log("¡Quest completada! Consumiendo recursos...");
+        Debug.Log("🎉 ¡Quest completada! Consumiendo recursos...");
 
+        // Quitar monedas
         inventory.RemoveCoins(requiredCoins);
 
+        // Quitar items
         foreach (string itemID in requiredItems)
         {
             inventory.RemoveItem(itemID);
@@ -83,7 +102,7 @@ public class ShipBuilderNPC : MonoBehaviour, IInteractable
 
     private void BuildShip()
     {
-        Debug.Log("🚢 ¡Barco construido! Cargando siguiente escena...");
+        Debug.Log("🚢 ¡Barco construido! Cargando siguiente escena en 2 segundos...");
         Invoke("LoadNextScene", 2f);
     }
 
@@ -91,11 +110,20 @@ public class ShipBuilderNPC : MonoBehaviour, IInteractable
     {
         if (!string.IsNullOrEmpty(nextSceneName))
         {
+            Debug.Log($"Cargando escena: {nextSceneName}");
             SceneManager.LoadScene(nextSceneName);
         }
         else
         {
-            Debug.LogWarning("No se ha asignado una escena siguiente.");
+            Debug.LogWarning("⚠️ No se ha asignado una escena siguiente.");
         }
+    }
+
+    // ✅ MÉTODO DE DEBUG
+    private void OnDrawGizmos()
+    {
+        // Visualizar rango de interacción
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, 2f);
     }
 }
