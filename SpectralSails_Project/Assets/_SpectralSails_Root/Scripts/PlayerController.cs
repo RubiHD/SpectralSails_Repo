@@ -338,6 +338,7 @@ public class PlayerController : MonoBehaviour
         // --- SALTO TERRESTRE NORMAL ---
         if (coyoteTimeCounter > 0f)
         {
+            AudioManager.Instance.PlaySFX(0); // Sonido de salto
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpingPower);
             coyoteTimeCounter = 0f;
 
